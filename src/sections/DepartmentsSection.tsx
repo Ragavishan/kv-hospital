@@ -21,6 +21,8 @@ export default function DepartmentsSection() {
                 key={department.id}
                 title={department.title}
                 description={department.description}
+                fullDescription={department.fullDescription}
+                services={department.services}
                 icon={department.icon}
               />
             ))}

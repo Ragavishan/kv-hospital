@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 interface DoctorCardProps {
@@ -13,6 +15,16 @@ export default function DoctorCard({
   experience,
   image,
 }: DoctorCardProps) {
+  const handleBookAppointment = () => {
+    const section = document.getElementById("appointment");
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div className="overflow-hidden rounded-3xl bg-white shadow-lg transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
 
@@ -42,7 +54,10 @@ export default function DoctorCard({
           {experience}
         </p>
 
-        <button className="mt-6 w-full rounded-xl bg-blue-700 px-4 py-3 font-semibold text-white transition hover:bg-blue-800">
+        <button
+          onClick={handleBookAppointment}
+          className="mt-6 w-full rounded-xl bg-blue-700 px-4 py-3 font-semibold text-white transition hover:bg-blue-800"
+        >
           Book Appointment
         </button>
 
