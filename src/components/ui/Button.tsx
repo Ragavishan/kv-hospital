@@ -1,11 +1,13 @@
 interface ButtonProps {
   text: string;
   variant?: "primary" | "secondary";
+  onClick?: () => void;
 }
 
 export default function Button({
   text,
   variant = "primary",
+  onClick,
 }: ButtonProps) {
   const baseStyle =
     "rounded-lg px-6 py-3 font-semibold transition-all duration-300";
@@ -18,7 +20,10 @@ export default function Button({
   };
 
   return (
-    <button className={`${baseStyle} ${styles[variant]}`}>
+    <button
+      onClick={onClick}
+      className={`${baseStyle} ${styles[variant]}`}
+    >
       {text}
     </button>
   );

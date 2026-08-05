@@ -34,11 +34,23 @@ export default function HeroSection() {
             {/* Buttons */}
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Button text="Book Appointment" />
+              <Button
+                text="Book Appointment"
+                onClick={() =>
+                  document
+                    .getElementById("appointment")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+              />
 
               <Button
                 text="Explore Services"
                 variant="secondary"
+                onClick={() =>
+                  document
+                    .getElementById("departments")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
               />
             </div>
 
