@@ -3,12 +3,45 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { navigation } from "@/constants/navigation";
-import Button from "@/components/ui/Button";
 
 export default function MainNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+
+  // Scroll to appointment form
+  const handleBookAppointment = () => {
+    setIsOpen(false);
+
+    const appointmentForm =
+      document.getElementById("appointment-form") ||
+      document.getElementById("appointment");
+
+    if (appointmentForm) {
+      appointmentForm.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  // Navigation link click
+  const handleNavigation = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    event.preventDefault();
+    setIsOpen(false);
+
+    const section = document.querySelector(href);
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,8 +54,9 @@ export default function MainNavbar() {
       sections.forEach((section, index) => {
         if (!section) return;
 
-        const top = (section as HTMLElement).offsetTop - 120;
-        const height = (section as HTMLElement).offsetHeight;
+        const element = section as HTMLElement;
+        const top = element.offsetTop - 120;
+        const height = element.offsetHeight;
 
         if (
           window.scrollY >= top &&
@@ -39,8 +73,9 @@ export default function MainNavbar() {
 
     window.addEventListener("scroll", handleScroll);
 
-    return () =>
+    return () => {
       window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
@@ -57,6 +92,7 @@ export default function MainNavbar() {
 
         <a
           href="#home"
+          onClick={(event) => handleNavigation(event, "#home")}
           className="text-2xl font-bold text-blue-700"
         >
           KV Hospital
@@ -73,6 +109,9 @@ export default function MainNavbar() {
               <li key={item.name}>
                 <a
                   href={item.href}
+                  onClick={(event) =>
+                    handleNavigation(event, item.href)
+                  }
                   className={`font-medium transition duration-300 ${
                     isActive
                       ? "text-blue-700"
@@ -86,17 +125,25 @@ export default function MainNavbar() {
           })}
         </ul>
 
-        {/* Desktop Button */}
+        {/* Desktop Book Appointment */}
 
         <div className="hidden md:block">
-          <Button text="Book Appointment" />
+          <button
+            type="button"
+            onClick={handleBookAppointment}
+            className="rounded-lg bg-blue-700 px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-lg"
+          >
+            Book Appointment
+          </button>
         </div>
 
-        {/* Mobile Button */}
+        {/* Mobile Menu Button */}
 
         <button
-          className="md:hidden"
+          type="button"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
           onClick={() => setIsOpen(!isOpen)}
+          className="rounded-lg p-2 text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 md:hidden"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -106,7 +153,7 @@ export default function MainNavbar() {
       {/* Mobile Menu */}
 
       {isOpen && (
-        <div className="border-t bg-white md:hidden">
+        <div className="border-t bg-white shadow-md md:hidden">
           <ul className="space-y-4 p-6">
 
             {navigation.map((item) => {
@@ -117,11 +164,13 @@ export default function MainNavbar() {
                 <li key={item.name}>
                   <a
                     href={item.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(event) =>
+                      handleNavigation(event, item.href)
+                    }
                     className={`block font-medium transition ${
                       isActive
                         ? "text-blue-700"
-                        : "hover:text-blue-700"
+                        : "text-slate-700 hover:text-blue-700"
                     }`}
                   >
                     {item.name}
@@ -130,7 +179,17 @@ export default function MainNavbar() {
               );
             })}
 
-            <Button text="Book Appointment" />
+            {/* Mobile Book Appointment */}
+
+            <li>
+              <button
+                type="button"
+                onClick={handleBookAppointment}
+                className="w-full rounded-lg bg-blue-700 px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:bg-blue-800"
+              >
+                Book Appointment
+              </button>
+            </li>
 
           </ul>
         </div>
