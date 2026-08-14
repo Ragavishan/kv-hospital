@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, CalendarCheck2 } from "lucide-react";
 import { navigation } from "@/constants/navigation";
 
 export default function MainNavbar() {
@@ -9,7 +9,6 @@ export default function MainNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // Scroll to appointment form
   const handleBookAppointment = () => {
     setIsOpen(false);
 
@@ -25,7 +24,6 @@ export default function MainNavbar() {
     }
   };
 
-  // Navigation link click
   const handleNavigation = (
     event: React.MouseEvent<HTMLAnchorElement>,
     href: string
@@ -45,7 +43,7 @@ export default function MainNavbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 30);
 
       const sections = navigation.map((item) =>
         document.querySelector(item.href)
@@ -55,7 +53,7 @@ export default function MainNavbar() {
         if (!section) return;
 
         const element = section as HTMLElement;
-        const top = element.offsetTop - 120;
+        const top = element.offsetTop - 140;
         const height = element.offsetHeight;
 
         if (
@@ -80,27 +78,39 @@ export default function MainNavbar() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
         isScrolled
-          ? "bg-white shadow-lg"
-          : "bg-white/90 backdrop-blur-md"
+          ? "border-slate-200 bg-white/95 shadow-lg backdrop-blur-xl"
+          : "border-transparent bg-white/90 backdrop-blur-md"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
 
         {/* Logo */}
 
         <a
           href="#home"
           onClick={(event) => handleNavigation(event, "#home")}
-          className="text-2xl font-bold text-blue-700"
+          className="group flex items-center gap-3"
         >
-          KV Hospital
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-700 text-white shadow-md transition duration-300 group-hover:scale-105 group-hover:bg-blue-800">
+            <span className="text-lg font-bold">KV</span>
+          </div>
+
+          <div className="leading-tight">
+            <h1 className="text-xl font-bold tracking-tight text-slate-900">
+              KV Hospital
+            </h1>
+
+            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-blue-700">
+              Trusted Healthcare
+            </p>
+          </div>
         </a>
 
-        {/* Desktop Menu */}
+        {/* Desktop Navigation */}
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-7 lg:flex">
           {navigation.map((item) => {
             const isActive =
               activeSection === item.href.replace("#", "");
@@ -112,28 +122,39 @@ export default function MainNavbar() {
                   onClick={(event) =>
                     handleNavigation(event, item.href)
                   }
-                  className={`font-medium transition duration-300 ${
+                  className={`relative py-2 text-sm font-semibold transition duration-300 ${
                     isActive
                       ? "text-blue-700"
-                      : "text-slate-700 hover:text-blue-700"
+                      : "text-slate-600 hover:text-blue-700"
                   }`}
                 >
                   {item.name}
+
+                  <span
+                    className={`absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-blue-700 transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0"
+                    }`}
+                  />
                 </a>
               </li>
             );
           })}
         </ul>
 
-        {/* Desktop Book Appointment */}
+        {/* Desktop Appointment Button */}
 
         <div className="hidden md:block">
           <button
             type="button"
             onClick={handleBookAppointment}
-            className="rounded-lg bg-blue-700 px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-lg"
+            className="group flex items-center gap-2 rounded-xl bg-blue-700 px-5 py-3 text-sm font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl"
           >
-            Book Appointment
+            <CalendarCheck2
+              size={18}
+              className="transition group-hover:scale-110"
+            />
+
+            <span>Book Appointment</span>
           </button>
         </div>
 
@@ -142,19 +163,19 @@ export default function MainNavbar() {
         <button
           type="button"
           aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
           onClick={() => setIsOpen(!isOpen)}
-          className="rounded-lg p-2 text-slate-700 transition hover:bg-blue-50 hover:text-blue-700 md:hidden"
+          className="rounded-xl border border-slate-200 p-2.5 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 md:hidden"
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <X size={25} /> : <Menu size={25} />}
         </button>
-
       </div>
 
       {/* Mobile Menu */}
 
       {isOpen && (
-        <div className="border-t bg-white shadow-md md:hidden">
-          <ul className="space-y-4 p-6">
+        <div className="border-t border-slate-200 bg-white shadow-xl md:hidden">
+          <ul className="mx-auto max-w-7xl space-y-1 px-5 py-5">
 
             {navigation.map((item) => {
               const isActive =
@@ -167,10 +188,10 @@ export default function MainNavbar() {
                     onClick={(event) =>
                       handleNavigation(event, item.href)
                     }
-                    className={`block font-medium transition ${
+                    className={`block rounded-xl px-4 py-3 font-semibold transition ${
                       isActive
-                        ? "text-blue-700"
-                        : "text-slate-700 hover:text-blue-700"
+                        ? "bg-blue-50 text-blue-700"
+                        : "text-slate-700 hover:bg-slate-50 hover:text-blue-700"
                     }`}
                   >
                     {item.name}
@@ -179,18 +200,16 @@ export default function MainNavbar() {
               );
             })}
 
-            {/* Mobile Book Appointment */}
-
-            <li>
+            <li className="pt-3">
               <button
                 type="button"
                 onClick={handleBookAppointment}
-                className="w-full rounded-lg bg-blue-700 px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:bg-blue-800"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 font-bold text-white shadow-md transition hover:bg-blue-800"
               >
+                <CalendarCheck2 size={19} />
                 Book Appointment
               </button>
             </li>
-
           </ul>
         </div>
       )}
