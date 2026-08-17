@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X, CalendarCheck2 } from "lucide-react";
+import {
+  Menu,
+  X,
+  CalendarCheck2,
+  ChevronDown,
+} from "lucide-react";
+import Image from "next/image";
 import { navigation } from "@/constants/navigation";
 
 export default function MainNavbar() {
@@ -16,12 +22,10 @@ export default function MainNavbar() {
       document.getElementById("appointment-form") ||
       document.getElementById("appointment");
 
-    if (appointmentForm) {
-      appointmentForm.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    appointmentForm?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   const handleNavigation = (
@@ -33,12 +37,10 @@ export default function MainNavbar() {
 
     const section = document.querySelector(href);
 
-    if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    section?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   useEffect(() => {
@@ -53,12 +55,12 @@ export default function MainNavbar() {
         if (!section) return;
 
         const element = section as HTMLElement;
-        const top = element.offsetTop - 140;
-        const height = element.offsetHeight;
+        const top = element.offsetTop - 150;
+        const bottom = top + element.offsetHeight;
 
         if (
           window.scrollY >= top &&
-          window.scrollY < top + height
+          window.scrollY < bottom
         ) {
           setActiveSection(
             navigation[index].href.replace("#", "")
@@ -80,139 +82,199 @@ export default function MainNavbar() {
     <nav
       className={`sticky top-0 z-50 border-b transition-all duration-300 ${
         isScrolled
-          ? "border-slate-200 bg-white/95 shadow-lg backdrop-blur-xl"
-          : "border-transparent bg-white/90 backdrop-blur-md"
+          ? "border-slate-200/80 bg-white/95 shadow-lg backdrop-blur-xl"
+          : "border-slate-100 bg-white"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-[74px] max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
 
-        {/* Logo */}
+        {/* ================= LOGO ================= */}
 
         <a
           href="#home"
-          onClick={(event) => handleNavigation(event, "#home")}
+          onClick={(event) =>
+            handleNavigation(event, "#home")
+          }
           className="group flex items-center gap-3"
         >
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-700 text-white shadow-md transition duration-300 group-hover:scale-105 group-hover:bg-blue-800">
-            <span className="text-lg font-bold">KV</span>
+          {/* Logo */}
+
+          <div className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl border border-blue-100 bg-white shadow-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-md">
+            <Image
+              src="/images/kv-hospital-logo.png"
+              alt="KV Hospital"
+              fill
+              sizes="44px"
+              className="object-contain p-1"
+            />
           </div>
 
-          <div className="leading-tight">
-            <h1 className="text-xl font-bold tracking-tight text-slate-900">
+          {/* Hospital Name */}
+
+          <div className="leading-none">
+
+            <h1 className="text-[18px] font-extrabold tracking-tight text-slate-900 sm:text-[19px]">
               KV Hospital
             </h1>
 
-            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-blue-700">
-              Trusted Healthcare
-            </p>
+            <div className="mt-1 flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+
+              <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-slate-500">
+                Multi-Speciality Care
+              </p>
+            </div>
+
           </div>
         </a>
 
-        {/* Desktop Navigation */}
+        {/* ================= DESKTOP NAV ================= */}
 
-        <ul className="hidden items-center gap-7 lg:flex">
+        <div className="hidden lg:flex lg:items-center lg:gap-8">
+
           {navigation.map((item) => {
             const isActive =
               activeSection === item.href.replace("#", "");
 
             return (
-              <li key={item.name}>
-                <a
-                  href={item.href}
-                  onClick={(event) =>
-                    handleNavigation(event, item.href)
-                  }
-                  className={`relative py-2 text-sm font-semibold transition duration-300 ${
-                    isActive
-                      ? "text-blue-700"
-                      : "text-slate-600 hover:text-blue-700"
-                  }`}
-                >
-                  {item.name}
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={(event) =>
+                  handleNavigation(event, item.href)
+                }
+                className={`group relative py-2 text-[13px] font-semibold transition-all duration-300 ${
+                  isActive
+                    ? "text-blue-700"
+                    : "text-slate-600 hover:text-blue-700"
+                }`}
+              >
+                {item.name}
 
-                  <span
-                    className={`absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-blue-700 transition-all duration-300 ${
-                      isActive ? "w-full" : "w-0"
-                    }`}
-                  />
-                </a>
-              </li>
+                <span
+                  className={`absolute -bottom-0.5 left-1/2 h-[2px] -translate-x-1/2 rounded-full bg-blue-700 transition-all duration-300 ${
+                    isActive
+                      ? "w-full"
+                      : "w-0 group-hover:w-2/3"
+                  }`}
+                />
+              </a>
             );
           })}
-        </ul>
 
-        {/* Desktop Appointment Button */}
+        </div>
 
-        <div className="hidden md:block">
+        {/* ================= DESKTOP CTA ================= */}
+
+        <div className="hidden lg:block">
+
           <button
             type="button"
             onClick={handleBookAppointment}
-            className="group flex items-center gap-2 rounded-xl bg-blue-700 px-5 py-3 text-sm font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl"
+            className="group flex items-center gap-2 rounded-xl bg-blue-700 px-5 py-2.5 text-[13px] font-bold text-white shadow-md shadow-blue-700/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-lg"
           >
             <CalendarCheck2
-              size={18}
-              className="transition group-hover:scale-110"
+              size={17}
+              strokeWidth={2}
+              className="transition-transform duration-300 group-hover:scale-110"
             />
 
-            <span>Book Appointment</span>
+            <span>
+              Book Appointment
+            </span>
+
+            <ChevronDown
+              size={14}
+              className="rotate-[-90deg] opacity-70 transition-transform duration-300 group-hover:translate-x-0.5"
+            />
           </button>
+
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* ================= MOBILE MENU ================= */}
 
         <button
           type="button"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-label={
+            isOpen ? "Close menu" : "Open menu"
+          }
           aria-expanded={isOpen}
           onClick={() => setIsOpen(!isOpen)}
-          className="rounded-xl border border-slate-200 p-2.5 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 md:hidden"
+          className="rounded-xl border border-slate-200 p-2.5 text-slate-700 transition-all duration-300 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 lg:hidden"
         >
-          {isOpen ? <X size={25} /> : <Menu size={25} />}
+          {isOpen ? (
+            <X size={23} />
+          ) : (
+            <Menu size={23} />
+          )}
         </button>
+
       </div>
 
-      {/* Mobile Menu */}
+      {/* ================= MOBILE MENU ================= */}
 
       {isOpen && (
-        <div className="border-t border-slate-200 bg-white shadow-xl md:hidden">
-          <ul className="mx-auto max-w-7xl space-y-1 px-5 py-5">
+        <div className="border-t border-slate-100 bg-white shadow-xl lg:hidden">
 
-            {navigation.map((item) => {
-              const isActive =
-                activeSection === item.href.replace("#", "");
+          <div className="mx-auto max-w-7xl px-5 py-4 sm:px-6">
 
-              return (
-                <li key={item.name}>
+            <div className="space-y-1">
+
+              {navigation.map((item) => {
+                const isActive =
+                  activeSection ===
+                  item.href.replace("#", "");
+
+                return (
                   <a
+                    key={item.name}
                     href={item.href}
                     onClick={(event) =>
-                      handleNavigation(event, item.href)
+                      handleNavigation(
+                        event,
+                        item.href
+                      )
                     }
-                    className={`block rounded-xl px-4 py-3 font-semibold transition ${
+                    className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 ${
                       isActive
                         ? "bg-blue-50 text-blue-700"
                         : "text-slate-700 hover:bg-slate-50 hover:text-blue-700"
                     }`}
                   >
-                    {item.name}
-                  </a>
-                </li>
-              );
-            })}
+                    <span>
+                      {item.name}
+                    </span>
 
-            <li className="pt-3">
+                    {isActive && (
+                      <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+                    )}
+                  </a>
+                );
+              })}
+
+            </div>
+
+            {/* Mobile Appointment */}
+
+            <div className="mt-4 border-t border-slate-100 pt-4">
+
               <button
                 type="button"
                 onClick={handleBookAppointment}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 font-bold text-white shadow-md transition hover:bg-blue-800"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 text-sm font-bold text-white shadow-md shadow-blue-700/20 transition-all duration-300 hover:bg-blue-800"
               >
-                <CalendarCheck2 size={19} />
+                <CalendarCheck2 size={18} />
+
                 Book Appointment
               </button>
-            </li>
-          </ul>
+
+            </div>
+
+          </div>
+
         </div>
       )}
+
     </nav>
   );
 }

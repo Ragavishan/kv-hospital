@@ -11,6 +11,8 @@ export default function BackToTop() {
       setShowButton(window.scrollY > 400);
     };
 
+    handleScroll();
+
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -29,11 +31,23 @@ export default function BackToTop() {
 
   return (
     <button
+      type="button"
       onClick={scrollToTop}
       aria-label="Back to top"
-      className="fixed bottom-48 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-slate-900 text-white shadow-xl transition-all duration-300 hover:scale-110 hover:bg-slate-800"
+      className="group fixed bottom-48 right-6 z-50 flex items-center"
     >
-      <ChevronUp size={26} />
+      {/* Hover Label */}
+      <span className="mr-3 hidden rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-lg transition-all duration-300 group-hover:block">
+        Back to Top
+      </span>
+
+      {/* Button */}
+      <span className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-xl transition-all duration-300 group-hover:-translate-y-1 group-hover:bg-slate-900 group-hover:text-white group-hover:shadow-2xl">
+        <ChevronUp
+          size={22}
+          className="transition-transform duration-300 group-hover:-translate-y-0.5"
+        />
+      </span>
     </button>
   );
 }

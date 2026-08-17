@@ -1,68 +1,273 @@
 import Image from "next/image";
+import {
+  ArrowRight,
+  CheckCircle2,
+  HeartHandshake,
+  ShieldCheck,
+  Stethoscope,
+} from "lucide-react";
+
 import Container from "@/components/common/Container";
 import SectionTitle from "@/components/common/SectionTitle";
 import Section from "@/components/animations/Section";
 
 export default function AboutSection() {
+  const handleLearnMore = () => {
+    document.getElementById("contact")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
-    <section id="about" className="bg-gradient-to-b from-white to-slate-50 py-24">
+    <section
+      id="about"
+      className="relative overflow-hidden bg-slate-50 py-20 sm:py-24 lg:py-28"
+    >
+      {/* Background Glow */}
+
+      <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-blue-100/50 blur-3xl" />
+
+      <div className="pointer-events-none absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-cyan-100/40 blur-3xl" />
+
       <Section>
         <Container>
+
+          {/* Section Heading */}
+
           <SectionTitle
             subtitle="About KV Hospital"
-            title="Quality Healthcare You Can Trust"
-            description="We are committed to providing compassionate care, advanced medical treatment, and trusted healthcare services for every patient."
+            title="Compassionate Care. Trusted Healthcare."
+            description="We are committed to providing quality healthcare through experienced doctors, modern facilities, and patient-focused medical care."
           />
 
-          <div className="grid items-center gap-14 lg:grid-cols-2">
+          {/* Main Content */}
 
-            <div className="overflow-hidden rounded-3xl shadow-2xl">
-              <Image
-                src="/images/about.jpg"
-                alt="About KV Hospital"
-                width={700}
-                height={500}
-                className="h-[420px] w-full object-cover transition duration-700 hover:scale-105"
-              />
-            </div>
+          <div className="mt-14 grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
 
-            <div>
-              <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
-                Caring Beyond Treatment
-              </span>
+            {/* =====================================================
+                IMAGE SIDE
+            ===================================================== */}
 
-              <h3 className="mt-6 text-3xl font-bold text-slate-900">
-                Caring for Every Life
-              </h3>
+            <div className="relative">
 
-              <p className="mt-5 leading-8 text-slate-600">
-                KV Hospital is dedicated to delivering exceptional healthcare
-                through experienced doctors, modern medical facilities, and
-                compassionate patient-centered care.
-              </p>
+              {/* Background Shape */}
 
-              <p className="mt-4 leading-8 text-slate-600">
-                For over 25 years, we have earned the trust of families in
-                Palani by providing affordable, reliable, and high-quality
-                healthcare services with advanced technology and experienced
-                specialists.
-              </p>
+              <div className="absolute -bottom-5 -left-5 h-full w-full rounded-[2rem] bg-blue-100/70" />
 
-              <div className="mt-8 grid grid-cols-2 gap-6">
-                <div className="rounded-xl bg-white p-5 shadow-lg">
-                  <h4 className="text-3xl font-bold text-blue-700">25+</h4>
-                  <p className="text-slate-500">Years of Excellence</p>
+              {/* Decorative Circle */}
+
+              <div className="absolute -right-6 -top-6 h-28 w-28 rounded-full border border-blue-200/60 bg-blue-100/30" />
+
+              {/* Main Image */}
+
+              <div className="relative overflow-hidden rounded-[2rem] border border-white bg-white p-2 shadow-[0_25px_70px_rgba(15,23,42,0.12)]">
+
+                <div className="relative overflow-hidden rounded-[1.5rem]">
+
+                  <Image
+                    src="/images/about.jpg"
+                    alt="KV Hospital healthcare team and facilities"
+                    width={800}
+                    height={600}
+                    className="h-[360px] w-full object-cover transition duration-700 hover:scale-105 sm:h-[470px]"
+                  />
+
+                  {/* Image Gradient */}
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent" />
+
                 </div>
+              </div>
 
-                <div className="rounded-xl bg-white p-5 shadow-lg">
-                  <h4 className="text-3xl font-bold text-blue-700">50K+</h4>
-                  <p className="text-slate-500">Happy Patients</p>
+              {/* =================================================
+                  EXPERIENCE BADGE
+              ================================================= */}
+
+              <div className="absolute -right-3 top-8 rounded-2xl border border-white/80 bg-white/95 px-5 py-4 shadow-[0_15px_40px_rgba(15,23,42,0.15)] backdrop-blur-md sm:-right-6">
+
+                <div className="flex items-center gap-3">
+
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                    <ShieldCheck size={21} />
+                  </div>
+
+                  <div>
+                    <p className="text-2xl font-extrabold tracking-tight text-blue-700">
+                      25+
+                    </p>
+
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                      Years of Care
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* =================================================
+                  PATIENT FIRST BADGE
+              ================================================= */}
+
+              <div className="absolute -bottom-5 left-5 rounded-2xl border border-blue-500/20 bg-blue-700 px-5 py-4 text-white shadow-[0_15px_35px_rgba(29,78,216,0.28)] sm:left-8">
+
+                <div className="flex items-center gap-3">
+
+                  <HeartHandshake size={26} />
+
+                  <div>
+                    <p className="text-sm font-bold">
+                      Patient First
+                    </p>
+
+                    <p className="mt-0.5 text-[11px] text-blue-100">
+                      Care you can trust
+                    </p>
+                  </div>
+
                 </div>
               </div>
 
             </div>
 
+            {/* =====================================================
+                CONTENT SIDE
+            ===================================================== */}
+
+            <div>
+
+              {/* Premium Badge */}
+
+              <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-blue-700 shadow-sm">
+
+                <HeartHandshake size={15} />
+
+                Patient First
+              </div>
+
+              {/* Heading */}
+
+              <h3 className="mt-5 max-w-xl text-3xl font-bold leading-tight tracking-[-0.025em] text-slate-900 sm:text-4xl lg:text-[2.65rem]">
+
+                Caring for Every Life
+
+              </h3>
+
+              {/* Description */}
+
+              <p className="mt-6 max-w-xl text-[15px] leading-7 text-slate-600">
+                KV Hospital is dedicated to delivering dependable healthcare
+                for individuals and families in and around Palani. Our team
+                combines medical expertise with compassionate patient care.
+              </p>
+
+              <p className="mt-4 max-w-xl text-[15px] leading-7 text-slate-600">
+                From diagnosis and treatment to preventive healthcare, we aim
+                to make quality medical care accessible, reliable, and
+                comfortable for every patient.
+              </p>
+
+              {/* =================================================
+                  FEATURE CARDS
+              ================================================= */}
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+
+                {/* Doctor Card */}
+
+                <div className="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-100 hover:shadow-xl">
+
+                  <div className="flex items-start gap-4">
+
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700 transition-colors duration-300 group-hover:bg-blue-700 group-hover:text-white">
+                      <Stethoscope size={21} />
+                    </div>
+
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900">
+                        Experienced Doctors
+                      </h4>
+
+                      <p className="mt-1 text-xs leading-5 text-slate-500">
+                        Skilled medical professionals
+                      </p>
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* Trusted Care Card */}
+
+                <div className="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-100 hover:shadow-xl">
+
+                  <div className="flex items-start gap-4">
+
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700 transition-colors duration-300 group-hover:bg-blue-700 group-hover:text-white">
+                      <ShieldCheck size={21} />
+                    </div>
+
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900">
+                        Trusted Care
+                      </h4>
+
+                      <p className="mt-1 text-xs leading-5 text-slate-500">
+                        Patient-focused healthcare
+                      </p>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+              {/* =================================================
+                  TRUST POINTS
+              ================================================= */}
+
+              <div className="mt-8 space-y-3">
+
+                {[
+                  "Personalized healthcare for every patient",
+                  "Modern medical facilities and services",
+                  "Dedicated and compassionate healthcare team",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 text-[13px] font-medium text-slate-700"
+                  >
+                    <CheckCircle2
+                      size={18}
+                      className="shrink-0 text-emerald-600"
+                    />
+
+                    {item}
+                  </div>
+                ))}
+
+              </div>
+
+              {/* =================================================
+                  CTA
+              ================================================= */}
+
+              <button
+                type="button"
+                onClick={handleLearnMore}
+                className="group mt-9 inline-flex items-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-800 hover:shadow-xl"
+              >
+                Learn More
+
+                <ArrowRight
+                  size={18}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </button>
+
+            </div>
+
           </div>
+
         </Container>
       </Section>
     </section>
