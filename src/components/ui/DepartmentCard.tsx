@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import {
   ArrowRight,
@@ -13,7 +14,7 @@ interface DepartmentCardProps {
   description: string;
   fullDescription: string;
   services: string[];
-  icon: React.ElementType;
+  image: string;
 }
 
 export default function DepartmentCard({
@@ -21,7 +22,7 @@ export default function DepartmentCard({
   description,
   fullDescription,
   services,
-  icon: Icon,
+  image,
 }: DepartmentCardProps) {
   const [open, setOpen] = useState(false);
 
@@ -72,7 +73,7 @@ export default function DepartmentCard({
 
         <div className="pointer-events-none absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-cyan-100/30 blur-3xl opacity-0 transition duration-700 group-hover:opacity-100" />
 
-        <div className="relative p-7 sm:p-8">
+        <div className="relative p-6 sm:p-7">
 
           {/* Top Row */}
 
@@ -84,11 +85,14 @@ export default function DepartmentCard({
 
               <div className="absolute inset-0 rounded-2xl bg-blue-500/20 blur-xl opacity-0 transition duration-500 group-hover:opacity-100" />
 
-              <div className="relative flex h-[72px] w-[72px] items-center justify-center rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-cyan-50 text-blue-700 transition-all duration-500 group-hover:border-blue-200 group-hover:bg-blue-700 group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-700/25">
+              <div className="relative h-[72px] w-[72px] overflow-hidden rounded-2xl border border-blue-100 bg-blue-50 transition-all duration-500 group-hover:border-blue-200 group-hover:shadow-lg group-hover:shadow-blue-700/25">
 
-                <Icon
-                  size={32}
-                  strokeWidth={1.7}
+                <Image
+                  src={image}
+                  alt={`${title} department`}
+                  fill
+                  sizes="72px"
+                  className="object-cover transition duration-500 group-hover:scale-110"
                 />
 
               </div>
@@ -105,13 +109,13 @@ export default function DepartmentCard({
 
           {/* Department Number Large */}
 
-          <div className="mt-6">
+          <div className="mt-5">
 
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600">
               Medical Department
             </span>
 
-            <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-[27px]">
+            <h3 className="mt-2 text-[22px] font-extrabold leading-tight tracking-[-0.02em] text-slate-900 sm:text-[25px]">
               {title}
             </h3>
 
@@ -119,17 +123,17 @@ export default function DepartmentCard({
 
           {/* Description */}
 
-          <p className="mt-4 min-h-[78px] text-[15px] leading-7 text-slate-600">
+          <p className="mt-4 min-h-[84px] text-sm leading-7 text-slate-600">
             {description}
           </p>
 
           {/* Divider */}
 
-          <div className="my-6 h-px bg-gradient-to-r from-slate-200 via-slate-100 to-transparent" />
+          <div className="my-5 h-px bg-gradient-to-r from-slate-200 via-slate-100 to-transparent" />
 
           {/* Bottom */}
 
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex min-h-[48px] items-center justify-between gap-4">
 
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
@@ -204,10 +208,13 @@ export default function DepartmentCard({
 
               <div className="relative flex items-center gap-5 pr-10">
 
-                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-lg backdrop-blur-md">
-                  <Icon
-                    size={31}
-                    strokeWidth={1.6}
+                <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-lg backdrop-blur-md">
+                  <Image
+                    src={image}
+                    alt={`${title} department`}
+                    fill
+                    sizes="64px"
+                    className="object-cover"
                   />
                 </div>
 

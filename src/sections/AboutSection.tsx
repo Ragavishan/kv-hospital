@@ -70,7 +70,7 @@ export default function AboutSection() {
                     alt="KV Hospital healthcare team and facilities"
                     width={800}
                     height={600}
-                    className="h-[360px] w-full object-cover transition duration-700 hover:scale-105 sm:h-[470px]"
+                    className="h-[380px] w-full object-cover object-center transition duration-700 hover:scale-105 sm:h-[500px]"
                   />
 
                   {/* Image Gradient */}
@@ -147,24 +147,25 @@ export default function AboutSection() {
 
               {/* Heading */}
 
-              <h3 className="mt-5 max-w-xl text-3xl font-bold leading-tight tracking-[-0.025em] text-slate-900 sm:text-4xl lg:text-[2.65rem]">
-
-                Caring for Every Life
-
+              <h3 className="mt-5 max-w-xl text-3xl font-extrabold leading-[1.1] tracking-[-0.03em] text-slate-900 sm:text-4xl lg:text-[2.75rem]">
+                Caring for Every Life,
+                <span className="block text-blue-700">
+                  Every Step of the Way.
+                </span>
               </h3>
 
               {/* Description */}
 
               <p className="mt-6 max-w-xl text-[15px] leading-7 text-slate-600">
-                KV Hospital is dedicated to delivering dependable healthcare
-                for individuals and families in and around Palani. Our team
-                combines medical expertise with compassionate patient care.
+                At KV Hospital, we believe healthcare is more than treatment.
+                It is about listening, understanding, and caring for every patient
+                with dignity and compassion.
               </p>
 
               <p className="mt-4 max-w-xl text-[15px] leading-7 text-slate-600">
-                From diagnosis and treatment to preventive healthcare, we aim
-                to make quality medical care accessible, reliable, and
-                comfortable for every patient.
+                With experienced healthcare professionals, modern facilities,
+                and patient-focused services, we strive to make quality medical
+                care accessible, reliable, and comfortable for individuals and families.
               </p>
 
               {/* =================================================
@@ -175,7 +176,7 @@ export default function AboutSection() {
 
                 {/* Doctor Card */}
 
-                <div className="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-100 hover:shadow-xl">
+                <div className="group min-h-[104px] rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg">
 
                   <div className="flex items-start gap-4">
 
@@ -198,11 +199,11 @@ export default function AboutSection() {
 
                 {/* Trusted Care Card */}
 
-                <div className="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-100 hover:shadow-xl">
+                <div className="group min-h-[104px] rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg">
 
                   <div className="flex items-start gap-4">
 
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700 transition-colors duration-300 group-hover:bg-blue-700 group-hover:text-white">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700 ring-1 ring-blue-100 transition-colors duration-300 group-hover:bg-blue-700 group-hover:text-white">
                       <ShieldCheck size={21} />
                     </div>
 
@@ -225,7 +226,7 @@ export default function AboutSection() {
                   TRUST POINTS
               ================================================= */}
 
-              <div className="mt-8 space-y-3">
+              <div className="mt-7 space-y-3.5">
 
                 {[
                   "Personalized healthcare for every patient",
@@ -234,7 +235,7 @@ export default function AboutSection() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-3 text-[13px] font-medium text-slate-700"
+                    className="flex items-center gap-3 text-sm font-medium leading-6 text-slate-700"
                   >
                     <CheckCircle2
                       size={18}
@@ -254,7 +255,7 @@ export default function AboutSection() {
               <button
                 type="button"
                 onClick={handleLearnMore}
-                className="group mt-9 inline-flex items-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-800 hover:shadow-xl"
+                className="group mt-8 inline-flex items-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-800 hover:shadow-xl"
               >
                 Learn More
 

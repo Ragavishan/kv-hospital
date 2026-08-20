@@ -14,11 +14,61 @@ import { doctors } from "@/constants/doctors";
 
 export default function AppointmentCTA() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(""); 
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setSubmitted(true);
+  const handleSubmit = async (
+  event: React.FormEvent<HTMLFormElement>
+) => {
+  event.preventDefault();
+
+  setLoading(true);
+  setError("");
+
+  const form = event.currentTarget;
+  const formData = new FormData(form);
+
+  const data = {
+    name: formData.get("name"),
+    phone: formData.get("phone"),
+    department: formData.get("department"),
+    doctor: formData.get("doctor"),
+    date: formData.get("date"),
+    time: formData.get("time"),
+    message: formData.get("message"),
   };
+
+  try {
+    const response = await fetch("/api/appointments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        result.message || "Unable to submit appointment request"
+      );
+    }
+
+    setSubmitted(true);
+    form.reset();
+  } catch (error) {
+    console.error(error);
+
+    setError(
+      error instanceof Error
+        ? error.message
+        : "Something went wrong. Please try again."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <section
@@ -332,14 +382,21 @@ export default function AppointmentCTA() {
                     />
                   </div>
 
+                  {error && (
+                    <div className="mt-4 rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+                      {error}
+                    </div>
+                  )}
                   {/* Submit Button */}
 
                   <button
                     type="submit"
-                    className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl"
+                    disabled={loading}
+                    className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     <Send size={18} />
-                    Request Appointment
+
+                    {loading ? "Sending Request..." : "Request Appointment"}
                   </button>
 
                   <p className="mt-4 text-center text-xs text-slate-400">

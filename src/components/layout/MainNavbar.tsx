@@ -5,7 +5,7 @@ import {
   Menu,
   X,
   CalendarCheck2,
-  ChevronDown,
+  ArrowRight,
 } from "lucide-react";
 import Image from "next/image";
 import { navigation } from "@/constants/navigation";
@@ -45,7 +45,7 @@ export default function MainNavbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      setIsScrolled(window.scrollY > 20);
 
       const sections = navigation.map((item) =>
         document.querySelector(item.href)
@@ -55,7 +55,7 @@ export default function MainNavbar() {
         if (!section) return;
 
         const element = section as HTMLElement;
-        const top = element.offsetTop - 150;
+        const top = element.offsetTop - 160;
         const bottom = top + element.offsetHeight;
 
         if (
@@ -80,15 +80,28 @@ export default function MainNavbar() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 border-b transition-all duration-300 ${
+      className={`sticky top-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "border-slate-200/80 bg-white/95 shadow-lg backdrop-blur-xl"
-          : "border-slate-100 bg-white"
+          ? "border-b border-slate-200/70 bg-white/95 shadow-[0_8px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+          : "border-b border-slate-100 bg-white"
       }`}
     >
-      <div className="mx-auto flex h-[74px] max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
-
-        {/* ================= LOGO ================= */}
+      <div
+        className="
+          mx-auto
+          flex
+          h-[76px]
+          max-w-7xl
+          items-center
+          justify-between
+          px-5
+          sm:px-6
+          lg:px-8
+        "
+      >
+        {/* =====================================================
+            LOGO
+        ===================================================== */}
 
         <a
           href="#home"
@@ -97,14 +110,35 @@ export default function MainNavbar() {
           }
           className="group flex items-center gap-3"
         >
-          {/* Logo */}
+          {/* Logo Box */}
 
-          <div className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl border border-blue-100 bg-white shadow-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-md">
+          <div
+            className="
+              relative
+              flex
+              h-12
+              w-12
+              shrink-0
+              items-center
+              justify-center
+              overflow-hidden
+              rounded-2xl
+              border
+              border-slate-200
+              bg-white
+              shadow-sm
+              transition-all
+              duration-300
+              group-hover:-translate-y-0.5
+              group-hover:border-blue-200
+              group-hover:shadow-md
+            "
+          >
             <Image
               src="/images/kv-hospital-logo.png"
               alt="KV Hospital"
               fill
-              sizes="44px"
+              sizes="48px"
               className="object-contain p-1"
             />
           </div>
@@ -112,38 +146,60 @@ export default function MainNavbar() {
           {/* Hospital Name */}
 
           <div className="leading-none">
-
-            <h1 className="text-[18px] font-extrabold tracking-tight text-slate-900 sm:text-[19px]">
+            <h1
+              className="
+                text-[19px]
+                font-extrabold
+                tracking-[-0.025em]
+                text-slate-900
+                transition-colors
+                duration-300
+                group-hover:text-blue-700
+                sm:text-[20px]
+              "
+            >
               KV Hospital
             </h1>
 
-            <div className="mt-1 flex items-center gap-1.5">
+            <div className="mt-1.5 flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
 
-              <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-slate-500">
+              <p
+                className="
+                  text-[9px]
+                  font-bold
+                  uppercase
+                  tracking-[0.16em]
+                  text-slate-500
+                "
+              >
                 Multi-Speciality Care
               </p>
             </div>
-
           </div>
         </a>
 
-        {/* ================= DESKTOP NAV ================= */}
+        {/* =====================================================
+            DESKTOP NAVIGATION
+        ===================================================== */}
 
-        <div className="hidden lg:flex lg:items-center lg:gap-8">
-
+        <div className="hidden items-center gap-7 lg:flex xl:gap-8">
           {navigation.map((item) => {
             const isActive =
-              activeSection === item.href.replace("#", "");
+              activeSection ===
+              item.href.replace("#", "");
 
             return (
               <a
                 key={item.name}
                 href={item.href}
                 onClick={(event) =>
-                  handleNavigation(event, item.href)
+                  handleNavigation(
+                    event,
+                    item.href
+                  )
                 }
-                className={`group relative py-2 text-[13px] font-semibold transition-all duration-300 ${
+                className={`group relative py-3 text-[13px] font-semibold transition-colors duration-300 ${
                   isActive
                     ? "text-blue-700"
                     : "text-slate-600 hover:text-blue-700"
@@ -151,8 +207,10 @@ export default function MainNavbar() {
               >
                 {item.name}
 
+                {/* Active Line */}
+
                 <span
-                  className={`absolute -bottom-0.5 left-1/2 h-[2px] -translate-x-1/2 rounded-full bg-blue-700 transition-all duration-300 ${
+                  className={`absolute bottom-0 left-1/2 h-[2px] -translate-x-1/2 rounded-full bg-blue-700 transition-all duration-300 ${
                     isActive
                       ? "w-full"
                       : "w-0 group-hover:w-2/3"
@@ -161,46 +219,83 @@ export default function MainNavbar() {
               </a>
             );
           })}
-
         </div>
 
-        {/* ================= DESKTOP CTA ================= */}
+        {/* =====================================================
+            DESKTOP APPOINTMENT BUTTON
+        ===================================================== */}
 
         <div className="hidden lg:block">
-
           <button
             type="button"
             onClick={handleBookAppointment}
-            className="group flex items-center gap-2 rounded-xl bg-blue-700 px-5 py-2.5 text-[13px] font-bold text-white shadow-md shadow-blue-700/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-lg"
+            className="
+              group
+              inline-flex
+              items-center
+              gap-2
+              rounded-xl
+              bg-blue-700
+              px-5
+              py-3
+              text-[13px]
+              font-bold
+              text-white
+              shadow-lg
+              shadow-blue-700/20
+              transition-all
+              duration-300
+              hover:-translate-y-0.5
+              hover:bg-blue-800
+              hover:shadow-xl
+            "
           >
             <CalendarCheck2
               size={17}
               strokeWidth={2}
-              className="transition-transform duration-300 group-hover:scale-110"
             />
 
-            <span>
-              Book Appointment
-            </span>
+            <span>Book Appointment</span>
 
-            <ChevronDown
-              size={14}
-              className="rotate-[-90deg] opacity-70 transition-transform duration-300 group-hover:translate-x-0.5"
+            <ArrowRight
+              size={15}
+              className="
+                transition-transform
+                duration-300
+                group-hover:translate-x-1
+              "
             />
           </button>
-
         </div>
 
-        {/* ================= MOBILE MENU ================= */}
+        {/* =====================================================
+            MOBILE MENU BUTTON
+        ===================================================== */}
 
         <button
           type="button"
           aria-label={
-            isOpen ? "Close menu" : "Open menu"
+            isOpen
+              ? "Close navigation menu"
+              : "Open navigation menu"
           }
           aria-expanded={isOpen}
           onClick={() => setIsOpen(!isOpen)}
-          className="rounded-xl border border-slate-200 p-2.5 text-slate-700 transition-all duration-300 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 lg:hidden"
+          className="
+            rounded-xl
+            border
+            border-slate-200
+            bg-white
+            p-2.5
+            text-slate-700
+            shadow-sm
+            transition-all
+            duration-300
+            hover:border-blue-200
+            hover:bg-blue-50
+            hover:text-blue-700
+            lg:hidden
+          "
         >
           {isOpen ? (
             <X size={23} />
@@ -208,18 +303,32 @@ export default function MainNavbar() {
             <Menu size={23} />
           )}
         </button>
-
       </div>
 
-      {/* ================= MOBILE MENU ================= */}
+      {/* =====================================================
+          MOBILE MENU
+      ===================================================== */}
 
       {isOpen && (
-        <div className="border-t border-slate-100 bg-white shadow-xl lg:hidden">
-
-          <div className="mx-auto max-w-7xl px-5 py-4 sm:px-6">
-
-            <div className="space-y-1">
-
+        <div
+          className="
+            border-t
+            border-slate-100
+            bg-white
+            shadow-[0_15px_35px_rgba(15,23,42,0.08)]
+            lg:hidden
+          "
+        >
+          <div
+            className="
+              mx-auto
+              max-w-7xl
+              px-5
+              py-5
+              sm:px-6
+            "
+          >
+            <div className="space-y-1.5">
               {navigation.map((item) => {
                 const isActive =
                   activeSection ===
@@ -235,15 +344,13 @@ export default function MainNavbar() {
                         item.href
                       )
                     }
-                    className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 ${
+                    className={`flex items-center justify-between rounded-xl px-4 py-3.5 text-sm font-semibold transition-all duration-200 ${
                       isActive
                         ? "bg-blue-50 text-blue-700"
                         : "text-slate-700 hover:bg-slate-50 hover:text-blue-700"
                     }`}
                   >
-                    <span>
-                      {item.name}
-                    </span>
+                    <span>{item.name}</span>
 
                     {isActive && (
                       <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
@@ -251,30 +358,48 @@ export default function MainNavbar() {
                   </a>
                 );
               })}
-
             </div>
 
-            {/* Mobile Appointment */}
+            {/* Mobile CTA */}
 
-            <div className="mt-4 border-t border-slate-100 pt-4">
-
+            <div className="mt-5 border-t border-slate-100 pt-5">
               <button
                 type="button"
                 onClick={handleBookAppointment}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 text-sm font-bold text-white shadow-md shadow-blue-700/20 transition-all duration-300 hover:bg-blue-800"
+                className="
+                  group
+                  flex
+                  w-full
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-xl
+                  bg-blue-700
+                  px-6
+                  py-3.5
+                  text-sm
+                  font-bold
+                  text-white
+                  shadow-lg
+                  shadow-blue-700/20
+                  transition-all
+                  duration-300
+                  hover:bg-blue-800
+                "
               >
                 <CalendarCheck2 size={18} />
 
-                Book Appointment
+                <span>Book Appointment</span>
+
+                <ArrowRight
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
               </button>
-
             </div>
-
           </div>
-
         </div>
       )}
-
     </nav>
   );
 }

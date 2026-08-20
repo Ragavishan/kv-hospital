@@ -32,6 +32,8 @@ export default function HeroSection() {
         min-h-[680px]
         overflow-hidden
         bg-slate-950
+        sm:h-[740px]
+        lg:h-[760px]
       "
     >
       {/* =====================================================
@@ -39,26 +41,21 @@ export default function HeroSection() {
       ===================================================== */}
 
       <div className="absolute inset-0 -z-20 overflow-hidden bg-slate-950">
-        {/* Background image */}
         <Image
           src="/images/hospital-hero.jpg"
           alt="KV Hospital building"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="h-full w-full scale-[0.96] object-cover object-center origin-center"
         />
       </div>
 
       {/* =====================================================
-          DARK OVERLAY
+          OVERLAYS
       ===================================================== */}
 
-      <div className="absolute inset-0 -z-10 bg-slate-950/20" />
-
-      {/* =====================================================
-          LEFT SIDE DARK GRADIENT
-      ===================================================== */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-slate-950/20" />
 
       <div
         className="
@@ -67,28 +64,22 @@ export default function HeroSection() {
           inset-0
           -z-10
           bg-gradient-to-r
-          from-slate-950/80
-          via-slate-950/35
-          to-transparent
+          from-slate-950/85
+          via-slate-950/45
+          to-slate-950/5
         "
       />
-
-      {/* =====================================================
-          BOTTOM FADE
-      ===================================================== */}
 
       <div
         className="
           pointer-events-none
           absolute
-          inset-x-0
-          bottom-0
+          inset-0
           -z-10
-          h-28
-          bg-gradient-to-t
-          from-slate-950/70
-          via-slate-950/20
-          to-transparent
+          bg-gradient-to-b
+          from-slate-950/10
+          via-transparent
+          to-slate-950/35
         "
       />
 
@@ -117,7 +108,7 @@ export default function HeroSection() {
             items-center
             gap-8
             lg:grid-cols-[1fr_0.72fr]
-            lg:gap-10
+            lg:gap-12
           "
         >
           {/* =================================================
@@ -125,7 +116,6 @@ export default function HeroSection() {
           ================================================= */}
 
           <div className="max-w-[620px]">
-
             {/* TRUST BADGE */}
 
             <div
@@ -137,7 +127,7 @@ export default function HeroSection() {
                 rounded-full
                 border
                 border-white/20
-                bg-slate-950/40
+                bg-white/10
                 px-4
                 py-2
                 text-[10px]
@@ -161,11 +151,11 @@ export default function HeroSection() {
 
             <h1
               className="
-                max-w-[600px]
+                max-w-[620px]
                 text-5xl
                 font-extrabold
                 leading-[0.98]
-                tracking-[-0.04em]
+                tracking-[-0.045em]
                 text-white
                 drop-shadow-2xl
                 sm:text-6xl
@@ -196,11 +186,11 @@ export default function HeroSection() {
             <p
               className="
                 mt-6
-                max-w-[540px]
+                max-w-[545px]
                 text-sm
                 font-medium
                 leading-7
-                text-white
+                text-slate-100
                 drop-shadow-lg
                 sm:text-base
                 sm:leading-8
@@ -216,7 +206,7 @@ export default function HeroSection() {
 
             <div
               className="
-                mt-7
+                mt-8
                 flex
                 flex-col
                 gap-3
@@ -247,6 +237,7 @@ export default function HeroSection() {
                   duration-300
                   hover:-translate-y-1
                   hover:bg-blue-500
+                  hover:shadow-2xl
                 "
               >
                 <CalendarCheck2 size={18} />
@@ -276,7 +267,7 @@ export default function HeroSection() {
                   rounded-xl
                   border
                   border-white/30
-                  bg-slate-950/40
+                  bg-white/10
                   px-6
                   py-3.5
                   text-sm
@@ -287,7 +278,8 @@ export default function HeroSection() {
                   transition-all
                   duration-300
                   hover:-translate-y-1
-                  hover:bg-white/15
+                  hover:border-white/50
+                  hover:bg-white/20
                 "
               >
                 <Phone size={18} />
@@ -307,8 +299,6 @@ export default function HeroSection() {
                 gap-y-3
               "
             >
-              {/* Experienced Doctors */}
-
               <div
                 className="
                   flex
@@ -328,8 +318,6 @@ export default function HeroSection() {
                 Experienced Doctors
               </div>
 
-              {/* Modern Facilities */}
-
               <div
                 className="
                   flex
@@ -348,8 +336,6 @@ export default function HeroSection() {
 
                 Modern Facilities
               </div>
-
-              {/* Patient First */}
 
               <div
                 className="
@@ -384,15 +370,14 @@ export default function HeroSection() {
                 rounded-[2rem]
                 border
                 border-white/20
-                bg-slate-950/50
+                bg-slate-950/45
                 p-5
                 shadow-2xl
                 backdrop-blur-xl
                 sm:p-6
               "
             >
-
-              {/* EMERGENCY SECTION */}
+              {/* EMERGENCY */}
 
               <div
                 className="
@@ -405,15 +390,9 @@ export default function HeroSection() {
                 "
               >
                 <div className="flex items-start justify-between gap-4">
-
                   <div>
-
-                    {/* EMERGENCY LABEL */}
-
                     <div className="flex items-center gap-2">
-
                       <span className="relative flex h-2.5 w-2.5">
-
                         <span
                           className="
                             absolute
@@ -437,7 +416,6 @@ export default function HeroSection() {
                             bg-red-500
                           "
                         />
-
                       </span>
 
                       <span
@@ -451,10 +429,7 @@ export default function HeroSection() {
                       >
                         Emergency Care
                       </span>
-
                     </div>
-
-                    {/* EMERGENCY TITLE */}
 
                     <h2
                       className="
@@ -467,8 +442,6 @@ export default function HeroSection() {
                       Available 24 × 7
                     </h2>
 
-                    {/* DESCRIPTION */}
-
                     <p
                       className="
                         mt-2
@@ -480,10 +453,7 @@ export default function HeroSection() {
                       Immediate medical assistance when you
                       need it most.
                     </p>
-
                   </div>
-
-                  {/* CLOCK */}
 
                   <div
                     className="
@@ -500,7 +470,6 @@ export default function HeroSection() {
                   >
                     <Clock size={20} />
                   </div>
-
                 </div>
 
                 {/* EMERGENCY BUTTON */}
@@ -526,23 +495,18 @@ export default function HeroSection() {
                     transition-all
                     duration-300
                     hover:bg-red-500
+                    hover:shadow-xl
                   "
                 >
                   <Phone size={16} />
 
                   Emergency Assistance
                 </button>
-
               </div>
 
-              {/* =================================================
-                  STATISTICS
-              ================================================= */}
+              {/* STATISTICS */}
 
               <div className="mt-3 grid grid-cols-2 gap-3">
-
-                {/* 24x7 */}
-
                 <div
                   className="
                     rounded-2xl
@@ -575,8 +539,6 @@ export default function HeroSection() {
                   </p>
                 </div>
 
-                {/* EXPERIENCE */}
-
                 <div
                   className="
                     rounded-2xl
@@ -608,9 +570,7 @@ export default function HeroSection() {
                     Years of Experience
                   </p>
                 </div>
-
               </div>
-
             </div>
           </div>
         </div>
@@ -633,7 +593,6 @@ export default function HeroSection() {
           to-transparent
         "
       />
-
     </section>
   );
 }

@@ -66,7 +66,7 @@ export default function DepartmentsSection() {
                 description={department.description}
                 fullDescription={department.fullDescription}
                 services={department.services}
-                icon={department.icon}
+                image={department.image}
               />
             ))}
           </div>

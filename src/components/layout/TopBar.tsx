@@ -12,7 +12,7 @@ export default function TopBar() {
           {/* Phone */}
 
           <a
-            href="tel:+919876543210"
+            href="tel:+917502710333"
             className="group flex items-center gap-2 transition-colors duration-200 hover:text-blue-200"
           >
             <Phone
@@ -22,7 +22,7 @@ export default function TopBar() {
             />
 
             <span className="hidden sm:inline">
-              +91 98765 43210
+              +91 7502710333
             </span>
 
             <span className="sm:hidden">

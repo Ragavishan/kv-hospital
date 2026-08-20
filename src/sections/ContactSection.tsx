@@ -65,10 +65,10 @@ export default function ContactSection() {
               </p>
 
               <a
-                href="tel:+919876543210"
+                href="tel:+917502710333"
                 className="mt-3 inline-flex items-center gap-2 font-semibold text-blue-700 transition hover:text-blue-900"
               >
-                +91 98765 43210
+                +91 7502710333
                 <ArrowUpRight size={16} />
               </a>
             </div>
