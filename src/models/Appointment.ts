@@ -1,6 +1,19 @@
-import mongoose, { Schema, models, model } from "mongoose";
+import mongoose, { Schema, Document, Model } from "mongoose";
 
-const appointmentSchema = new Schema(
+export interface IAppointment extends Document {
+  name: string;
+  phone: string;
+  department: string;
+  doctor: string;
+  date: string;
+  time: string;
+  message?: string;
+  status: "New" | "Confirmed" | "Completed" | "Cancelled";
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const AppointmentSchema = new Schema<IAppointment>(
   {
     name: {
       type: String,
@@ -38,8 +51,14 @@ const appointmentSchema = new Schema(
 
     message: {
       type: String,
-      trim: true,
       default: "",
+      trim: true,
+    },
+
+    status: {
+      type: String,
+      enum: ["New", "Confirmed", "Completed", "Cancelled"],
+      default: "New",
     },
   },
   {
@@ -47,8 +66,8 @@ const appointmentSchema = new Schema(
   }
 );
 
-const Appointment =
-  models.Appointment ||
-  model("Appointment", appointmentSchema);
+const Appointment: Model<IAppointment> =
+  mongoose.models.Appointment ||
+  mongoose.model<IAppointment>("Appointment", AppointmentSchema);
 
 export default Appointment;

@@ -173,44 +173,6 @@ export const departments = [
   
   {
     id: 10,
-    title: "Ophthalmology",
-    description:
-      "Comprehensive eye care, vision evaluation, and treatment for eye conditions.",
-    fullDescription:
-      "Our Ophthalmology department provides comprehensive eye care ranging from routine vision assessment to diagnosis and treatment of various eye conditions. Our specialists focus on preserving vision and supporting long-term eye health.",
-    services: [
-      "Eye Checkups",
-      "Vision Assessment",
-      "Cataract Care",
-      "Glaucoma Care",
-      "Retina Evaluation",
-      "Eye Disease Management",
-      "Ophthalmology Consultation",
-    ],
-    image: "/images/departments/ophthalmology.jpg",
-  },
-  
-  {
-    id: 11,
-    title: "Dental & Oral Care",
-    description:
-      "Comprehensive dental and oral healthcare for patients of all age groups.",
-    fullDescription:
-      "Our Dental & Oral Care department provides comprehensive oral healthcare including preventive dental care, diagnosis, and treatment of common dental and oral conditions.",
-    services: [
-      "Dental Checkups",
-      "Oral Health Evaluation",
-      "Tooth Pain Management",
-      "Dental Cleaning",
-      "Dental Restoration",
-      "Oral Disease Care",
-      "Dental Consultation",
-    ],
-    image: "/images/departments/dental.jpg",
-  },
-  
-  {
-    id: 12,
     title: "Laboratory & Pathology",
     description:
       "Reliable laboratory and pathology services supporting accurate diagnosis and treatment.",
@@ -229,7 +191,7 @@ export const departments = [
   },
   
   {
-    id: 13,
+    id: 11,
     title: "Emergency Care",
     description:
       "24 × 7 emergency medical support for urgent and critical situations.",
@@ -245,4 +207,5 @@ export const departments = [
     image: "/images/departments/emergency.jpg",
   },
 ];
+
 

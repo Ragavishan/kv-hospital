@@ -37,7 +37,7 @@ export default function TopBar() {
           {/* Email */}
 
           <a
-            href="mailto:info@kvhospital.com"
+            href="mailto:kvmultispecialityhospital@gmail.com"
             className="group hidden items-center gap-2 transition-colors duration-200 hover:text-blue-200 md:flex"
           >
             <Mail
@@ -47,7 +47,7 @@ export default function TopBar() {
             />
 
             <span>
-              info@kvhospital.com
+              kvmultispecialityhospital@gmail.com
             </span>
           </a>
 
