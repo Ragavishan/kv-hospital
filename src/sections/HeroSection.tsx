@@ -7,19 +7,23 @@ import {
   CheckCircle2,
   Phone,
   ShieldCheck,
-  Clock,
+  Clock3,
 } from "lucide-react";
 
 export default function HeroSection() {
   const handleBookAppointment = () => {
-    document.getElementById("appointment-form")?.scrollIntoView({
+    const appointmentForm =
+      document.getElementById("appointment-form") ||
+      document.getElementById("appointment");
+
+    appointmentForm?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   };
 
   const handleCall = () => {
-    window.location.href = "tel:+919876543210";
+    window.location.href = "tel:+917502710333";
   };
 
   return (
@@ -28,63 +32,83 @@ export default function HeroSection() {
       className="
         relative
         isolate
-        h-[720px]
-        min-h-[680px]
+        min-h-screen
         overflow-hidden
         bg-slate-950
-        sm:h-[740px]
-        lg:h-[760px]
       "
     >
       {/* =====================================================
-          HOSPITAL BACKGROUND
+          HERO HOSPITAL BUILDING — FULL BACKGROUND
       ===================================================== */}
 
-      <div className="absolute inset-0 -z-20 overflow-hidden bg-slate-950">
+      <div className="absolute inset-0 -z-30">
         <Image
           src="/images/hospital-hero.jpg"
           alt="KV Hospital building"
           fill
           priority
           sizes="100vw"
-          className="h-full w-full scale-[0.96] object-cover object-center origin-center"
+          className="object-cover object-center"
         />
       </div>
 
       {/* =====================================================
-          OVERLAYS
+          OVERLAY
       ===================================================== */}
 
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-slate-950/20" />
+      <div className="absolute inset-0 -z-20 bg-slate-950/25" />
+
+      {/* LEFT DARK GRADIENT */}
 
       <div
         className="
-          pointer-events-none
           absolute
-          inset-0
+          inset-y-0
+          left-0
           -z-10
+          w-[70%]
           bg-gradient-to-r
           from-slate-950/85
-          via-slate-950/45
-          to-slate-950/5
+          via-slate-950/50
+          to-transparent
         "
       />
 
+      {/* RIGHT DARK GRADIENT */}
+
       <div
         className="
-          pointer-events-none
           absolute
-          inset-0
+          inset-y-0
+          right-0
           -z-10
-          bg-gradient-to-b
-          from-slate-950/10
+          w-[40%]
+          bg-gradient-to-l
+          from-slate-950/50
           via-transparent
-          to-slate-950/35
+          to-transparent
+        "
+      />
+
+      {/* BOTTOM DARK GRADIENT */}
+
+      <div
+        className="
+          absolute
+          inset-x-0
+          bottom-0
+          -z-10
+          h-60
+          bg-gradient-to-t
+          from-slate-950/80
+          via-slate-950/25
+          to-transparent
         "
       />
 
       {/* =====================================================
-          MAIN CONTENT
+          ALL HERO CONTENT
+          EVERYTHING IS OVER THE BUILDING IMAGE
       ===================================================== */}
 
       <div
@@ -92,75 +116,91 @@ export default function HeroSection() {
           relative
           mx-auto
           flex
-          h-full
-          w-full
-          max-w-7xl
-          items-center
+          min-h-screen
+          max-w-[1500px]
+          flex-col
+          justify-between
           px-5
-          sm:px-6
-          lg:px-8
+          pb-8
+          pt-28
+          sm:px-8
+          lg:px-12
+          lg:pb-10
+          lg:pt-32
+          xl:px-16
         "
       >
+        {/* ===================================================
+            MAIN HERO CONTENT
+        =================================================== */}
+
         <div
           className="
-            grid
-            w-full
+            flex
+            flex-1
             items-center
-            gap-8
-            lg:grid-cols-[1fr_0.72fr]
-            lg:gap-12
           "
         >
           {/* =================================================
               LEFT CONTENT
           ================================================= */}
 
-          <div className="max-w-[620px]">
+          <div
+            className="
+              relative
+              z-20
+              w-full
+              max-w-[600px]
+            "
+          >
             {/* TRUST BADGE */}
 
             <div
               className="
-                mb-6
+                mb-5
                 inline-flex
                 items-center
                 gap-2
                 rounded-full
                 border
-                border-white/20
-                bg-white/10
+                border-white/25
+                bg-slate-950/40
                 px-4
                 py-2
-                text-[10px]
-                font-bold
-                uppercase
-                tracking-[0.14em]
-                text-blue-100
-                shadow-lg
                 backdrop-blur-md
               "
             >
               <ShieldCheck
-                size={15}
+                size={16}
                 className="text-blue-300"
               />
 
-              Trusted Multi-Speciality Care
+              <span
+                className="
+                  text-[10px]
+                  font-bold
+                  uppercase
+                  tracking-[0.18em]
+                  text-blue-100
+                "
+              >
+                Trusted Multi-Speciality Care
+              </span>
             </div>
 
             {/* MAIN HEADING */}
 
             <h1
               className="
-                max-w-[620px]
                 text-5xl
                 font-extrabold
                 leading-[0.98]
                 tracking-[-0.045em]
                 text-white
-                drop-shadow-2xl
+                drop-shadow-[0_5px_25px_rgba(0,0,0,0.65)]
                 sm:text-6xl
-                lg:text-[62px]
-                xl:text-[68px]
+                lg:text-[64px]
+                xl:text-[72px]
               "
             >
               Compassionate
@@ -172,7 +212,6 @@ export default function HeroSection() {
                   mt-2
                   block
                   text-blue-300
-                  drop-shadow-2xl
                 "
               >
                 Advanced
@@ -186,35 +225,34 @@ export default function HeroSection() {
             <p
               className="
                 mt-6
-                max-w-[545px]
+                max-w-[540px]
                 text-sm
                 font-medium
                 leading-7
-                text-slate-100
+                text-white/90
                 drop-shadow-lg
                 sm:text-base
                 sm:leading-8
               "
             >
-              At KV Hospital, we combine experienced medical
-              professionals, modern healthcare facilities, and
-              compassionate treatment to deliver trusted care
-              for you and your family.
+              At KV Hospital, we combine experienced
+              medical professionals, modern healthcare
+              facilities, and compassionate treatment
+              to deliver trusted care for you and your
+              family.
             </p>
 
             {/* BUTTONS */}
 
             <div
               className="
-                mt-8
+                mt-7
                 flex
                 flex-col
                 gap-3
                 sm:flex-row
               "
             >
-              {/* BOOK APPOINTMENT */}
-
               <button
                 type="button"
                 onClick={handleBookAppointment}
@@ -237,7 +275,6 @@ export default function HeroSection() {
                   duration-300
                   hover:-translate-y-1
                   hover:bg-blue-500
-                  hover:shadow-2xl
                 "
               >
                 <CalendarCheck2 size={18} />
@@ -253,8 +290,6 @@ export default function HeroSection() {
                   "
                 />
               </button>
-
-              {/* CALL HOSPITAL */}
 
               <button
                 type="button"
@@ -273,12 +308,10 @@ export default function HeroSection() {
                   text-sm
                   font-bold
                   text-white
-                  shadow-lg
                   backdrop-blur-md
                   transition-all
                   duration-300
                   hover:-translate-y-1
-                  hover:border-white/50
                   hover:bg-white/20
                 "
               >
@@ -287,116 +320,70 @@ export default function HeroSection() {
                 Call Hospital
               </button>
             </div>
-
-            {/* TRUST POINTS */}
-
-            <div
-              className="
-                mt-7
-                flex
-                flex-wrap
-                gap-x-6
-                gap-y-3
-              "
-            >
-              <div
-                className="
-                  flex
-                  items-center
-                  gap-2
-                  text-sm
-                  font-medium
-                  text-white
-                  drop-shadow-lg
-                "
-              >
-                <CheckCircle2
-                  size={17}
-                  className="text-blue-300"
-                />
-
-                Experienced Doctors
-              </div>
-
-              <div
-                className="
-                  flex
-                  items-center
-                  gap-2
-                  text-sm
-                  font-medium
-                  text-white
-                  drop-shadow-lg
-                "
-              >
-                <CheckCircle2
-                  size={17}
-                  className="text-blue-300"
-                />
-
-                Modern Facilities
-              </div>
-
-              <div
-                className="
-                  flex
-                  items-center
-                  gap-2
-                  text-sm
-                  font-medium
-                  text-white
-                  drop-shadow-lg
-                "
-              >
-                <CheckCircle2
-                  size={17}
-                  className="text-blue-300"
-                />
-
-                Patient-First Care
-              </div>
-            </div>
           </div>
 
           {/* =================================================
-              RIGHT EMERGENCY CARD
+              EMERGENCY CARD — RIGHT SIDE
           ================================================= */}
 
-          <div className="flex justify-center lg:justify-end">
+          <div
+            className="
+              absolute
+              right-5
+              top-1/2
+              z-20
+              hidden
+              w-[300px]
+              -translate-y-1/2
+              lg:right-8
+              lg:block
+              xl:right-14
+              xl:w-[340px]
+            "
+          >
             <div
               className="
-                w-full
-                max-w-[350px]
-                rounded-[2rem]
+                rounded-[24px]
                 border
                 border-white/20
-                bg-slate-950/45
-                p-5
-                shadow-2xl
+                bg-slate-950/55
+                p-4
+                shadow-[0_25px_70px_rgba(0,0,0,0.35)]
                 backdrop-blur-xl
-                sm:p-6
               "
             >
-              {/* EMERGENCY */}
+              {/* EMERGENCY BOX */}
 
               <div
                 className="
-                  rounded-2xl
+                  rounded-[20px]
                   border
-                  border-red-400/30
-                  bg-red-950/45
+                  border-red-400/25
+                  bg-red-950/60
                   p-5
-                  shadow-xl
                 "
               >
-                <div className="flex items-start justify-between gap-4">
+                <div
+                  className="
+                    flex
+                    items-start
+                    justify-between
+                    gap-4
+                  "
+                >
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="relative flex h-2.5 w-2.5">
+                      <span
+                        className="
+                          relative
+                          flex
+                          h-2.5
+                          w-2.5
+                        "
+                      >
                         <span
                           className="
                             absolute
-                            inline-flex
                             h-full
                             w-full
                             animate-ping
@@ -409,7 +396,6 @@ export default function HeroSection() {
                         <span
                           className="
                             relative
-                            inline-flex
                             h-2.5
                             w-2.5
                             rounded-full
@@ -423,7 +409,7 @@ export default function HeroSection() {
                           text-[10px]
                           font-bold
                           uppercase
-                          tracking-[0.15em]
+                          tracking-[0.16em]
                           text-red-200
                         "
                       >
@@ -441,18 +427,6 @@ export default function HeroSection() {
                     >
                       Available 24 × 7
                     </h2>
-
-                    <p
-                      className="
-                        mt-2
-                        text-xs
-                        leading-5
-                        text-slate-200
-                      "
-                    >
-                      Immediate medical assistance when you
-                      need it most.
-                    </p>
                   </div>
 
                   <div
@@ -468,11 +442,21 @@ export default function HeroSection() {
                       text-red-300
                     "
                   >
-                    <Clock size={20} />
+                    <Clock3 size={20} />
                   </div>
                 </div>
 
-                {/* EMERGENCY BUTTON */}
+                <p
+                  className="
+                    mt-3
+                    text-xs
+                    leading-5
+                    text-slate-200
+                  "
+                >
+                  Immediate medical assistance when
+                  you need it most.
+                </p>
 
                 <button
                   type="button"
@@ -487,7 +471,7 @@ export default function HeroSection() {
                     rounded-xl
                     bg-red-600
                     px-5
-                    py-3
+                    py-3.5
                     text-xs
                     font-bold
                     text-white
@@ -495,104 +479,215 @@ export default function HeroSection() {
                     transition-all
                     duration-300
                     hover:bg-red-500
-                    hover:shadow-xl
                   "
                 >
                   <Phone size={16} />
 
-                  Emergency Assistance
+                  Emergency Support
                 </button>
               </div>
 
-              {/* STATISTICS */}
+              {/* SMALL STATS */}
 
               <div className="mt-3 grid grid-cols-2 gap-3">
                 <div
                   className="
-                    rounded-2xl
+                    rounded-xl
                     border
                     border-white/15
                     bg-white/10
-                    p-4
+                    p-3
                     backdrop-blur-md
                   "
                 >
-                  <p
-                    className="
-                      text-2xl
-                      font-extrabold
-                      text-white
-                    "
-                  >
+                  <p className="text-xl font-extrabold text-white">
                     24×7
                   </p>
 
-                  <p
-                    className="
-                      mt-1
-                      text-[10px]
-                      font-medium
-                      text-slate-300
-                    "
-                  >
+                  <p className="mt-1 text-[10px] text-slate-300">
                     Emergency Support
                   </p>
                 </div>
 
                 <div
                   className="
-                    rounded-2xl
+                    rounded-xl
                     border
                     border-white/15
                     bg-white/10
-                    p-4
+                    p-3
                     backdrop-blur-md
                   "
                 >
-                  <p
-                    className="
-                      text-2xl
-                      font-extrabold
-                      text-white
-                    "
-                  >
+                  <p className="text-xl font-extrabold text-white">
                     15+
                   </p>
 
-                  <p
-                    className="
-                      mt-1
-                      text-[10px]
-                      font-medium
-                      text-slate-300
-                    "
-                  >
-                    Years of Experience
+                  <p className="mt-1 text-[10px] text-slate-300">
+                    Years Experience
                   </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* ===================================================
+            BOTTOM FEATURES
+            NO BORDER / NO HORIZONTAL LINE
+        =================================================== */}
+
+        <div
+          className="
+            relative
+            z-30
+            mt-8
+          "
+        >
+          <div
+            className="
+              flex
+              flex-wrap
+              items-center
+              justify-between
+              gap-5
+              lg:gap-8
+            "
+          >
+            <Feature text="Experienced Doctors" />
+
+            <Feature text="Modern Facilities" />
+
+            <Feature text="Patient First Care" />
+          </div>
+        </div>
+
+        {/* ===================================================
+            MOBILE EMERGENCY
+            STILL OVER THE HERO IMAGE
+        =================================================== */}
+
+        <div
+          className="
+            relative
+            z-30
+            mt-8
+            lg:hidden
+          "
+        >
+          <div
+            className="
+              rounded-2xl
+              border
+              border-white/20
+              bg-slate-950/60
+              p-4
+              shadow-2xl
+              backdrop-blur-xl
+            "
+          >
+            <div
+              className="
+                flex
+                items-center
+                justify-between
+                gap-4
+              "
+            >
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-red-500" />
+
+                  <span
+                    className="
+                      text-[10px]
+                      font-bold
+                      uppercase
+                      tracking-wider
+                      text-red-200
+                    "
+                  >
+                    Emergency Care
+                  </span>
+                </div>
+
+                <h2
+                  className="
+                    mt-1
+                    text-lg
+                    font-extrabold
+                    text-white
+                  "
+                >
+                  Available 24 × 7
+                </h2>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleCall}
+                className="
+                  inline-flex
+                  shrink-0
+                  items-center
+                  gap-2
+                  rounded-xl
+                  bg-red-600
+                  px-4
+                  py-3
+                  text-xs
+                  font-bold
+                  text-white
+                "
+              >
+                <Phone size={15} />
+
+                Emergency
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-
-      {/* =====================================================
-          BOTTOM TRANSITION
-      ===================================================== */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          bottom-0
-          left-0
-          right-0
-          h-16
-          bg-gradient-to-t
-          from-slate-50
-          to-transparent
-        "
-      />
     </section>
   );
 }
+
+/* =========================================================
+   FEATURE COMPONENT
+========================================================= */
+
+function Feature({ text }: { text: string }) {
+  return (
+    <div
+      className="
+        flex
+        items-center
+        gap-2.5
+        text-sm
+        font-semibold
+        text-white
+        drop-shadow-lg
+      "
+    >
+      <span
+        className="
+          flex
+          h-7
+          w-7
+          items-center
+          justify-center
+          rounded-full
+          bg-blue-500/20
+        "
+      >
+        <CheckCircle2
+          size={17}
+          className="text-blue-300"
+        />
+      </span>
+
+      {text}
+    </div>
+  );
+}
+

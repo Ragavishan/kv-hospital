@@ -12,8 +12,11 @@ import { navigation } from "@/constants/navigation";
 
 export default function MainNavbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+
+  // =====================================================
+  // BOOK APPOINTMENT
+  // =====================================================
 
   const handleBookAppointment = () => {
     setIsOpen(false);
@@ -28,24 +31,35 @@ export default function MainNavbar() {
     });
   };
 
+  // =====================================================
+  // NAVIGATION
+  // =====================================================
+
   const handleNavigation = (
     event: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
     event.preventDefault();
+
     setIsOpen(false);
 
     const section = document.querySelector(href);
 
-    section?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
+
+  // =====================================================
+  // ACTIVE SECTION
+  // =====================================================
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
 
       const sections = navigation.map((item) =>
         document.querySelector(item.href)
@@ -55,12 +69,18 @@ export default function MainNavbar() {
         if (!section) return;
 
         const element = section as HTMLElement;
-        const top = element.offsetTop - 160;
-        const bottom = top + element.offsetHeight;
+
+        const top =
+          element.getBoundingClientRect().top +
+          window.scrollY -
+          150;
+
+        const bottom =
+          top + element.offsetHeight;
 
         if (
-          window.scrollY >= top &&
-          window.scrollY < bottom
+          scrollY >= top &&
+          scrollY < bottom
         ) {
           setActiveSection(
             navigation[index].href.replace("#", "")
@@ -71,46 +91,70 @@ export default function MainNavbar() {
 
     handleScroll();
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener(
+      "scroll",
+      handleScroll
+    );
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
     };
   }, []);
 
   return (
     <nav
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "border-b border-slate-200/70 bg-white/95 shadow-[0_8px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl"
-          : "border-b border-slate-100 bg-white"
-      }`}
+      className="
+        absolute
+        left-0
+        right-0
+        top-0
+        z-50
+        w-full
+        bg-transparent
+      "
     >
+      {/* =====================================================
+          MAIN NAVBAR
+      ===================================================== */}
+
       <div
         className="
           mx-auto
           flex
-          h-[76px]
-          max-w-7xl
+          min-h-[82px]
+          w-full
+          max-w-[1500px]
           items-center
           justify-between
+          gap-5
           px-5
-          sm:px-6
-          lg:px-8
+          py-4
+          sm:px-8
+          lg:px-12
+          xl:px-16
         "
       >
-        {/* =====================================================
+        {/* ===================================================
             LOGO
-        ===================================================== */}
+        =================================================== */}
 
         <a
           href="#home"
           onClick={(event) =>
             handleNavigation(event, "#home")
           }
-          className="group flex items-center gap-3"
+          className="
+            group
+            flex
+            shrink-0
+            items-center
+            gap-3
+          "
         >
-          {/* Logo Box */}
+          {/* CIRCULAR LOGO */}
 
           <div
             className="
@@ -122,16 +166,15 @@ export default function MainNavbar() {
               items-center
               justify-center
               overflow-hidden
-              rounded-2xl
-              border
-              border-slate-200
+              rounded-full
               bg-white
-              shadow-sm
+              shadow-lg
+              ring-2
+              ring-white/30
               transition-all
               duration-300
               group-hover:-translate-y-0.5
-              group-hover:border-blue-200
-              group-hover:shadow-md
+              group-hover:shadow-xl
             "
           >
             <Image
@@ -143,7 +186,7 @@ export default function MainNavbar() {
             />
           </div>
 
-          {/* Hospital Name */}
+          {/* HOSPITAL NAME */}
 
           <div className="leading-none">
             <h1
@@ -151,10 +194,8 @@ export default function MainNavbar() {
                 text-[19px]
                 font-extrabold
                 tracking-[-0.025em]
-                text-slate-900
-                transition-colors
-                duration-300
-                group-hover:text-blue-700
+                text-white
+                drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]
                 sm:text-[20px]
               "
             >
@@ -162,7 +203,7 @@ export default function MainNavbar() {
             </h1>
 
             <div className="mt-1.5 flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
 
               <p
                 className="
@@ -170,7 +211,8 @@ export default function MainNavbar() {
                   font-bold
                   uppercase
                   tracking-[0.16em]
-                  text-slate-500
+                  text-white/85
+                  drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]
                 "
               >
                 Multi-Speciality Care
@@ -179,11 +221,19 @@ export default function MainNavbar() {
           </div>
         </a>
 
-        {/* =====================================================
+        {/* ===================================================
             DESKTOP NAVIGATION
-        ===================================================== */}
+        =================================================== */}
 
-        <div className="hidden items-center gap-7 lg:flex xl:gap-8">
+        <div
+          className="
+            hidden
+            items-center
+            gap-6
+            lg:flex
+            xl:gap-8
+          "
+        >
           {navigation.map((item) => {
             const isActive =
               activeSection ===
@@ -199,31 +249,50 @@ export default function MainNavbar() {
                     item.href
                   )
                 }
-                className={`group relative py-3 text-[13px] font-semibold transition-colors duration-300 ${
-                  isActive
-                    ? "text-blue-700"
-                    : "text-slate-600 hover:text-blue-700"
-                }`}
+                className="
+                  group
+                  relative
+                  whitespace-nowrap
+                  py-3
+                  text-[13px]
+                  font-semibold
+                  text-white/90
+                  drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]
+                  transition-all
+                  duration-300
+                  hover:text-white
+                "
               >
                 {item.name}
 
-                {/* Active Line */}
+                {/* ACTIVE UNDERLINE */}
 
                 <span
-                  className={`absolute bottom-0 left-1/2 h-[2px] -translate-x-1/2 rounded-full bg-blue-700 transition-all duration-300 ${
-                    isActive
-                      ? "w-full"
-                      : "w-0 group-hover:w-2/3"
-                  }`}
+                  className={`
+                    absolute
+                    bottom-0
+                    left-1/2
+                    h-[2px]
+                    -translate-x-1/2
+                    rounded-full
+                    bg-white
+                    transition-all
+                    duration-300
+                    ${
+                      isActive
+                        ? "w-full"
+                        : "w-0 group-hover:w-2/3"
+                    }
+                  `}
                 />
               </a>
             );
           })}
         </div>
 
-        {/* =====================================================
-            DESKTOP APPOINTMENT BUTTON
-        ===================================================== */}
+        {/* ===================================================
+            DESKTOP BOOK APPOINTMENT
+        =================================================== */}
 
         <div className="hidden lg:block">
           <button
@@ -234,19 +303,20 @@ export default function MainNavbar() {
               inline-flex
               items-center
               gap-2
+              whitespace-nowrap
               rounded-xl
-              bg-blue-700
+              bg-blue-600
               px-5
               py-3
               text-[13px]
               font-bold
               text-white
               shadow-lg
-              shadow-blue-700/20
+              shadow-blue-950/30
               transition-all
               duration-300
               hover:-translate-y-0.5
-              hover:bg-blue-800
+              hover:bg-blue-500
               hover:shadow-xl
             "
           >
@@ -255,7 +325,9 @@ export default function MainNavbar() {
               strokeWidth={2}
             />
 
-            <span>Book Appointment</span>
+            <span>
+              Book Appointment
+            </span>
 
             <ArrowRight
               size={15}
@@ -268,9 +340,9 @@ export default function MainNavbar() {
           </button>
         </div>
 
-        {/* =====================================================
+        {/* ===================================================
             MOBILE MENU BUTTON
-        ===================================================== */}
+        =================================================== */}
 
         <button
           type="button"
@@ -280,20 +352,21 @@ export default function MainNavbar() {
               : "Open navigation menu"
           }
           aria-expanded={isOpen}
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() =>
+            setIsOpen(!isOpen)
+          }
           className="
             rounded-xl
             border
-            border-slate-200
-            bg-white
+            border-white/25
+            bg-black/10
             p-2.5
-            text-slate-700
+            text-white
             shadow-sm
+            backdrop-blur-sm
             transition-all
             duration-300
-            hover:border-blue-200
-            hover:bg-blue-50
-            hover:text-blue-700
+            hover:bg-black/20
             lg:hidden
           "
         >
@@ -313,9 +386,9 @@ export default function MainNavbar() {
         <div
           className="
             border-t
-            border-slate-100
-            bg-white
-            shadow-[0_15px_35px_rgba(15,23,42,0.08)]
+            border-white/15
+            bg-slate-950/90
+            backdrop-blur-xl
             lg:hidden
           "
         >
@@ -328,6 +401,8 @@ export default function MainNavbar() {
               sm:px-6
             "
           >
+            {/* MOBILE LINKS */}
+
             <div className="space-y-1.5">
               {navigation.map((item) => {
                 const isActive =
@@ -344,25 +419,53 @@ export default function MainNavbar() {
                         item.href
                       )
                     }
-                    className={`flex items-center justify-between rounded-xl px-4 py-3.5 text-sm font-semibold transition-all duration-200 ${
-                      isActive
-                        ? "bg-blue-50 text-blue-700"
-                        : "text-slate-700 hover:bg-slate-50 hover:text-blue-700"
-                    }`}
+                    className={`
+                      flex
+                      items-center
+                      justify-between
+                      rounded-xl
+                      px-4
+                      py-3.5
+                      text-sm
+                      font-semibold
+                      transition-all
+                      duration-200
+                      ${
+                        isActive
+                          ? "bg-white/15 text-white"
+                          : "text-white/80 hover:bg-white/10 hover:text-white"
+                      }
+                    `}
                   >
-                    <span>{item.name}</span>
+                    <span>
+                      {item.name}
+                    </span>
 
                     {isActive && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+                      <span
+                        className="
+                          h-1.5
+                          w-1.5
+                          rounded-full
+                          bg-blue-400
+                        "
+                      />
                     )}
                   </a>
                 );
               })}
             </div>
 
-            {/* Mobile CTA */}
+            {/* MOBILE APPOINTMENT */}
 
-            <div className="mt-5 border-t border-slate-100 pt-5">
+            <div
+              className="
+                mt-5
+                border-t
+                border-white/15
+                pt-5
+              "
+            >
               <button
                 type="button"
                 onClick={handleBookAppointment}
@@ -374,26 +477,33 @@ export default function MainNavbar() {
                   justify-center
                   gap-2
                   rounded-xl
-                  bg-blue-700
+                  bg-blue-600
                   px-6
                   py-3.5
                   text-sm
                   font-bold
                   text-white
                   shadow-lg
-                  shadow-blue-700/20
                   transition-all
                   duration-300
-                  hover:bg-blue-800
+                  hover:bg-blue-500
                 "
               >
-                <CalendarCheck2 size={18} />
+                <CalendarCheck2
+                  size={18}
+                />
 
-                <span>Book Appointment</span>
+                <span>
+                  Book Appointment
+                </span>
 
                 <ArrowRight
                   size={16}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
+                  className="
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-1
+                  "
                 />
               </button>
             </div>

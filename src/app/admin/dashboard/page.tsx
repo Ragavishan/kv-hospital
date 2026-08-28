@@ -30,7 +30,7 @@ export default function AdminDashboardPage() {
   const [appointments, setAppointments] = useState<
     Appointment[]
   >([]);
-
+  
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 

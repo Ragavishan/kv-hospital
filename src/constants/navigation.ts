@@ -8,12 +8,20 @@ export const navigation = [
     href: "#about",
   },
   {
+    name: "Facilities",
+    href: "#facilities",
+  },
+  {
     name: "Doctors",
     href: "#doctors",
   },
   {
     name: "Departments",
     href: "#departments",
+  },
+  {
+    name: "Awards",
+    href: "#awards",
   },
   {
     name: "Contact",

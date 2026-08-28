@@ -1,16 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Admin login page is public
+  console.log(
+    "🔥🔥🔥 PROXY RUNNING:",
+    pathname
+  );
+
+  // Allow admin login page
   if (pathname === "/admin/login") {
     return NextResponse.next();
   }
 
-  // Protect every other /admin page
+  // Protect all other admin pages
   if (pathname.startsWith("/admin")) {
-    const session = request.cookies.get("kv_admin_session");
+    const session = request.cookies.get(
+      "kv_admin_session"
+    );
 
     if (session?.value !== "authenticated") {
       const loginUrl = new URL(

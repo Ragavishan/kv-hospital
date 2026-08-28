@@ -6,6 +6,8 @@ import AboutSection from "@/sections/AboutSection";
 import DepartmentsSection from "@/sections/DepartmentsSection";
 import DoctorsSection from "@/sections/DoctorsSection";
 import GallerySection from "@/sections/GallerySection";
+import FacilitiesSection from "@/sections/FacilitiesSection";
+import AwardsSection from "@/sections/AwardsSection";
 import TestimonialsSection from "@/sections/TestimonialsSection";
 import WhyChooseUs from "@/sections/WhyChooseUs";
 import AppointmentCTA from "@/sections/AppointmentCTA";
@@ -49,6 +51,10 @@ export default function Home() {
         <DoctorsSection />
 
         <GallerySection />
+
+        <FacilitiesSection />
+
+        <AwardsSection />
 
         <TestimonialsSection />
 
