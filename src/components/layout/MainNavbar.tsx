@@ -172,9 +172,6 @@ export default function MainNavbar() {
               ring-2
               ring-white/30
               transition-all
-              duration-300
-              group-hover:-translate-y-0.5
-              group-hover:shadow-xl
             "
           >
             <Image
@@ -182,7 +179,7 @@ export default function MainNavbar() {
               alt="KV Hospital"
               fill
               sizes="48px"
-              className="object-contain p-1"
+              className="object-contain scale-[1.18]" 
             />
           </div>
 

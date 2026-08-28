@@ -8,6 +8,12 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+} from "react-icons/fa";
+
 export default function FooterSection() {
   return (
     <Section>
@@ -57,6 +63,50 @@ export default function FooterSection() {
                   <p className="font-semibold text-white">
                     Available 24 × 7
                   </p>
+                </div>
+              </div>
+
+              {/* Social Media */}
+              <div className="mt-7">
+                <p className="mb-3 text-sm font-semibold text-white">
+                  Follow Us
+                </p>
+
+                <div className="flex items-center gap-3">
+
+                  {/* Facebook */}
+                  <a
+                    href="https://www.facebook.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-800 bg-slate-900 text-slate-400 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500 hover:bg-blue-600 hover:text-white"
+                  >
+                    <FaFacebookF size={16} />
+                  </a>
+
+                  {/* Twitter */}
+                  <a
+                    href="https://twitter.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Twitter"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-800 bg-slate-900 text-slate-400 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400 hover:bg-sky-500 hover:text-white"
+                  >
+                    <FaTwitter size={16} />
+                  </a>
+
+                  {/* Instagram */}
+                  <a
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-800 bg-slate-900 text-slate-400 transition-all duration-300 hover:-translate-y-1 hover:border-pink-500 hover:bg-pink-600 hover:text-white"
+                  >
+                    <FaInstagram size={17} />
+                  </a>
+
                 </div>
               </div>
             </div>

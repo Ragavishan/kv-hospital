@@ -9,6 +9,7 @@ export const doctors = [
     experience: "40+ Years",
     experienceYears: 40,
     isActive: true,
+    showSpecialization: true,
 
     bio: "Dr. K. Veluswamy is the Founder and Owner of the Hospital and a highly experienced Senior Consultant Cardiologist with over 40 years of distinguished experience in clinical medicine. With extensive expertise in cardiology, general medicine, comprehensive diagnosis, critical care, and preventive healthcare, he is committed to delivering trusted, personalized, and evidence-based medical care. His four decades of experience, leadership, and patient-first approach have made him a respected name in healthcare.",
 
@@ -36,7 +37,7 @@ export const doctors = [
       "Comprehensive Medical Care",
     ],
 
-    image: "/images/doctors/doctor3.jpg",
+    image: "/images/doctors/doctor1.jpg",
   },
 
   {
@@ -47,7 +48,8 @@ export const doctors = [
     experience: "8+ Years",
     experienceYears: 8,
     isActive: true,
-    bio: "Experienced general physician focused on accurate diagnosis, preventive healthcare, and compassionate treatment for patients of all age groups.",
+    showSpecialization: true,
+    bio: "An experienced General Physician committed to delivering comprehensive, evidence-based, and patient-centered medical care. With a strong focus on accurate diagnosis, timely treatment, preventive healthcare, and effective management of acute and chronic medical conditions, dedicated to providing dependable medical support. Experienced in emergency and critical care, with an emphasis on clear communication, compassionate treatment, and personalized healthcare for patients of all age groups.",
     specialistIn: [
       "General Medicine",
       "Cardiology Treatments",
@@ -73,6 +75,7 @@ export const doctors = [
     experience: "3+ Years",
     experienceYears: 3,
     isActive: true,
+    showSpecialization: true,
     bio: "Dedicated general surgeon providing careful evaluation and surgical care with a strong focus on patient safety, recovery, and personalized treatment.",
     specialistIn: [
       "General Surgery",
@@ -95,6 +98,7 @@ export const doctors = [
     experience: "3+ Years",
     experienceYears: 3,
     isActive: true,
+    showSpecialization: true,
     bio: "Committed to providing responsive medical care, initial assessment, and continuous patient support with a patient-first approach.",
     specialistIn: [
       "General Consultation",
@@ -114,6 +118,7 @@ export const doctors = [
     experience: "3+ Years",
     experienceYears: 3,
     isActive: true,
+    showSpecialization: true,
     bio: "An experienced duty doctor focused on timely medical assessment, patient monitoring, and coordinated care for a wide range of healthcare needs.",
     specialistIn: [
       "General Consultation",
@@ -133,6 +138,7 @@ export const doctors = [
     experience: "3+ Years",
     experienceYears: 3,
     isActive: false,
+    showSpecialization: true,
     bio: "An experienced duty doctor focused on timely medical assessment, patient monitoring, and coordinated care for a wide range of healthcare needs.",
     specialistIn: [
       "General Consultation",

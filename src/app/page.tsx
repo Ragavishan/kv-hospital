@@ -16,6 +16,7 @@ import FAQSection from "@/sections/FAQSection";
 import FooterSection from "@/sections/FooterSection";
 
 import FloatingWhatsApp from "@/components/common/FloatingWhatsApp";
+import AppointmentPopup from "@/components/common/AppointmentPopup";
 import FloatingCall from "@/components/common/FloatingCall";
 import BackToTop from "@/components/common/BackToTop";
 
@@ -72,6 +73,7 @@ export default function Home() {
       <BackToTop />
       <FloatingCall />
       <FloatingWhatsApp />
+      <AppointmentPopup />
     </div>
   );
 }

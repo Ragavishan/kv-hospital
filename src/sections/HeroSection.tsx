@@ -41,17 +41,20 @@ export default function HeroSection() {
           HERO HOSPITAL BUILDING — FULL BACKGROUND
       ===================================================== */}
 
-      <div className="absolute inset-0 -z-30">
+      <div className="absolute inset-0 -z-30 overflow-hidden bg-slate-900">
         <Image
           src="/images/hospital-hero.jpg"
           alt="KV Hospital building"
           fill
           priority
+          unoptimized
           sizes="100vw"
-          className="object-cover object-center"
+          className="
+            object-cover
+            object-center
+          "
         />
       </div>
-
       {/* =====================================================
           OVERLAY
       ===================================================== */}
@@ -117,16 +120,16 @@ export default function HeroSection() {
           mx-auto
           flex
           min-h-screen
-          max-w-[1500px]
+          w-full
           flex-col
           justify-between
           px-5
-          pb-8
-          pt-28
+          pb-7
+          pt-24
           sm:px-8
           lg:px-12
-          lg:pb-10
-          lg:pt-32
+          lg:pb-8
+          lg:pt-28
           xl:px-16
         "
       >
@@ -361,6 +364,7 @@ export default function HeroSection() {
                   border-red-400/25
                   bg-red-950/60
                   p-5
+                  animate-pulse
                 "
               >
                 <div
@@ -469,7 +473,10 @@ export default function HeroSection() {
                     justify-center
                     gap-2
                     rounded-xl
-                    bg-red-600
+                    bg-gradient-to-r
+                    from-red-600
+                    via-red-500
+                    to-rose-600
                     px-5
                     py-3.5
                     text-xs
