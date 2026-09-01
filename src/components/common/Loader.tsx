@@ -8,8 +8,8 @@ export default function Loader() {
 
       <div className="relative h-28 w-28">
         <Image
-          src="/images/kv-hospital-logo.png"
-          alt="KV Hospital Logo"
+          src="/images/iswarya-hospital-logo.png"
+          alt="Iswarya Hospital Logo"
           fill
           priority
           sizes="112px"
@@ -20,7 +20,7 @@ export default function Loader() {
       {/* Hospital Name */}
 
       <h2 className="mt-6 text-xl font-bold tracking-tight text-slate-900">
-        KV Hospital
+        Iswarya Hospital
       </h2>
 
       <p className="mt-1.5 text-sm font-medium text-slate-500">

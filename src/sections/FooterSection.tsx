@@ -1,5 +1,9 @@
+"use client";
+
 import Section from "@/components/animations/Section";
 import { hospitalInfo } from "@/constants/hospital";
+import { useLanguage } from "@/components/common/LanguageProvider";
+
 import {
   MapPin,
   Phone,
@@ -15,6 +19,8 @@ import {
 } from "react-icons/fa";
 
 export default function FooterSection() {
+  const { t } = useLanguage();
+
   return (
     <Section>
       <footer className="bg-slate-950 text-white">
@@ -29,7 +35,7 @@ export default function FooterSection() {
 
               <div className="flex items-center gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-700 text-lg font-bold">
-                  KV
+                  ISWARYA HOSPITAL
                 </div>
 
                 <div>
@@ -38,45 +44,46 @@ export default function FooterSection() {
                   </h2>
 
                   <p className="text-xs font-medium tracking-wider text-blue-400">
-                    TRUSTED HEALTHCARE
+                    {t.footer.trustedHealthcare}
                   </p>
                 </div>
               </div>
 
               <p className="mt-6 max-w-sm leading-7 text-slate-400">
-                Trusted healthcare for families in Palani,
-                providing compassionate treatment with
-                experienced doctors and modern medical facilities.
+                {t.footer.description}
               </p>
 
               {/* Emergency Badge */}
               <div className="mt-6 inline-flex items-center gap-3 rounded-2xl border border-red-900/50 bg-red-950/40 px-4 py-3">
+
                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-red-600">
                   <Phone size={17} />
                 </div>
 
                 <div>
                   <p className="text-xs text-red-300">
-                    Emergency Support
+                    {t.footer.emergencySupport}
                   </p>
 
                   <p className="font-semibold text-white">
-                    Available 24 × 7
+                    {t.footer.available247}
                   </p>
                 </div>
+
               </div>
 
               {/* Social Media */}
               <div className="mt-7">
+
                 <p className="mb-3 text-sm font-semibold text-white">
-                  Follow Us
+                  {t.footer.followUs}
                 </p>
 
                 <div className="flex items-center gap-3">
 
                   {/* Facebook */}
                   <a
-                    href="https://www.facebook.com/"
+                    href="https://www.facebook.com/profile.php?id=61593785437227"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Facebook"
@@ -113,98 +120,106 @@ export default function FooterSection() {
 
             {/* Quick Links */}
             <div>
+
               <h3 className="text-lg font-bold">
-                Quick Links
+                {t.footer.quickLinks}
               </h3>
 
               <div className="mt-6 space-y-3">
+
                 <a
                   href="#home"
                   className="block text-slate-400 transition hover:translate-x-1 hover:text-white"
                 >
-                  Home
+                  {t.footer.home}
                 </a>
 
                 <a
                   href="#about"
                   className="block text-slate-400 transition hover:translate-x-1 hover:text-white"
                 >
-                  About Us
+                  {t.footer.aboutUs}
                 </a>
 
                 <a
                   href="#departments"
                   className="block text-slate-400 transition hover:translate-x-1 hover:text-white"
                 >
-                  Departments
+                  {t.footer.departments}
                 </a>
 
                 <a
                   href="#doctors"
                   className="block text-slate-400 transition hover:translate-x-1 hover:text-white"
                 >
-                  Our Doctors
+                  {t.footer.ourDoctors}
                 </a>
 
                 <a
                   href="#contact"
                   className="block text-slate-400 transition hover:translate-x-1 hover:text-white"
                 >
-                  Contact Us
+                  {t.footer.contactUs}
                 </a>
 
                 <a
                   href="#appointment"
                   className="block text-slate-400 transition hover:translate-x-1 hover:text-white"
                 >
-                  Book Appointment
+                  {t.footer.bookAppointment}
                 </a>
+
               </div>
             </div>
 
             {/* Departments */}
             <div>
+
               <h3 className="text-lg font-bold">
-                Our Departments
+                {t.footer.ourDepartments}
               </h3>
 
               <div className="mt-6 space-y-3 text-slate-400">
+
                 <p className="transition hover:text-white">
-                  General Medicine
+                  {t.footer.generalMedicine}
                 </p>
 
                 <p className="transition hover:text-white">
-                  Cardiology
+                  {t.footer.cardiology}
                 </p>
 
                 <p className="transition hover:text-white">
-                  Orthopedics
+                  {t.footer.orthopedics}
                 </p>
 
                 <p className="transition hover:text-white">
-                  Neurology
+                  {t.footer.neurology}
                 </p>
 
                 <p className="transition hover:text-white">
-                  Pediatrics
+                  {t.footer.pediatrics}
                 </p>
 
                 <p className="transition hover:text-white">
-                  Emergency Care
+                  {t.footer.emergencyCare}
                 </p>
+
               </div>
             </div>
 
             {/* Contact */}
             <div>
+
               <h3 className="text-lg font-bold">
-                Contact Us
+                {t.footer.contactUs}
               </h3>
 
               <div className="mt-6 space-y-5">
 
                 {/* Location */}
                 <div className="flex gap-3">
+
                   <MapPin
                     size={20}
                     className="mt-1 shrink-0 text-blue-500"
@@ -213,6 +228,7 @@ export default function FooterSection() {
                   <p className="leading-6 text-slate-400">
                     {hospitalInfo.location}
                   </p>
+
                 </div>
 
                 {/* Phone */}
@@ -220,14 +236,18 @@ export default function FooterSection() {
                   href={`tel:${hospitalInfo.phone}`}
                   className="flex items-center gap-3 text-slate-400 transition hover:text-white"
                 >
+
                   <Phone
                     size={20}
                     className="text-blue-500"
                   />
 
-                  <span>{hospitalInfo.phone}</span>
+                  <span>
+                    {hospitalInfo.phone}
+                  </span>
 
                   <ArrowUpRight size={15} />
+
                 </a>
 
                 {/* Email */}
@@ -235,22 +255,30 @@ export default function FooterSection() {
                   href={`mailto:${hospitalInfo.email}`}
                   className="flex items-center gap-3 break-all text-slate-400 transition hover:text-white"
                 >
+
                   <Mail
                     size={20}
                     className="shrink-0 text-blue-500"
                   />
 
-                  <span>{hospitalInfo.email}</span>
+                  <span>
+                    {hospitalInfo.email}
+                  </span>
+
                 </a>
 
                 {/* Timing */}
                 <div className="flex items-center gap-3 text-slate-400">
+
                   <Clock
                     size={20}
                     className="text-blue-500"
                   />
 
-                  <span>24 × 7 Emergency Service</span>
+                  <span>
+                    {t.footer.emergencyService}
+                  </span>
+
                 </div>
 
               </div>
@@ -265,30 +293,32 @@ export default function FooterSection() {
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-sm sm:flex-row">
 
             <p className="text-center text-slate-500 sm:text-left">
-              © 2026 {hospitalInfo.name}. All Rights Reserved.
+              © 2026 {hospitalInfo.name}. {t.footer.allRightsReserved}
             </p>
 
             <div className="flex items-center gap-6 text-slate-500">
+
               <a
                 href="#home"
                 className="transition hover:text-white"
               >
-                Privacy
+                {t.footer.privacy}
               </a>
 
               <a
                 href="#home"
                 className="transition hover:text-white"
               >
-                Terms
+                {t.footer.terms}
               </a>
 
               <a
                 href="#contact"
                 className="transition hover:text-white"
               >
-                Support
+                {t.footer.support}
               </a>
+
             </div>
 
           </div>

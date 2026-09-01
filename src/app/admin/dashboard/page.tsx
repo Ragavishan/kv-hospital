@@ -108,7 +108,7 @@ export default function AdminDashboardPage() {
 
           <div>
             <p className="text-sm font-bold uppercase tracking-wider text-blue-700">
-              KV Hospital
+              Iswarya Hospital
             </p>
 
             <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">

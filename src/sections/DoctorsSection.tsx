@@ -8,34 +8,139 @@ import SectionTitle from "@/components/common/SectionTitle";
 import Section from "@/components/animations/Section";
 import DoctorCard from "@/components/ui/DoctorCard";
 import { doctors } from "@/constants/doctors";
+import { useLanguage } from "@/components/common/LanguageProvider";
+
+import type { Language } from "@/constants/doctors";
 
 export default function DoctorsSection() {
   const sliderRef = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage();
+
+  const currentLanguage = language as Language;
+
+  // =====================================================
+  // TRANSLATED SECTION TEXT
+  // =====================================================
+
+  const ui = {
+    en: {
+      subtitle: "OUR DOCTORS",
+      title: "Meet Our Experienced Doctors",
+      description:
+        "Our team of experienced doctors is committed to providing trusted, compassionate and quality healthcare.",
+      intro:
+        "With experienced medical professionals across multiple specialties, we focus on accurate diagnosis, personalized treatment and patient-centered care.",
+      viewMoreDoctors: "View More Doctors",
+      trustedMedicalCare: "Trusted Medical Care",
+      trustTitle: "Experienced Doctors. Better Care.",
+      trustDescription:
+        "Get the right medical guidance from experienced healthcare professionals.",
+      bookAppointment: "Book Appointment",
+    },
+
+    ta: {
+      subtitle: "எங்கள் மருத்துவர்கள்",
+      title: "எங்கள் அனுபவம் வாய்ந்த மருத்துவர்களை சந்திக்கவும்",
+      description:
+        "நம்பகமான, அக்கறையான மற்றும் தரமான மருத்துவ சேவையை வழங்க எங்கள் அனுபவம் வாய்ந்த மருத்துவர்கள் அர்ப்பணிப்புடன் செயல்படுகின்றனர்.",
+      intro:
+        "பல மருத்துவத் துறைகளில் அனுபவம் வாய்ந்த மருத்துவ நிபுணர்களுடன், துல்லியமான நோயறிதல், தனிப்பட்ட சிகிச்சை மற்றும் நோயாளியை மையமாகக் கொண்ட பராமரிப்பில் நாங்கள் கவனம் செலுத்துகிறோம்.",
+      viewMoreDoctors: "மேலும் மருத்துவர்களைப் பார்க்க",
+      trustedMedicalCare: "நம்பகமான மருத்துவ சேவை",
+      trustTitle: "அனுபவம் வாய்ந்த மருத்துவர்கள். சிறந்த பராமரிப்பு.",
+      trustDescription:
+        "அனுபவம் வாய்ந்த மருத்துவ நிபுணர்களிடமிருந்து சரியான மருத்துவ ஆலோசனையைப் பெறுங்கள்.",
+      bookAppointment: "மருத்துவ முன்பதிவு",
+    },
+
+    ml: {
+      subtitle: "ഞങ്ങളുടെ ഡോക്ടർമാർ",
+      title: "ഞങ്ങളുടെ പരിചയസമ്പന്നരായ ഡോക്ടർമാരെ പരിചയപ്പെടൂ",
+      description:
+        "വിശ്വസനീയവും കരുണാപൂർണ്ണവും ഗുണമേന്മയുള്ളതുമായ ആരോഗ്യപരിചരണം നൽകാൻ ഞങ്ങളുടെ പരിചയസമ്പന്നരായ ഡോക്ടർമാർ പ്രതിബദ്ധരാണ്.",
+      intro:
+        "വിവിധ മെഡിക്കൽ വിഭാഗങ്ങളിലെ പരിചയസമ്പന്നരായ വിദഗ്ധരോടൊപ്പം കൃത്യമായ രോഗനിർണയം, വ്യക്തിഗത ചികിത്സ, രോഗികേന്ദ്രിത പരിചരണം എന്നിവയിൽ ഞങ്ങൾ ശ്രദ്ധ കേന്ദ്രീകരിക്കുന്നു.",
+      viewMoreDoctors: "കൂടുതൽ ഡോക്ടർമാരെ കാണുക",
+      trustedMedicalCare: "വിശ്വസനീയമായ മെഡിക്കൽ പരിചരണം",
+      trustTitle: "പരിചയസമ്പന്നരായ ഡോക്ടർമാർ. മികച്ച പരിചരണം.",
+      trustDescription:
+        "പരിചയസമ്പന്നരായ ആരോഗ്യ വിദഗ്ധരിൽ നിന്ന് ശരിയായ മെഡിക്കൽ മാർഗനിർദ്ദേശം നേടുക.",
+      bookAppointment: "അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യുക",
+    },
+
+    te: {
+      subtitle: "మా వైద్యులు",
+      title: "మా అనుభవజ్ఞులైన వైద్యులను కలుసుకోండి",
+      description:
+        "విశ్వసనీయమైన, శ్రద్ధతో కూడిన మరియు నాణ్యమైన వైద్య సేవలను అందించడానికి మా అనుభవజ్ఞులైన వైద్యులు కట్టుబడి ఉన్నారు.",
+      intro:
+        "వివిధ వైద్య విభాగాల్లో అనుభవజ్ఞులైన నిపుణులతో కలిసి ఖచ్చితమైన నిర్ధారణ, వ్యక్తిగత చికిత్స మరియు రోగి కేంద్రిత సంరక్షణపై మేము దృష్టి పెడుతున్నాము.",
+      viewMoreDoctors: "మరిన్ని వైద్యులను చూడండి",
+      trustedMedicalCare: "విశ్వసనీయ వైద్య సేవ",
+      trustTitle: "అనుభవజ్ఞులైన వైద్యులు. మెరుగైన సంరక్షణ.",
+      trustDescription:
+        "అనుభవజ్ఞులైన వైద్య నిపుణుల నుండి సరైన వైద్య మార్గదర్శకత్వాన్ని పొందండి.",
+      bookAppointment: "అపాయింట్‌మెంట్ బుక్ చేయండి",
+    },
+
+    hi: {
+      subtitle: "हमारे डॉक्टर",
+
+      title: "हमारे अनुभवी डॉक्टरों से मिलें",
+
+      description:
+        "हमारे अनुभवी डॉक्टर विश्वसनीय, सहानुभूतिपूर्ण और गुणवत्तापूर्ण स्वास्थ्य सेवाएं प्रदान करने के लिए प्रतिबद्ध हैं।",
+
+      intro:
+        "विभिन्न चिकित्सा विशेषज्ञताओं में अनुभवी चिकित्सा पेशेवरों की हमारी टीम सटीक निदान, व्यक्तिगत उपचार और रोगी-केंद्रित देखभाल पर ध्यान केंद्रित करती है।",
+
+      viewMoreDoctors: "और डॉक्टर देखें",
+
+      trustedMedicalCare: "विश्वसनीय चिकित्सा सेवा",
+
+      trustTitle: "अनुभवी डॉक्टर। बेहतर देखभाल।",
+
+      trustDescription:
+        "अनुभवी स्वास्थ्य विशेषज्ञों से सही चिकित्सा मार्गदर्शन प्राप्त करें।",
+
+      bookAppointment: "अपॉइंटमेंट बुक करें",
+    },
+  } as const;
+
+  const text = ui[currentLanguage];
+
+  // =====================================================
+  // VIEW MORE DOCTORS
+  // =====================================================
 
   const viewMoreDoctors = () => {
-    if (!sliderRef.current || doctors.length === 0) return;
-
     const slider = sliderRef.current;
+
+    if (!slider) {
+      return;
+    }
 
     const card = slider.querySelector<HTMLElement>(
       "[data-doctor-card]"
     );
 
-    if (!card) return;
+    if (!card) {
+      return;
+    }
 
     const cardWidth = card.offsetWidth;
     const gap = 24;
 
-    // Move exactly 3 doctors
     const moveAmount = (cardWidth + gap) * 3;
 
-    const maxScroll =
-      slider.scrollWidth - slider.clientWidth;
+    const maxScroll = Math.max(
+      slider.scrollWidth - slider.clientWidth,
+      0
+    );
 
-    /*
-     * If currently at the last group,
-     * go back to the first group.
-     */
+    if (maxScroll === 0) {
+      return;
+    }
 
     if (slider.scrollLeft >= maxScroll - 5) {
       slider.scrollTo({
@@ -45,10 +150,6 @@ export default function DoctorsSection() {
 
       return;
     }
-
-    /*
-     * Otherwise move to the next 3 doctors.
-     */
 
     const nextPosition = Math.min(
       slider.scrollLeft + moveAmount,
@@ -60,6 +161,10 @@ export default function DoctorsSection() {
       behavior: "smooth",
     });
   };
+
+  // =====================================================
+  // RENDER
+  // =====================================================
 
   return (
     <section
@@ -75,32 +180,25 @@ export default function DoctorsSection() {
       <Section>
         <Container>
 
-          {/* =====================================================
-              SECTION HEADING
-          ===================================================== */}
+          {/* Section Heading */}
 
           <SectionTitle
-            subtitle="Our Medical Team"
-            title="Meet Our Experienced Doctors"
-            description="Our dedicated team of healthcare professionals is committed to providing trusted medical care with experience, compassion, and attention to every patient."
+            subtitle={text.subtitle}
+            title={text.title}
+            description={text.description}
           />
 
           {/* Short Intro */}
 
           <div className="mx-auto mt-6 max-w-2xl text-center">
             <p className="text-sm leading-7 text-slate-500 sm:text-base">
-              Meet the experienced medical professionals dedicated to
-              providing compassionate and trusted healthcare.
+              {text.intro}
             </p>
           </div>
 
-          {/* =====================================================
-              DOCTOR CAROUSEL
-          ===================================================== */}
+          {/* Doctor Carousel */}
 
           <div className="relative mt-10">
-
-            {/* Horizontal Doctor List */}
 
             <div
               ref={sliderRef}
@@ -123,14 +221,13 @@ export default function DoctorsSection() {
                     specialistIn={doctor.specialistIn}
                     image={doctor.image}
                     showSpecialization={doctor.showSpecialization}
+                    language={currentLanguage}
                   />
                 </div>
               ))}
             </div>
 
-            {/* =====================================================
-                VIEW MORE DOCTORS
-            ===================================================== */}
+            {/* View More Doctors */}
 
             <div className="mt-7 flex justify-center">
               <button
@@ -138,7 +235,7 @@ export default function DoctorsSection() {
                 onClick={viewMoreDoctors}
                 className="group inline-flex items-center gap-2 rounded-xl bg-blue-700 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl hover:shadow-blue-700/25"
               >
-                View More Doctors
+                {text.viewMoreDoctors}
 
                 <ArrowRight
                   size={18}
@@ -148,9 +245,7 @@ export default function DoctorsSection() {
             </div>
           </div>
 
-          {/* =====================================================
-              TRUST STRIP
-          ===================================================== */}
+          {/* Trust Strip */}
 
           <div className="relative mt-12 overflow-hidden rounded-[1.75rem] border border-blue-100 bg-gradient-to-r from-blue-50 via-white to-cyan-50 px-6 py-7 shadow-[0_10px_35px_rgba(15,23,42,0.06)] sm:px-9">
 
@@ -161,16 +256,15 @@ export default function DoctorsSection() {
               <div>
 
                 <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-blue-700">
-                  Trusted Medical Care
+                  {text.trustedMedicalCare}
                 </p>
 
                 <h3 className="mt-1.5 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
-                  Experienced professionals. Patient-first care.
+                  {text.trustTitle}
                 </h3>
 
                 <p className="mt-1.5 text-sm text-slate-500">
-                  Dedicated to providing dependable and compassionate
-                  healthcare for every patient.
+                  {text.trustDescription}
                 </p>
 
               </div>
@@ -187,7 +281,7 @@ export default function DoctorsSection() {
                 }
                 className="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl"
               >
-                Book Appointment
+                {text.bookAppointment}
 
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                   →

@@ -3,10 +3,10 @@ import Image from "next/image";
 export default function FloatingWhatsApp() {
   return (
     <a
-      href="https://wa.me/919876543210?text=Hello%20KV%20Hospital,%20I%20would%20like%20to%20book%20an%20appointment."
+      href="https://wa.me/919876543210?text=Hello%20ISWARYA HOSPITAL%20Hospital,%20I%20would%20like%20to%20book%20an%20appointment."
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="WhatsApp KV Hospital"
+      aria-label="WhatsApp Iswarya Hospital"
       className="group fixed bottom-6 right-6 z-50 flex items-center"
     >
       {/* Hover Label */}

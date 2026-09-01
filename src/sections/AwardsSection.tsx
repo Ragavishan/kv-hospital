@@ -5,43 +5,50 @@ import { useState } from "react";
 const awards = [
   {
     image: "/images/awards/award-1.jpg",
-    title: "Award & Achievement 1",
-    date: "2025",
-    awardedBy: "Awarding Organization",
+    title: "CME Programme – Invited Speaker",
+    year: "2025",
+    Recognition: "Invited Speaker for “Azoospermia Management",
+    awardedBy: " Indian Medical Association (IMA) – Thoothukudi Branch",
     achievement:
-      "This award recognizes excellence in healthcare services and outstanding commitment to patient care.",
+      " Invited as a speaker to deliver an expert session on Azoospermia Management at the CME Programme held on 1st November 2025 at Hotel DSF Plaza, Thoothukudi.",
   },
   {
     image: "/images/awards/award-2.jpg",
     title: "Award & Achievement 2",
-    date: "2025",
-    awardedBy: "Awarding Organization",
+    year: "2000-2025",
+    Recognition: "25th Silver Jubilee Celebration",
+    awardedBy: "Sankar Ponnar HR Sec School & Sankar Ponnar Global Campus",
     achievement:
-      "Recognized for delivering quality healthcare services and maintaining high standards of patient care.",
+      "Honoured as part of the 25th Silver Jubilee celebration of Sankar Ponnar HR Sec School & Sankar Ponnar Global Campus, commemorating 25 years of educational excellence and dedicated service.",
   },
   {
     image: "/images/awards/award-3.jpg",
-    title: "Award & Achievement 3",
-    date: "2024",
-    awardedBy: "Awarding Organization",
+    title: "Best Service Award",
+    year: "2023",
+    Recognition: "Best Service Award",
+    awardedBy: "Indian Medical Association – Palani, Oddanchatram & Madurai Meenakshi Branches, in association with Meenakshi Mission Hospital & Research Centre",
     achievement:
-      "Honored for excellence in medical services, patient satisfaction, and professional healthcare.",
+      "Honoured with the Best Service Award in recognition of dedicated service and contribution to the medical profession and patient care.",
+
   },
   {
     image: "/images/awards/award-4.jpg",
-    title: "Award & Achievement 4",
-    date: "2024",
-    awardedBy: "Awarding Organization",
+    title: "2008th Child Birth – Special Achievement",
+    year: "2008",
+    Recognition: "Recognition for achieving the birth of the 2008th child",
+    awardedBy: "Iswarya Women Care & Fertility Centre, Palani",
     achievement:
-      "Recognized for providing advanced healthcare services with dedication and compassion.",
+      "Honoured for the successful achievement of the birth of the 2008th child, commemorated during a special celebration held at Iswarya Women Care & Fertility Centre, Palani, on 11th May 2008."
   },
+
   {
     image: "/images/awards/award-5.jpg",
-    title: "Award & Achievement 5",
-    date: "2023",
-    awardedBy: "Awarding Organization",
+    title: "Ungalukkum Oru Kuzhandhai” – Fertility Awareness Recognition",
+    Recognition: "Recognition for contribution towards fertility awareness and helping couples understand fertility and parenthood",
+    awardedBy: "Tamil Nadu Governor – K. Rosaiah",
     achievement:
-      "Honored for contribution to quality healthcare and commitment to the community.",
+      " Honoured for contributing to fertility awareness through educational efforts aimed at helping couples understand fertility, treatment and the journey towards parenthood.",
+
   },
 ];
 
@@ -388,7 +395,7 @@ export default function AwardsSection() {
                 >
                   <small>Awarded In</small>
                   <strong style={{ display: "block", marginTop: "5px" }}>
-                    {selectedAward.date}
+                    {selectedAward.year ?? "N/A"}
                   </strong>
                 </div>
 

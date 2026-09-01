@@ -99,7 +99,7 @@ export default function AppointmentForm() {
 
     try {
       const selectedDoctor = doctors.find(
-        (doctor) => doctor.name === formData.doctor
+        (doctor) => doctor.name.en === formData.doctor
       );
 
       await emailjs.send(
@@ -109,8 +109,8 @@ export default function AppointmentForm() {
           fullName: formData.fullName,
           phone: formData.phone,
           department: formData.department,
-          doctor: selectedDoctor?.name || formData.doctor,
-          specialization: selectedDoctor?.specialization || "",
+          doctor: selectedDoctor?.name.en || formData.doctor,
+          specialization: selectedDoctor?.specialization.en || "",
           date: formData.date,
           time: formData.time,
           message: formData.message,
@@ -252,8 +252,8 @@ export default function AppointmentForm() {
             </option>
 
             {doctors.map((doctor) => (
-              <option key={doctor.id} value={doctor.name}>
-                {doctor.name} — {doctor.specialization}
+              <option key={doctor.id} value={doctor.name.en}>
+                {doctor.name.en} — {doctor.specialization.en}
               </option>
             ))}
           </select>

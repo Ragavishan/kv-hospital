@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import LanguageProvider from "@/components/common/LanguageProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -8,10 +9,10 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "KV Hospital | Best Multispeciality Hospital in Palani",
+  title: "Iswarya Hospital | Best Multispeciality Hospital in Palani",
 
   description:
-    "KV Hospital is a trusted multispeciality hospital in Palani offering 24/7 emergency care, experienced doctors, advanced treatments, and quality healthcare.",
+    "Iswarya Hospital is a trusted multispeciality hospital in Palani offering 24/7 emergency care, experienced doctors, advanced treatments, and quality healthcare.",
 
   icons: {
     icon: "/logo.png",
@@ -28,7 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} min-h-screen`}>
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

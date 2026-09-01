@@ -10,7 +10,11 @@ import {
   Clock3,
 } from "lucide-react";
 
+import { useLanguage } from "@/components/common/LanguageProvider";
+
 export default function HeroSection() {
+  const { t } = useLanguage();
+
   const handleBookAppointment = () => {
     const appointmentForm =
       document.getElementById("appointment-form") ||
@@ -44,17 +48,15 @@ export default function HeroSection() {
       <div className="absolute inset-0 -z-30 overflow-hidden bg-slate-900">
         <Image
           src="/images/hospital-hero.jpg"
-          alt="KV Hospital building"
+          alt="Iswarya Hospital building"
           fill
           priority
           unoptimized
           sizes="100vw"
-          className="
-            object-cover
-            object-center
-          "
+          className="object-cover object-center"
         />
       </div>
+
       {/* =====================================================
           OVERLAY
       ===================================================== */}
@@ -111,7 +113,6 @@ export default function HeroSection() {
 
       {/* =====================================================
           ALL HERO CONTENT
-          EVERYTHING IS OVER THE BUILDING IMAGE
       ===================================================== */}
 
       <div
@@ -137,13 +138,7 @@ export default function HeroSection() {
             MAIN HERO CONTENT
         =================================================== */}
 
-        <div
-          className="
-            flex
-            flex-1
-            items-center
-          "
-        >
+        <div className="flex flex-1 items-center">
           {/* =================================================
               LEFT CONTENT
           ================================================= */}
@@ -187,7 +182,7 @@ export default function HeroSection() {
                   text-blue-100
                 "
               >
-                Trusted Multi-Speciality Care
+                {t.hero.badge}
               </span>
             </div>
 
@@ -206,9 +201,9 @@ export default function HeroSection() {
                 xl:text-[72px]
               "
             >
-              Compassionate
+              {t.hero.title1}
               <br />
-              Care.
+              {t.hero.title2}
 
               <span
                 className="
@@ -217,9 +212,9 @@ export default function HeroSection() {
                   text-blue-300
                 "
               >
-                Advanced
+                {t.hero.title3}
                 <br />
-                Medicine.
+                {t.hero.title4}
               </span>
             </h1>
 
@@ -238,11 +233,7 @@ export default function HeroSection() {
                 sm:leading-8
               "
             >
-              At KV Hospital, we combine experienced
-              medical professionals, modern healthcare
-              facilities, and compassionate treatment
-              to deliver trusted care for you and your
-              family.
+              {t.hero.description}
             </p>
 
             {/* BUTTONS */}
@@ -256,6 +247,8 @@ export default function HeroSection() {
                 sm:flex-row
               "
             >
+              {/* BOOK APPOINTMENT */}
+
               <button
                 type="button"
                 onClick={handleBookAppointment}
@@ -282,7 +275,7 @@ export default function HeroSection() {
               >
                 <CalendarCheck2 size={18} />
 
-                Book Appointment
+                {t.hero.bookAppointment}
 
                 <ArrowRight
                   size={17}
@@ -293,6 +286,8 @@ export default function HeroSection() {
                   "
                 />
               </button>
+
+              {/* CALL HOSPITAL */}
 
               <button
                 type="button"
@@ -320,7 +315,7 @@ export default function HeroSection() {
               >
                 <Phone size={18} />
 
-                Call Hospital
+                {t.hero.callHospital}
               </button>
             </div>
           </div>
@@ -336,35 +331,39 @@ export default function HeroSection() {
               top-1/2
               z-20
               hidden
-              w-[300px]
+              w-[270px]
               -translate-y-1/2
               lg:right-8
               lg:block
               xl:right-14
-              xl:w-[340px]
+              xl:w-[300px]
             "
           >
             <div
               className="
-                rounded-[24px]
+                rounded-[22px]
                 border
                 border-white/20
                 bg-slate-950/55
-                p-4
+                p-3.5
                 shadow-[0_25px_70px_rgba(0,0,0,0.35)]
                 backdrop-blur-xl
               "
             >
-              {/* EMERGENCY BOX */}
+              {/* =================================================
+                  EMERGENCY BOX
+              ================================================= */}
 
               <div
                 className="
-                  rounded-[20px]
+                  rounded-[18px]
                   border
                   border-red-400/25
-                  bg-red-950/60
-                  p-5
-                  animate-pulse
+                  bg-gradient-to-br
+                  from-red-950/80
+                  via-red-900/60
+                  to-slate-950/70
+                  p-4
                 "
               >
                 <div
@@ -372,38 +371,44 @@ export default function HeroSection() {
                     flex
                     items-start
                     justify-between
-                    gap-4
+                    gap-3
                   "
                 >
+                  {/* LEFT SIDE */}
+
                   <div>
+                    {/* EMERGENCY LABEL */}
+
                     <div className="flex items-center gap-2">
+                      {/* BIGGER BLINKING DOT */}
+
                       <span
                         className="
                           relative
                           flex
-                          h-2.5
-                          w-2.5
+                          h-3.5
+                          w-3.5
                         "
                       >
                         <span
                           className="
                             absolute
-                            h-full
-                            w-full
+                            inset-0
                             animate-ping
                             rounded-full
                             bg-red-400
-                            opacity-60
+                            opacity-75
                           "
                         />
 
                         <span
                           className="
                             relative
-                            h-2.5
-                            w-2.5
+                            h-3.5
+                            w-3.5
                             rounded-full
                             bg-red-500
+                            shadow-[0_0_12px_rgba(239,68,68,0.9)]
                           "
                         />
                       </span>
@@ -417,56 +422,67 @@ export default function HeroSection() {
                           text-red-200
                         "
                       >
-                        Emergency Care
+                        {t.hero.emergencyCare}
                       </span>
                     </div>
 
                     <h2
                       className="
-                        mt-3
-                        text-2xl
+                        mt-2.5
+                        text-[21px]
                         font-extrabold
+                        leading-tight
                         text-white
                       "
                     >
-                      Available 24 × 7
+                      {t.hero.available}
                     </h2>
                   </div>
+
+                  {/* CLOCK */}
 
                   <div
                     className="
                       flex
-                      h-10
-                      w-10
+                      h-9
+                      w-9
                       shrink-0
                       items-center
                       justify-center
                       rounded-xl
-                      bg-red-500/20
+                      border
+                      border-red-400/20
+                      bg-red-500/15
                       text-red-300
                     "
                   >
-                    <Clock3 size={20} />
+                    <Clock3
+                      size={15}
+                      strokeWidth={2.3}
+                    />
                   </div>
                 </div>
 
+                {/* DESCRIPTION */}
+
                 <p
                   className="
-                    mt-3
-                    text-xs
+                    mt-2.5
+                    text-[11px]
                     leading-5
                     text-slate-200
                   "
                 >
-                  Immediate medical assistance when
-                  you need it most.
+                  {t.hero.emergencyDescription}
                 </p>
+
+                {/* EMERGENCY BUTTON */}
 
                 <button
                   type="button"
                   onClick={handleCall}
                   className="
-                    mt-5
+                    mt-4
                     flex
                     w-full
                     items-center
@@ -474,45 +490,50 @@ export default function HeroSection() {
                     gap-2
                     rounded-xl
                     bg-gradient-to-r
-                    from-red-600
-                    via-red-500
+                    from-red-700
+                    via-red-600
                     to-rose-600
-                    px-5
-                    py-3.5
-                    text-xs
+                    px-4
+                    py-3
+                    text-[11px]
                     font-bold
                     text-white
-                    shadow-lg
+                    shadow-[0_8px_25px_rgba(220,38,38,0.3)]
                     transition-all
                     duration-300
-                    hover:bg-red-500
+                    hover:-translate-y-0.5
+                    hover:from-red-600
+                    hover:via-red-500
+                    hover:to-rose-500
                   "
                 >
-                  <Phone size={16} />
+                  <Phone size={15} />
 
-                  Emergency Support
+                  {t.hero.emergencySupport}
                 </button>
               </div>
 
-              {/* SMALL STATS */}
+              {/* =================================================
+                  SMALL STATS
+              ================================================= */}
 
-              <div className="mt-3 grid grid-cols-2 gap-3">
+              <div className="mt-2.5 grid grid-cols-2 gap-2.5">
                 <div
                   className="
                     rounded-xl
                     border
                     border-white/15
                     bg-white/10
-                    p-3
+                    p-2.5
                     backdrop-blur-md
                   "
                 >
-                  <p className="text-xl font-extrabold text-white">
+                  <p className="text-lg font-extrabold text-white">
                     24×7
                   </p>
 
-                  <p className="mt-1 text-[10px] text-slate-300">
-                    Emergency Support
+                  <p className="mt-0.5 text-[9px] text-slate-300">
+                    {t.hero.emergencySupportSmall}
                   </p>
                 </div>
 
@@ -522,16 +543,16 @@ export default function HeroSection() {
                     border
                     border-white/15
                     bg-white/10
-                    p-3
+                    p-2.5
                     backdrop-blur-md
                   "
                 >
-                  <p className="text-xl font-extrabold text-white">
-                    15+
+                  <p className="text-lg font-extrabold text-white">
+                    40+
                   </p>
 
-                  <p className="mt-1 text-[10px] text-slate-300">
-                    Years Experience
+                  <p className="mt-0.5 text-[9px] text-slate-300">
+                    {t.hero.yearsExperience}
                   </p>
                 </div>
               </div>
@@ -541,7 +562,6 @@ export default function HeroSection() {
 
         {/* ===================================================
             BOTTOM FEATURES
-            NO BORDER / NO HORIZONTAL LINE
         =================================================== */}
 
         <div
@@ -561,17 +581,16 @@ export default function HeroSection() {
               lg:gap-8
             "
           >
-            <Feature text="Experienced Doctors" />
+            <Feature text={t.hero.experiencedDoctors} />
 
-            <Feature text="Modern Facilities" />
+            <Feature text={t.hero.modernFacilities} />
 
-            <Feature text="Patient First Care" />
+            <Feature text={t.hero.patientFirstCare} />
           </div>
         </div>
 
         {/* ===================================================
             MOBILE EMERGENCY
-            STILL OVER THE HERO IMAGE
         =================================================== */}
 
         <div
@@ -588,7 +607,7 @@ export default function HeroSection() {
               border
               border-white/20
               bg-slate-950/60
-              p-4
+              p-3.5
               shadow-2xl
               backdrop-blur-xl
             "
@@ -603,7 +622,30 @@ export default function HeroSection() {
             >
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-red-500" />
+                  {/* MOBILE BIG BLINKING DOT */}
+
+                  <span className="relative flex h-3 w-3">
+                    <span
+                      className="
+                        absolute
+                        inset-0
+                        animate-ping
+                        rounded-full
+                        bg-red-400
+                        opacity-70
+                      "
+                    />
+
+                    <span
+                      className="
+                        relative
+                        h-3
+                        w-3
+                        rounded-full
+                        bg-red-500
+                      "
+                    />
+                  </span>
 
                   <span
                     className="
@@ -614,7 +656,7 @@ export default function HeroSection() {
                       text-red-200
                     "
                   >
-                    Emergency Care
+                    {t.hero.emergencyCare}
                   </span>
                 </div>
 
@@ -626,7 +668,7 @@ export default function HeroSection() {
                     text-white
                   "
                 >
-                  Available 24 × 7
+                  {t.hero.available}
                 </h2>
               </div>
 
@@ -639,17 +681,22 @@ export default function HeroSection() {
                   items-center
                   gap-2
                   rounded-xl
-                  bg-red-600
+                  bg-gradient-to-r
+                  from-red-700
+                  via-red-600
+                  to-rose-600
                   px-4
-                  py-3
+                  py-2.5
                   text-xs
                   font-bold
                   text-white
+                  shadow-lg
+                  shadow-red-950/40
                 "
               >
                 <Phone size={15} />
 
-                Emergency
+                {t.hero.emergency}
               </button>
             </div>
           </div>
@@ -697,4 +744,3 @@ function Feature({ text }: { text: string }) {
     </div>
   );
 }
-

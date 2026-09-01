@@ -77,7 +77,7 @@ export default function AdminLoginPage() {
           </div>
 
           <p className="mt-5 text-sm font-bold uppercase tracking-wider text-blue-700">
-            KV Hospital
+            Iswarya Hospital
           </p>
 
           <h1 className="mt-2 text-3xl font-extrabold text-slate-900">

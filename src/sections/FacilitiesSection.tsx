@@ -1,167 +1,286 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useLanguage } from "@/components/common/LanguageProvider";
+import { translations } from "@/constants/translations";
 
-const facilities = [
+type Translation = (typeof translations)[keyof typeof translations];
+
+type FacilityTitleKey =
+  | "emergencyCare"
+  | "icu"
+  | "operationTheatre"
+  | "pharmacy"
+  | "laboratory"
+  | "diagnosticServices"
+  | "doctorConsultation";
+
+type FacilityDescriptionKey =
+  | "emergencyCareDescription"
+  | "icuDescription"
+  | "operationTheatreDescription"
+  | "pharmacyDescription"
+  | "laboratoryDescription"
+  | "diagnosticServicesDescription"
+  | "doctorConsultationDescription";
+
+type Facility = {
+  titleKey: FacilityTitleKey;
+  descriptionKey: FacilityDescriptionKey;
+  image: string;
+};
+
+const facilities: Facility[] = [
   {
-    title: "Emergency Care",
+    titleKey: "emergencyCare",
+    descriptionKey: "emergencyCareDescription",
     image: "/images/facilities/emergency.jpg",
-    description: "24/7 emergency medical care with immediate attention.",
   },
   {
-    title: "ICU",
+    titleKey: "icu",
+    descriptionKey: "icuDescription",
     image: "/images/facilities/icu.jpg",
-    description: "Advanced intensive care with continuous monitoring.",
   },
   {
-    title: "Operation Theatre",
+    titleKey: "operationTheatre",
+    descriptionKey: "operationTheatreDescription",
     image: "/images/facilities/operation-theatre.jpg",
-    description: "Modern operation theatre with advanced equipment.",
   },
   {
-    title: "Pharmacy",
+    titleKey: "pharmacy",
+    descriptionKey: "pharmacyDescription",
     image: "/images/facilities/pharmacy.jpg",
-    description: "Quality medicines and convenient pharmacy services.",
   },
   {
-    title: "Laboratory",
+    titleKey: "laboratory",
+    descriptionKey: "laboratoryDescription",
     image: "/images/facilities/laboratory.jpg",
-    description: "Reliable diagnostic testing with accurate results.",
   },
   {
-    title: "Diagnostic Services",
+    titleKey: "diagnosticServices",
+    descriptionKey: "diagnosticServicesDescription",
     image: "/images/facilities/diagnostic-services.jpg",
-    description: "Modern diagnostic facilities for better healthcare.",
   },
   {
-    title: "Doctor Consultation",
+    titleKey: "doctorConsultation",
+    descriptionKey: "doctorConsultationDescription",
     image: "/images/facilities/doctor-consultation.jpg",
-    description: "Expert medical consultation with experienced doctors.",
   },
 ];
 
 export default function FacilitiesSection() {
-  const sliderRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   return (
     <section
-        id="facilities"
-        className="w-full bg-white py-16 overflow-hidden">
-      {/* Heading */}
+      id="facilities"
+      className="w-full bg-white py-16"
+      style={{
+        overflow: "hidden",
+      }}
+    >
+      {/* =========================================
+          HEADING
+      ========================================= */}
       <div className="text-center mb-10 px-4">
         <p className="text-sm font-semibold tracking-[3px] text-cyan-600 uppercase">
-          Our Facilities
+          {t.facilities.subtitle}
         </p>
 
         <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-800">
-          World-Class Healthcare Facilities
+          {t.facilities.title}
         </h2>
 
         <p className="mt-3 max-w-2xl mx-auto text-gray-600">
-          We provide modern medical facilities and advanced healthcare
-          services for our patients.
+          {t.facilities.description}
         </p>
       </div>
 
-      {/* Moving Cards */}
-      <div className="relative w-full">
+      {/* =========================================
+          HORIZONTAL MARQUEE VIEWPORT
+      ========================================= */}
+      <div
+        style={{
+          width: "100%",
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
+        {/* =========================================
+            HORIZONTAL RUNNING TRACK
+        ========================================= */}
         <div
-          ref={sliderRef}
-          className="facilities-marquee flex w-max gap-6 hover:[animation-play-state:paused]"
+          className="facilities-marquee"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "nowrap",
+            alignItems: "stretch",
+            width: "max-content",
+            minWidth: "max-content",
+            maxWidth: "none",
+            gap: "0px",
+          }}
         >
-          {/* First set */}
-          {facilities.map((facility, index) => (
-            <div
-              key={`first-${index}`}
-              className="group relative w-[280px] sm:w-[320px] md:w-[350px] h-[390px] flex-shrink-0 overflow-hidden rounded-2xl bg-white shadow-lg"
-            >
-              <div className="relative w-full h-full">
-                <Image
-                  src={facility.image}
-                  alt={facility.title}
-                  fill
-                  sizes="350px"
-                  className="object-cover transition duration-700 group-hover:scale-110"
-                />
+          {/* =========================================
+              FIRST SET
+          ========================================= */}
+          <div
+            className="facilities-group"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "nowrap",
+              alignItems: "stretch",
+              width: "max-content",
+              minWidth: "max-content",
+              flexShrink: 0,
+              gap: "24px",
+              paddingRight: "24px",
+            }}
+          >
+            {facilities.map((facility, index) => (
+              <FacilityCard
+                key={`first-${index}`}
+                facility={facility}
+                t={t}
+              />
+            ))}
+          </div>
 
-                {/* Dark overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="text-2xl font-bold">
-                    {facility.title}
-                  </h3>
-
-                  <p className="mt-2 text-sm leading-6 text-white/90">
-                    {facility.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-
-          {/* Duplicate set for continuous loop */}
-          {facilities.map((facility, index) => (
-            <div
-              key={`second-${index}`}
-              className="group relative w-[280px] sm:w-[320px] md:w-[350px] h-[390px] flex-shrink-0 overflow-hidden rounded-2xl bg-white shadow-lg"
-            >
-              <div className="relative w-full h-full">
-                <Image
-                  src={facility.image}
-                  alt={facility.title}
-                  fill
-                  sizes="350px"
-                  className="object-cover transition duration-700 group-hover:scale-110"
-                />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="text-2xl font-bold">
-                    {facility.title}
-                  </h3>
-
-                  <p className="mt-2 text-sm leading-6 text-white/90">
-                    {facility.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
+          {/* =========================================
+              DUPLICATE SET
+          ========================================= */}
+          <div
+            className="facilities-group"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "nowrap",
+              alignItems: "stretch",
+              width: "max-content",
+              minWidth: "max-content",
+              flexShrink: 0,
+              gap: "24px",
+              paddingRight: "24px",
+            }}
+          >
+            {facilities.map((facility, index) => (
+              <FacilityCard
+                key={`second-${index}`}
+                facility={facility}
+                t={t}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Animation */}
-      <style jsx>{`
+      {/* =========================================
+          HORIZONTAL ANIMATION
+      ========================================= */}
+      <style jsx global>{`
         .facilities-marquee {
-          animation: facilities-scroll 35s linear infinite;
+          display: flex !important;
+          flex-direction: row !important;
+          flex-wrap: nowrap !important;
+          width: max-content !important;
+          animation-name: facilities-scroll !important;
+          animation-duration: 25s !important;
+          animation-timing-function: linear !important;
+          animation-iteration-count: infinite !important;
+          animation-fill-mode: both !important;
+          will-change: transform;
+        }
+
+        .facilities-group {
+          display: flex !important;
+          flex-direction: row !important;
+          flex-wrap: nowrap !important;
+          flex-shrink: 0 !important;
         }
 
         @keyframes facilities-scroll {
-          from {
+          0% {
             transform: translateX(0);
           }
 
-          to {
-            transform: translateX(calc(-50% - 12px));
+          100% {
+            transform: translateX(-50%);
           }
+        }
+
+        .facilities-marquee:hover {
+          animation-play-state: paused;
         }
 
         @media (max-width: 640px) {
           .facilities-marquee {
-            animation-duration: 28s;
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .facilities-marquee {
-            animation: none;
+            animation-duration: 18s !important;
           }
         }
       `}</style>
     </section>
+  );
+}
+
+/* =========================================
+   FACILITY CARD
+========================================= */
+
+function FacilityCard({
+  facility,
+  t,
+}: {
+  facility: Facility;
+  t: Translation;
+}) {
+  return (
+    <div
+      className="facility-card group"
+      style={{
+        width: "350px",
+        minWidth: "350px",
+        maxWidth: "350px",
+        height: "390px",
+
+        /* FORCE HORIZONTAL CARD */
+        flex: "0 0 350px",
+        flexShrink: 0,
+
+        position: "relative",
+        overflow: "hidden",
+
+        borderRadius: "16px",
+
+        background: "white",
+
+        boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
+      }}
+    >
+      <div className="relative w-full h-full">
+        <Image
+          src={facility.image}
+          alt={t.facilities[facility.titleKey]}
+          fill
+          sizes="350px"
+          className="object-cover transition duration-700 group-hover:scale-110"
+        />
+
+        {/* DARK OVERLAY */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+        {/* CONTENT */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+          <h3 className="text-2xl font-bold">
+            {t.facilities[facility.titleKey]}
+          </h3>
+
+          <p className="mt-2 text-sm leading-6 text-white/90">
+            {t.facilities[facility.descriptionKey]}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }

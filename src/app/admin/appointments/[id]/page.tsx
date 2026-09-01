@@ -253,7 +253,7 @@ export default function AppointmentDetailsPage() {
 
             <div>
               <p className="text-sm font-bold uppercase tracking-wider text-blue-200">
-                KV Hospital
+                Iswarya Hospital
               </p>
 
               <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">

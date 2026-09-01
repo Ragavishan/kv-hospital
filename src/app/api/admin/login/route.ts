@@ -64,7 +64,7 @@ export async function POST(
     );
 
     response.cookies.set(
-      "kv_admin_session",
+      "iswarya_admin_session",
       "authenticated",
       {
         httpOnly: true,

@@ -10,7 +10,7 @@ export const faqs = [
     id: 2,
     question: "Is emergency service available 24 × 7?",
     answer:
-      "Yes. KV Hospital provides 24 × 7 emergency care with medical support available for urgent and critical situations.",
+      "Yes. Iswarya Hospital provides 24 × 7 emergency care with medical support available for urgent and critical situations.",
   },
 
   {

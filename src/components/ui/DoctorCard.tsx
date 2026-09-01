@@ -12,17 +12,24 @@ import {
   Stethoscope,
 } from "lucide-react";
 
+import type {
+  Language,
+  LocalizedText,
+  LocalizedList,
+} from "@/constants/doctors";
+
 interface DoctorCardProps {
-  name: string;
-  qualification: string;
-  specialization: string;
-  experience?: string;
+  name: LocalizedText;
+  qualification: LocalizedText;
+  specialization: LocalizedText;
+  experience: LocalizedText;
   experienceYears: number;
   isActive: boolean;
-  bio: string;
-  specialistIn: string[];
+  bio: LocalizedText;
+  specialistIn: LocalizedList;
   image: string;
   showSpecialization?: boolean;
+  language: Language;
 }
 
 export default function DoctorCard({
@@ -36,27 +43,121 @@ export default function DoctorCard({
   specialistIn,
   image,
   showSpecialization = true,
+  language,
 }: DoctorCardProps) {
   const [open, setOpen] = useState(false);
 
-  /* =====================================================
-      EXPERIENCE
-  ===================================================== */
+  // =====================================================
+  // CURRENT LANGUAGE DATA
+  // =====================================================
 
-  const experienceText =
-    experience || `${experienceYears || 0}+ Years`;
+  const currentName = name[language];
+  const currentQualification = qualification[language];
+  const currentSpecialization = specialization[language];
+  const currentExperience = experience[language];
+  const currentBio = bio[language];
+  const currentSpecialistIn = specialistIn[language];
 
-  const experienceNumber = parseInt(
-    experienceText.match(/\d+/)?.[0] ||
-      String(experienceYears || 0),
-    10
-  );
+  // =====================================================
+  // EXPERIENCE
+  // =====================================================
+
+  const experienceNumber =
+    parseInt(
+      currentExperience.match(/\d+/)?.[0] ??
+        String(experienceYears),
+      10
+    ) || 0;
 
   const isHighlyExperienced = experienceNumber >= 10;
 
-  /* =====================================================
-      BOOK APPOINTMENT
-  ===================================================== */
+  // =====================================================
+  // TRANSLATED UI
+  // =====================================================
+
+  const ui = {
+    en: {
+      available: "Available",
+      senior: "Senior",
+      specialization: "Specialization",
+      professionalExperience: "Professional Experience",
+      highlyExperienced: "Highly Experienced",
+      experienced: "Experienced",
+      viewFullProfile: "View Full Profile",
+      availableForConsultation: "Available for Consultation",
+      aboutDoctor: "About Doctor",
+      areasOfExpertise: "Areas of Expertise",
+      bookAppointment: "Book Appointment",
+      closeProfile: "Close profile",
+    },
+
+    ta: {
+      available: "கிடைக்கிறார்",
+      senior: "மூத்தவர்",
+      specialization: "சிறப்பு துறை",
+      professionalExperience: "மருத்துவ அனுபவம்",
+      highlyExperienced: "மிகவும் அனுபவம் வாய்ந்தவர்",
+      experienced: "அனுபவம் வாய்ந்தவர்",
+      viewFullProfile: "முழு சுயவிவரத்தை பார்க்க",
+      availableForConsultation: "ஆலோசனைக்கு கிடைக்கிறார்",
+      aboutDoctor: "மருத்துவரைப் பற்றி",
+      areasOfExpertise: "சிறப்பு நிபுணத்துவ துறைகள்",
+      bookAppointment: "மருத்துவ முன்பதிவு",
+      closeProfile: "சுயவிவரத்தை மூடவும்",
+    },
+
+    ml: {
+      available: "ലഭ്യമാണ്",
+      senior: "സീനിയർ",
+      specialization: "സ്പെഷ്യലൈസേഷൻ",
+      professionalExperience: "മെഡിക്കൽ പരിചയം",
+      highlyExperienced: "വളരെ പരിചയസമ്പന്നൻ",
+      experienced: "പരിചയസമ്പന്നൻ",
+      viewFullProfile: "പൂർണ്ണ പ്രൊഫൈൽ കാണുക",
+      availableForConsultation: "കൺസൾട്ടേഷനായി ലഭ്യമാണ്",
+      aboutDoctor: "ഡോക്ടറെക്കുറിച്ച്",
+      areasOfExpertise: "വിദഗ്ധ മേഖലകൾ",
+      bookAppointment: "അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യുക",
+      closeProfile: "പ്രൊഫൈൽ അടയ്ക്കുക",
+    },
+
+    te: {
+      available: "అందుబాటులో ఉన్నారు",
+      senior: "సీనియర్",
+      specialization: "ప్రత్యేకత",
+      professionalExperience: "వైద్య అనుభవం",
+      highlyExperienced: "అత్యంత అనుభవజ్ఞులు",
+      experienced: "అనుభవజ్ఞులు",
+      viewFullProfile: "పూర్తి ప్రొఫైల్ చూడండి",
+      availableForConsultation:
+        "సంప్రదింపుల కోసం అందుబాటులో ఉన్నారు",
+      aboutDoctor: "వైద్యుని గురించి",
+      areasOfExpertise: "నిపుణతా విభాగాలు",
+      bookAppointment: "అపాయింట్‌మెంట్ బుక్ చేయండి",
+      closeProfile: "ప్రొఫైల్ మూసివేయండి",
+    },
+
+    hi: {
+      available: "उपलब्ध",
+      senior: "वरिष्ठ",
+      specialization: "विशेषज्ञता",
+      professionalExperience: "व्यावसायिक अनुभव",
+      highlyExperienced: "अत्यधिक अनुभवी",
+      experienced: "अनुभवी",
+      viewFullProfile: "पूरी प्रोफ़ाइल देखें",
+      availableForConsultation: "परामर्श के लिए उपलब्ध",
+      aboutDoctor: "डॉक्टर के बारे में",
+      areasOfExpertise: "विशेषज्ञता के क्षेत्र",
+      bookAppointment: "अपॉइंटमेंट बुक करें",
+      closeProfile: "प्रोफ़ाइल बंद करें",
+    },
+  } as const;
+
+  const text = ui[language];
+
+  // =====================================================
+  // BOOK APPOINTMENT
+  // =====================================================
 
   const handleBookAppointment = () => {
     setOpen(false);
@@ -73,9 +174,9 @@ export default function DoctorCard({
     }, 150);
   };
 
-  /* =====================================================
-      ESCAPE MODAL
-  ===================================================== */
+  // =====================================================
+  // ESCAPE MODAL
+  // =====================================================
 
   useEffect(() => {
     if (!open) return;
@@ -95,6 +196,10 @@ export default function DoctorCard({
     };
   }, [open]);
 
+  // =====================================================
+  // RENDER
+  // =====================================================
+
   return (
     <>
       {/* =====================================================
@@ -107,21 +212,16 @@ export default function DoctorCard({
 
         <div className="h-1 bg-gradient-to-r from-blue-700 via-cyan-500 to-blue-700" />
 
-        {/* =====================================================
-            PHOTO
-        ===================================================== */}
+        {/* Photo */}
 
         <div className="relative overflow-hidden bg-slate-100">
-
           <Image
             src={image}
-            alt={`${name} - ${specialization}`}
+            alt={`${currentName} - ${currentSpecialization}`}
             width={600}
             height={650}
             className="h-[290px] w-full object-cover object-top transition duration-700 group-hover:scale-[1.04]"
           />
-
-          {/* Bottom Gradient */}
 
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/35 to-transparent" />
 
@@ -129,17 +229,12 @@ export default function DoctorCard({
 
           {isActive && (
             <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/90 px-3 py-1.5 text-[10px] font-bold text-emerald-700 shadow-lg backdrop-blur-md">
-
               <span className="relative flex h-2 w-2">
-
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-
                 <span className="relative h-2 w-2 rounded-full bg-emerald-500" />
-
               </span>
 
-              Available
-
+              {text.available}
             </div>
           )}
 
@@ -147,79 +242,60 @@ export default function DoctorCard({
 
           {isHighlyExperienced && (
             <div className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-amber-500 px-3 py-1.5 text-[10px] font-extrabold text-white shadow-lg">
-
               <Award size={13} />
-
-              Senior
-
+              {text.senior}
             </div>
           )}
-
         </div>
 
-        {/* =====================================================
-            CONTENT
-        ===================================================== */}
+        {/* Content */}
 
         <div className="flex flex-1 flex-col p-5 sm:p-6">
 
           {/* Name */}
 
           <h3 className="text-xl font-extrabold tracking-tight text-slate-950 sm:text-2xl">
-            {name}
+            {currentName}
           </h3>
 
           {/* Qualification */}
 
           <div className="mt-2 flex items-start gap-2">
-
             <ShieldCheck
               size={16}
               className="mt-0.5 shrink-0 text-blue-700"
             />
 
             <p className="text-sm font-bold leading-5 text-blue-700">
-              {qualification}
+              {currentQualification}
             </p>
-
           </div>
 
-          {/* =====================================================
-              SPECIALIZATION
-              Velusamy-ku false set pannina hide aagum
-          ===================================================== */}
+          {/* Specialization */}
 
           {showSpecialization && (
             <div className="mt-4 rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50/80 to-slate-50 p-4">
-
               <div className="flex items-center gap-3">
 
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-700 text-white shadow-md shadow-blue-700/20">
-
                   <Stethoscope size={19} />
-
                 </div>
 
                 <div>
-
                   <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                    Specialization
+                    {text.specialization}
                   </p>
 
                   <p className="mt-0.5 font-extrabold text-slate-900">
-                    {specialization}
+                    {currentSpecialization}
                   </p>
-
                 </div>
 
               </div>
-
             </div>
           )}
 
-          {/* =====================================================
-              PROFESSIONAL EXPERIENCE
-          ===================================================== */}
+          {/* Professional Experience */}
 
           <div
             className={`mt-4 rounded-xl border px-4 py-3.5 ${
@@ -228,11 +304,9 @@ export default function DoctorCard({
                 : "border-blue-100 bg-gradient-to-r from-blue-50 via-sky-50 to-white"
             }`}
           >
-
             <div className="flex items-center justify-between gap-3">
 
               <div>
-
                 <p
                   className={`text-[10px] font-extrabold uppercase tracking-[0.14em] ${
                     isHighlyExperienced
@@ -240,7 +314,7 @@ export default function DoctorCard({
                       : "text-blue-600"
                   }`}
                 >
-                  Professional Experience
+                  {text.professionalExperience}
                 </p>
 
                 <p
@@ -250,9 +324,8 @@ export default function DoctorCard({
                       : "text-blue-800"
                   }`}
                 >
-                  {experienceText}
+                  {currentExperience}
                 </p>
-
               </div>
 
               <div
@@ -263,17 +336,14 @@ export default function DoctorCard({
                 }`}
               >
                 {isHighlyExperienced
-                  ? "Highly Experienced"
-                  : "Experienced"}
+                  ? text.highlyExperienced
+                  : text.experienced}
               </div>
 
             </div>
-
           </div>
 
-          {/* =====================================================
-              VIEW FULL PROFILE
-          ===================================================== */}
+          {/* View Full Profile */}
 
           <button
             type="button"
@@ -282,7 +352,7 @@ export default function DoctorCard({
           >
             <span className="flex w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-5 py-3 text-sm font-bold text-blue-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:text-white hover:shadow-lg hover:shadow-blue-700/20">
 
-              View Full Profile
+              {text.viewFullProfile}
 
               <ArrowRight
                 size={17}
@@ -304,7 +374,6 @@ export default function DoctorCard({
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950/70 p-4 backdrop-blur-md"
           onClick={() => setOpen(false)}
         >
-
           <div
             className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-[2rem] bg-white shadow-2xl"
             onClick={(event) => event.stopPropagation()}
@@ -315,7 +384,7 @@ export default function DoctorCard({
             <button
               type="button"
               onClick={() => setOpen(false)}
-              aria-label="Close profile"
+              aria-label={text.closeProfile}
               className="absolute right-5 top-5 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-slate-500 shadow-md backdrop-blur transition hover:bg-slate-100 hover:text-slate-900"
             >
               <X size={21} />
@@ -331,7 +400,7 @@ export default function DoctorCard({
 
                 <Image
                   src={image}
-                  alt={name}
+                  alt={currentName}
                   width={180}
                   height={180}
                   className="h-32 w-32 rounded-2xl border-4 border-white/20 object-cover object-top shadow-xl"
@@ -341,32 +410,27 @@ export default function DoctorCard({
 
                   {isActive && (
                     <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-emerald-400/15 px-3 py-1.5 text-xs font-bold text-emerald-200 ring-1 ring-emerald-300/20">
-
                       <span className="h-2 w-2 rounded-full bg-emerald-400" />
-
-                      Available for Consultation
-
+                      {text.availableForConsultation}
                     </div>
                   )}
 
                   <h2 className="text-2xl font-extrabold sm:text-3xl">
-                    {name}
+                    {currentName}
                   </h2>
 
                   <p className="mt-2 font-bold text-blue-200">
-                    {qualification}
+                    {currentQualification}
                   </p>
 
                   {showSpecialization && (
                     <p className="mt-1 text-sm font-medium text-blue-100">
-                      {specialization}
+                      {currentSpecialization}
                     </p>
                   )}
 
                 </div>
-
               </div>
-
             </div>
 
             {/* Modal Content */}
@@ -382,11 +446,9 @@ export default function DoctorCard({
                     : "border-blue-200 bg-gradient-to-r from-blue-50 to-white"
                 }`}
               >
-
                 <div className="flex items-center justify-between gap-4">
 
                   <div>
-
                     <p
                       className={`text-xs font-bold uppercase tracking-wider ${
                         isHighlyExperienced
@@ -394,7 +456,7 @@ export default function DoctorCard({
                           : "text-blue-600"
                       }`}
                     >
-                      Professional Experience
+                      {text.professionalExperience}
                     </p>
 
                     <p
@@ -404,9 +466,8 @@ export default function DoctorCard({
                           : "text-blue-800"
                       }`}
                     >
-                      {experienceText}
+                      {currentExperience}
                     </p>
-
                   </div>
 
                   <div
@@ -417,26 +478,23 @@ export default function DoctorCard({
                     }`}
                   >
                     {isHighlyExperienced
-                      ? "Highly Experienced"
-                      : "Experienced"}
+                      ? text.highlyExperienced
+                      : text.experienced}
                   </div>
 
                 </div>
-
               </div>
 
               {/* About */}
 
               <div className="mt-8">
-
                 <h3 className="text-lg font-extrabold text-slate-900">
-                  About Doctor
+                  {text.aboutDoctor}
                 </h3>
 
                 <p className="mt-3 leading-8 text-slate-600">
-                  {bio}
+                  {currentBio}
                 </p>
-
               </div>
 
               {/* Expertise */}
@@ -444,29 +502,26 @@ export default function DoctorCard({
               <div className="mt-8">
 
                 <h3 className="text-lg font-extrabold text-slate-900">
-                  Areas of Expertise
+                  {text.areasOfExpertise}
                 </h3>
 
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
 
-                  {specialistIn.map((item) => (
+                  {currentSpecialistIn.map((item, index) => (
                     <div
-                      key={item}
+                      key={`${item}-${index}`}
                       className="flex items-center gap-3 rounded-xl border border-slate-100 bg-slate-50 p-3.5 text-sm font-medium text-slate-700"
                     >
-
                       <CheckCircle2
                         size={17}
                         className="shrink-0 text-emerald-600"
                       />
 
                       {item}
-
                     </div>
                   ))}
 
                 </div>
-
               </div>
 
               {/* Appointment */}
@@ -476,13 +531,11 @@ export default function DoctorCard({
                 onClick={handleBookAppointment}
                 className="mt-9 flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-4 font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl"
               >
-
                 <CalendarCheck2 size={19} />
 
-                Book Appointment
+                {text.bookAppointment}
 
                 <ArrowRight size={18} />
-
               </button>
 
             </div>

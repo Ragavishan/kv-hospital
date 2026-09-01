@@ -39,7 +39,7 @@ export default function AdminLayout({
 
           <div>
             <p className="font-extrabold text-slate-900">
-              KV Hospital
+              Iswarya Hospital
             </p>
 
             <p className="text-xs font-semibold text-slate-400">
@@ -115,7 +115,7 @@ export default function AdminLayout({
 
             <div>
               <p className="font-extrabold text-slate-900">
-                KV Hospital
+                Iswarya Hospital
               </p>
 
               <p className="text-xs text-slate-400">

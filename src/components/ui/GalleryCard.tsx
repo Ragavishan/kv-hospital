@@ -52,7 +52,7 @@ export default function GalleryCard({
             <div className="translate-y-2 transition duration-500 group-hover:translate-y-0">
 
               <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-200">
-                KV Hospital
+                Iswarya Hospital
               </p>
 
               <h3 className="text-xl font-extrabold text-white">
@@ -108,7 +108,7 @@ export default function GalleryCard({
             <div className="mt-4 text-center">
 
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-300">
-                KV Hospital
+                Iswarya Hospital
               </p>
 
               <h2 className="mt-1 text-xl font-bold text-white">

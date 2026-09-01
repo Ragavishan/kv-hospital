@@ -1,9 +1,9 @@
 export const hospitalInfo = {
-  name: "KV Hospital",
+  name: "Iswarya Hospital",
   location: "Palani",
 
-  phone: "+91 98765 43210",
-  email: "info@kvhospital.com",
+  phone: "+91 7502710333",
+  email: "iswarya hospitalmultispecialityhospital@gmail.com",
   emergency: "24 × 7",
 
   founded: "2000",

@@ -46,14 +46,14 @@ export default function Home() {
         <HeroSection />
 
         <AboutSection />
-
-        <DepartmentsSection />
+        
+        <FacilitiesSection />
 
         <DoctorsSection />
 
-        <GallerySection />
+        <DepartmentsSection />
 
-        <FacilitiesSection />
+        <GallerySection />
 
         <AwardsSection />
 

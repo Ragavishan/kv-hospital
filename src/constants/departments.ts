@@ -1,211 +1,1007 @@
-export const departments = [
+export type Language = "en" | "ta" | "ml" | "te" | "hi";
+
+export interface DepartmentContent {
+  title: string;
+  description: string;
+  fullDescription: string;
+  services: string[];
+}
+
+export interface Department {
+  id: number;
+  image: string;
+  content: Record<Language, DepartmentContent>;
+}
+
+export const departments: Department[] = [
   {
     id: 1,
-    title: "General Medicine",
-    description:
-      "Comprehensive diagnosis, treatment, and preventive care for everyday health needs.",
-    fullDescription:
-      "Our General Medicine department provides comprehensive medical care for individuals and families across all age groups. Our physicians focus on accurate diagnosis, effective treatment, preventive healthcare, and long-term health management.",
-    services: [
-      "General Health Checkups",
-      "Fever & Infection Care",
-      "Diabetes Management",
-      "Hypertension Management",
-      "Preventive Healthcare",
-    ],
     image: "/images/departments/stethoscope.jpg",
+
+    content: {
+      en: {
+        title: "General Medicine",
+        description:
+          "Comprehensive diagnosis, treatment, and preventive care for everyday health needs.",
+        fullDescription:
+          "Our General Medicine department provides comprehensive medical care for individuals and families across all age groups. Our physicians focus on accurate diagnosis, effective treatment, preventive healthcare, and long-term health management.",
+        services: [
+          "General Health Checkups",
+          "Fever & Infection Care",
+          "Diabetes Management",
+          "Hypertension Management",
+          "Preventive Healthcare",
+        ],
+      },
+
+      ta: {
+        title: "பொது மருத்துவம்",
+        description:
+          "அன்றாட உடல்நலத் தேவைகளுக்கான முழுமையான நோயறிதல், சிகிச்சை மற்றும் தடுப்பு பராமரிப்பு.",
+        fullDescription:
+          "எங்கள் பொது மருத்துவத் துறை அனைத்து வயதினருக்கும் விரிவான மருத்துவ சேவைகளை வழங்குகிறது. துல்லியமான நோயறிதல், பயனுள்ள சிகிச்சை, தடுப்பு சுகாதாரம் மற்றும் நீண்டகால உடல்நல மேலாண்மை ஆகியவற்றில் எங்கள் மருத்துவர்கள் கவனம் செலுத்துகின்றனர்.",
+        services: [
+          "பொது உடல்நல பரிசோதனை",
+          "காய்ச்சல் மற்றும் தொற்று சிகிச்சை",
+          "நீரிழிவு மேலாண்மை",
+          "உயர் இரத்த அழுத்த மேலாண்மை",
+          "தடுப்பு சுகாதார பராமரிப்பு",
+        ],
+      },
+
+      ml: {
+        title: "ജനറൽ മെഡിസിൻ",
+        description:
+          "ദൈനംദിന ആരോഗ്യ ആവശ്യങ്ങൾക്കായുള്ള സമഗ്ര രോഗനിർണയം, ചികിത്സ, പ്രതിരോധ പരിചരണം.",
+        fullDescription:
+          "ഞങ്ങളുടെ ജനറൽ മെഡിസിൻ വിഭാഗം എല്ലാ പ്രായത്തിലുള്ള വ്യക്തികൾക്കും കുടുംബങ്ങൾക്കും സമഗ്രമായ മെഡിക്കൽ പരിചരണം നൽകുന്നു. കൃത്യമായ രോഗനിർണയം, ഫലപ്രദമായ ചികിത്സ, പ്രതിരോധ ആരോഗ്യപരിചരണം, ദീർഘകാല ആരോഗ്യ നിയന്ത്രണം എന്നിവയിൽ ഞങ്ങളുടെ ഡോക്ടർമാർ ശ്രദ്ധ കേന്ദ്രീകരിക്കുന്നു.",
+        services: [
+          "പൊതു ആരോഗ്യ പരിശോധന",
+          "പനി & അണുബാധ ചികിത്സ",
+          "പ്രമേഹ നിയന്ത്രണം",
+          "ഉയർന്ന രക്തസമ്മർദ്ദ നിയന്ത്രണം",
+          "പ്രതിരോധ ആരോഗ്യപരിചരണം",
+        ],
+      },
+
+      te: {
+        title: "జనరల్ మెడిసిన్",
+        description:
+          "రోజువారీ ఆరోగ్య అవసరాలకు సమగ్ర నిర్ధారణ, చికిత్స మరియు నివారణ సంరక్షణ.",
+        fullDescription:
+          "మా జనరల్ మెడిసిన్ విభాగం అన్ని వయస్సుల వ్యక్తులు మరియు కుటుంబాలకు సమగ్ర వైద్య సంరక్షణను అందిస్తుంది. ఖచ్చితమైన నిర్ధారణ, సమర్థవంతమైన చికిత్స, నివారణ ఆరోగ్య సంరక్షణ మరియు దీర్ఘకాలిక ఆరోగ్య నిర్వహణపై మా వైద్యులు దృష్టి పెడతారు.",
+        services: [
+          "సాధారణ ఆరోగ్య పరీక్షలు",
+          "జ్వరం & ఇన్ఫెక్షన్ చికిత్స",
+          "మధుమేహ నిర్వహణ",
+          "అధిక రక్తపోటు నిర్వహణ",
+          "నివారణ ఆరోగ్య సంరక్షణ",
+        ],
+      },
+      hi: {
+        title: "सामान्य चिकित्सा",
+        description:
+          "दैनिक आरोग्य आवश्यकताओं के लिए समग्र निर्धारण, चिकित्सा और प्रतिरोध संरक्षण.",
+        fullDescription:
+          "हमारा सामान्य चिकित्सा विभाग सभी उम्र के लोगों और परिवारों को समग्र चिकित्सा संरक्षण प्रदान करता है. निश्चित निर्धारण, प्रभावी चिकित्सा, प्रतिरोध आरोग्य संरक्षण और दीर्घकालिक आरोग्य प्रबंधन पर हमारे डॉक्टरों का ध्यान है.",
+        services: [
+          "सामान्य आरोग्य परीक्षण",
+          "बुखार & संक्रमण चिकित्सा",
+          "मधुमेह प्रबंधन",
+          "उच्च रक्‍तदबाव प्रबंधन",
+          "प्रतिरोध आरोग्य संरक्षण",
+        ],
+      },
+    },
   },
 
   {
     id: 2,
-    title: "Cardiology",
-    description:
-      "Specialized evaluation and care for heart and cardiovascular conditions.",
-    fullDescription:
-      "Our Cardiology department provides focused evaluation and management of heart and cardiovascular conditions. Patients receive personalized consultation, diagnostic evaluation, and ongoing care based on their individual health needs.",
-    services: [
-      "Cardiac Emergency Care",
-      "Heart Attack Management",
-      "Cardiac Consultation",
-      "ECG (Electrocardiogram)",
-      "2D Echo / Echocardiography",
-      "Chest Pain Evaluation",
-      "Heart Rhythm & Arrhythmia Care",
-      "Blood Pressure Management",
-      "Cardiac Health Checkups",
-      "Coronary Artery Disease Management",
-    ],
     image: "/images/departments/heart.jpg",
+
+    content: {
+      en: {
+        title: "Cardiology",
+        description:
+          "Specialized evaluation and care for heart and cardiovascular conditions.",
+        fullDescription:
+          "Our Cardiology department provides focused evaluation and management of heart and cardiovascular conditions. Patients receive personalized consultation, diagnostic evaluation, and ongoing care based on their individual health needs.",
+        services: [
+          "Cardiac Emergency Care",
+          "Heart Attack Management",
+          "Cardiac Consultation",
+          "ECG (Electrocardiogram)",
+          "2D Echo / Echocardiography",
+          "Chest Pain Evaluation",
+          "Heart Rhythm & Arrhythmia Care",
+          "Blood Pressure Management",
+          "Cardiac Health Checkups",
+          "Coronary Artery Disease Management",
+        ],
+      },
+
+      ta: {
+        title: "இதயவியல்",
+        description:
+          "இதயம் மற்றும் இரத்த நாளங்கள் தொடர்பான நோய்களுக்கான சிறப்பு பரிசோதனை மற்றும் சிகிச்சை.",
+        fullDescription:
+          "எங்கள் இதயவியல் துறை இதயம் மற்றும் இரத்த நாளங்கள் தொடர்பான நோய்களுக்கு சிறப்பு பரிசோதனை மற்றும் மேலாண்மையை வழங்குகிறது. நோயாளிகளின் தனிப்பட்ட உடல்நலத் தேவைகளுக்கு ஏற்ப ஆலோசனை, பரிசோதனை மற்றும் தொடர்ச்சியான சிகிச்சை வழங்கப்படுகிறது.",
+        services: [
+          "அவசர இதய சிகிச்சை",
+          "மாரடைப்பு மேலாண்மை",
+          "இதய ஆலோசனை",
+          "ECG பரிசோதனை",
+          "2D Echo / இதய ஒலி பரிசோதனை",
+          "மார்பு வலி பரிசோதனை",
+          "இதய துடிப்பு கோளாறு சிகிச்சை",
+          "இரத்த அழுத்த மேலாண்மை",
+          "இதய உடல்நல பரிசோதனை",
+          "கரோனரி தமனி நோய் மேலாண்மை",
+        ],
+      },
+
+      ml: {
+        title: "കാർഡിയോളജി",
+        description:
+          "ഹൃദയവും ഹൃദയരക്തക്കുഴലുകളും സംബന്ധമായ രോഗങ്ങൾക്ക് പ്രത്യേക പരിശോധനയും ചികിത്സയും.",
+        fullDescription:
+          "ഞങ്ങളുടെ കാർഡിയോളജി വിഭാഗം ഹൃദയവും ഹൃദയരക്തക്കുഴലുകളും സംബന്ധമായ രോഗങ്ങൾക്ക് പ്രത്യേക പരിശോധനയും ചികിത്സയും നൽകുന്നു. രോഗികളുടെ വ്യക്തിഗത ആരോഗ്യ ആവശ്യങ്ങൾക്കനുസരിച്ച് കൺസൾട്ടേഷൻ, പരിശോധന, തുടർചികിത്സ എന്നിവ ലഭ്യമാക്കുന്നു.",
+        services: [
+          "കാർഡിയാക് എമർജൻസി കെയർ",
+          "ഹൃദയാഘാത ചികിത്സ",
+          "കാർഡിയാക് കൺസൾട്ടേഷൻ",
+          "ECG പരിശോധന",
+          "2D Echo / Echocardiography",
+          "നെഞ്ചുവേദന പരിശോധന",
+          "ഹൃദയ താളം & Arrhythmia പരിചരണം",
+          "രക്തസമ്മർദ്ദ നിയന്ത്രണം",
+          "ഹൃദയ ആരോഗ്യ പരിശോധന",
+          "കൊറോണറി ആർട്ടറി രോഗ നിയന്ത്രണം",
+        ],
+      },
+
+      te: {
+        title: "కార్డియాలజీ",
+        description:
+          "గుండె మరియు హృదయ రక్తనాళాల సమస్యలకు ప్రత్యేక పరీక్షలు మరియు చికిత్స.",
+        fullDescription:
+          "మా కార్డియాలజీ విభాగం గుండె మరియు హృదయ రక్తనాళాలకు సంబంధించిన సమస్యలకు ప్రత్యేక పరీక్షలు మరియు చికిత్స అందిస్తుంది. రోగుల వ్యక్తిగత ఆరోగ్య అవసరాలకు అనుగుణంగా సంప్రదింపులు, పరీక్షలు మరియు నిరంతర సంరక్షణ అందించబడుతుంది.",
+        services: [
+          "కార్డియాక్ ఎమర్జెన్సీ కేర్",
+          "హార్ట్ అటాక్ నిర్వహణ",
+          "కార్డియాక్ సంప్రదింపు",
+          "ECG పరీక్ష",
+          "2D Echo / Echocardiography",
+          "ఛాతీ నొప్పి పరీక్ష",
+          "హార్ట్ రిథమ్ & Arrhythmia కేర్",
+          "రక్తపోటు నిర్వహణ",
+          "కార్డియాక్ ఆరోగ్య పరీక్షలు",
+          "కరోనరీ ఆర్టరీ వ్యాధి నిర్వహణ",
+        ],
+      },
+            hi: {
+        title: "कार्डियोलॉजी",
+        description:
+          "हृदय और हृदय संबंधी रोगों के लिए विशेष जांच और उपचार।",
+        fullDescription:
+          "हमारा कार्डियोलॉजी विभाग हृदय और हृदय संबंधी रोगों की विशेष जांच और देखभाल प्रदान करता है। मरीजों की व्यक्तिगत स्वास्थ्य आवश्यकताओं के अनुसार परामर्श, जांच और निरंतर उपचार की सुविधा उपलब्ध है।",
+        services: [
+          "कार्डियक इमरजेंसी केयर",
+          "हार्ट अटैक प्रबंधन",
+          "कार्डियक परामर्श",
+          "ECG जांच",
+          "2D Echo / Echocardiography",
+          "सीने में दर्द की जांच",
+          "हृदय की धड़कन और अतालता की देखभाल",
+          "ब्लड प्रेशर प्रबंधन",
+          "कार्डियक हेल्थ चेकअप",
+          "कोरोनरी आर्टरी रोग प्रबंधन",
+        ],
+      },
+    },
   },
 
   {
     id: 3,
-    title: "Orthopedics",
-    description:
-      "Comprehensive care for bones, joints, muscles, and movement-related conditions.",
-    fullDescription:
-      "Our Orthopedics department provides comprehensive care for bone, joint, muscle, and spine-related conditions. Our team focuses on accurate assessment, pain management, injury care, and helping patients maintain mobility and quality of life.",
-    services: [
-      "Fracture Treatment",
-      "Joint Pain Management",
-      "Arthritis Care",
-      "Sports Injury Care",
-      "Bone Health Management",
-    ],
     image: "/images/departments/skeleton.jpg",
+
+    content: {
+      en: {
+        title: "Orthopedics",
+        description:
+          "Comprehensive care for bones, joints, muscles, and movement-related conditions.",
+        fullDescription:
+          "Our Orthopedics department provides comprehensive care for bone, joint, muscle, and spine-related conditions. Our team focuses on accurate assessment, pain management, injury care, and helping patients maintain mobility and quality of life.",
+        services: [
+          "Fracture Treatment",
+          "Joint Pain Management",
+          "Arthritis Care",
+          "Sports Injury Care",
+          "Bone Health Management",
+        ],
+      },
+
+      ta: {
+        title: "எலும்பியல்",
+        description:
+          "எலும்புகள், மூட்டுகள், தசைகள் மற்றும் இயக்கம் தொடர்பான பிரச்சினைகளுக்கான முழுமையான சிகிச்சை.",
+        fullDescription:
+          "எங்கள் எலும்பியல் துறை எலும்பு, மூட்டு, தசை மற்றும் முதுகெலும்பு தொடர்பான பிரச்சினைகளுக்கு விரிவான சிகிச்சை வழங்குகிறது. துல்லியமான மதிப்பீடு, வலி மேலாண்மை, காய சிகிச்சை மற்றும் நோயாளிகளின் இயக்கத்தையும் வாழ்க்கைத் தரத்தையும் மேம்படுத்துவதில் எங்கள் குழு கவனம் செலுத்துகிறது.",
+        services: [
+          "எலும்பு முறிவு சிகிச்சை",
+          "மூட்டு வலி மேலாண்மை",
+          "மூட்டுவலி சிகிச்சை",
+          "விளையாட்டு காய சிகிச்சை",
+          "எலும்பு ஆரோக்கிய மேலாண்மை",
+        ],
+      },
+
+      ml: {
+        title: "ഓർത്തോപീഡിക്സ്",
+        description:
+          "എല്ലുകൾ, സന്ധികൾ, പേശികൾ, ചലനവുമായി ബന്ധപ്പെട്ട പ്രശ്നങ്ങൾക്കുള്ള സമഗ്ര പരിചരണം.",
+        fullDescription:
+          "ഞങ്ങളുടെ ഓർത്തോപീഡിക്സ് വിഭാഗം എല്ലുകൾ, സന്ധികൾ, പേശികൾ, നട്ടെല്ല് എന്നിവയുമായി ബന്ധപ്പെട്ട പ്രശ്നങ്ങൾക്ക് സമഗ്രമായ ചികിത്സ നൽകുന്നു. കൃത്യമായ വിലയിരുത്തൽ, വേദന നിയന്ത്രണം, പരിക്ക് പരിചരണം, ചലനശേഷിയും ജീവിത നിലവാരവും നിലനിർത്തൽ എന്നിവയിൽ ഞങ്ങളുടെ സംഘം ശ്രദ്ധിക്കുന്നു.",
+        services: [
+          "എല്ല് പൊട്ടൽ ചികിത്സ",
+          "സന്ധിവേദന നിയന്ത്രണം",
+          "ആർത്രൈറ്റിസ് പരിചരണം",
+          "സ്പോർട്സ് പരിക്ക് ചികിത്സ",
+          "എല്ലുകളുടെ ആരോഗ്യ നിയന്ത്രണം",
+        ],
+      },
+
+      te: {
+        title: "ఆర్థోపెడిక్స్",
+        description:
+          "ఎముకలు, కీళ్ళు, కండరాలు మరియు కదలికలకు సంబంధించిన సమస్యలకు సమగ్ర సంరక్షణ.",
+        fullDescription:
+          "మా ఆర్థోపెడిక్స్ విభాగం ఎముకలు, కీళ్ళు, కండరాలు మరియు వెన్నెముకకు సంబంధించిన సమస్యలకు సమగ్ర చికిత్స అందిస్తుంది. ఖచ్చితమైన అంచనా, నొప్పి నిర్వహణ, గాయాల చికిత్స మరియు రోగుల కదలికను మెరుగుపరచడంపై మా బృందం దృష్టి పెడుతుంది.",
+        services: [
+          "ఎముక విరిగిన చికిత్స",
+          "కీళ్ల నొప్పి నిర్వహణ",
+          "ఆర్థరైటిస్ సంరక్షణ",
+          "క్రీడా గాయాల చికిత్స",
+          "ఎముకల ఆరోగ్య నిర్వహణ",
+        ],
+      },
+            hi: {
+        title: "ऑर्थोपेडिक्स",
+        description:
+          "हड्डियों, जोड़ों, मांसपेशियों और चलने-फिरने से जुड़ी समस्याओं के लिए व्यापक उपचार।",
+        fullDescription:
+          "हमारा ऑर्थोपेडिक्स विभाग हड्डियों, जोड़ों, मांसपेशियों और रीढ़ से संबंधित समस्याओं के लिए व्यापक चिकित्सा देखभाल प्रदान करता है। हमारी टीम सटीक जांच, दर्द प्रबंधन, चोटों के उपचार और मरीजों की गतिशीलता एवं जीवन की गुणवत्ता को बेहतर बनाने पर ध्यान केंद्रित करती है।",
+        services: [
+          "फ्रैक्चर उपचार",
+          "जोड़ों के दर्द का प्रबंधन",
+          "गठिया का उपचार",
+          "खेल संबंधी चोटों का उपचार",
+          "हड्डियों के स्वास्थ्य का प्रबंधन",
+        ],
+      },
+    },
   },
 
   {
     id: 4,
-    title: "Pediatrics",
-    description:
-      "Compassionate healthcare for newborns, infants, children, and adolescents.",
-    fullDescription:
-      "Our Pediatrics department provides child-focused healthcare for newborns, infants, children, and adolescents. We emphasize preventive care, healthy growth and development, timely treatment, and a comfortable experience for young patients and their families.",
-    services: [
-      "Child Vaccination",
-      "Growth & Development Monitoring",
-      "Child Nutrition Guidance",
-      "Child Fever & Infection Care",
-      "Pediatric Consultation",
-    ],
     image: "/images/departments/baby.jpg",
+
+    content: {
+      en: {
+        title: "Pediatrics",
+        description:
+          "Compassionate healthcare for newborns, infants, children, and adolescents.",
+        fullDescription:
+          "Our Pediatrics department provides child-focused healthcare for newborns, infants, children, and adolescents. We emphasize preventive care, healthy growth and development, timely treatment, and a comfortable experience for young patients and their families.",
+        services: [
+          "Child Vaccination",
+          "Growth & Development Monitoring",
+          "Child Nutrition Guidance",
+          "Child Fever & Infection Care",
+          "Pediatric Consultation",
+        ],
+      },
+
+      ta: {
+        title: "குழந்தை மருத்துவம்",
+        description:
+          "பிறந்த குழந்தைகள், குழந்தைகள் மற்றும் இளம் பருவத்தினருக்கான அக்கறையுடனான மருத்துவ சேவை.",
+        fullDescription:
+          "எங்கள் குழந்தை மருத்துவத் துறை பிறந்த குழந்தைகள் முதல் இளம் பருவத்தினர் வரை குழந்தைகளை மையமாகக் கொண்ட மருத்துவ சேவையை வழங்குகிறது. தடுப்பு பராமரிப்பு, ஆரோக்கியமான வளர்ச்சி, சரியான நேரத்தில் சிகிச்சை மற்றும் குழந்தைகள் மற்றும் குடும்பங்களுக்கு வசதியான அனுபவம் ஆகியவற்றில் கவனம் செலுத்துகிறோம்.",
+        services: [
+          "குழந்தைகள் தடுப்பூசி",
+          "வளர்ச்சி கண்காணிப்பு",
+          "குழந்தைகள் ஊட்டச்சத்து ஆலோசனை",
+          "காய்ச்சல் & தொற்று சிகிச்சை",
+          "குழந்தை மருத்துவ ஆலோசனை",
+        ],
+      },
+
+      ml: {
+        title: "പീഡിയാട്രിക്സ്",
+        description:
+          "നവജാത ശിശുക്കൾ, കുഞ്ഞുങ്ങൾ, കുട്ടികൾ, കൗമാരക്കാർ എന്നിവർക്കുള്ള കരുതലോടെയുള്ള ചികിത്സ.",
+        fullDescription:
+          "ഞങ്ങളുടെ പീഡിയാട്രിക്സ് വിഭാഗം നവജാത ശിശുക്കൾ മുതൽ കൗമാരക്കാർ വരെ കുട്ടികളെ കേന്ദ്രീകരിച്ചുള്ള ആരോഗ്യപരിചരണം നൽകുന്നു. പ്രതിരോധ പരിചരണം, ആരോഗ്യകരമായ വളർച്ച, സമയബന്ധിതമായ ചികിത്സ, കുട്ടികൾക്കും കുടുംബങ്ങൾക്കും സൗകര്യപ്രദമായ അനുഭവം എന്നിവയിൽ ഞങ്ങൾ ശ്രദ്ധിക്കുന്നു.",
+        services: [
+          "കുട്ടികളുടെ വാക്സിനേഷൻ",
+          "വളർച്ച & വികസന നിരീക്ഷണം",
+          "കുട്ടികളുടെ പോഷകാഹാര മാർഗനിർദേശം",
+          "പനി & അണുബാധ പരിചരണം",
+          "പീഡിയാട്രിക് കൺസൾട്ടേഷൻ",
+        ],
+      },
+
+      te: {
+        title: "పీడియాట్రిక్స్",
+        description:
+          "నవజాత శిశువులు, పిల్లలు మరియు కౌమారదశలో ఉన్నవారికి ప్రత్యేక వైద్య సంరక్షణ.",
+        fullDescription:
+          "మా పీడియాట్రిక్స్ విభాగం నవజాత శిశువులు, చిన్న పిల్లలు మరియు కౌమారదశలో ఉన్నవారికి పిల్లల కేంద్రిత వైద్య సేవలను అందిస్తుంది. నివారణ సంరక్షణ, ఆరోగ్యకరమైన ఎదుగుదల, సమయానుకూల చికిత్స మరియు పిల్లలు మరియు కుటుంబాలకు సౌకర్యవంతమైన అనుభవంపై మేము దృష్టి పెడతాము.",
+        services: [
+          "పిల్లల టీకాలు",
+          "ఎదుగుదల & అభివృద్ధి పర్యవేక్షణ",
+          "పిల్లల పోషకాహార మార్గదర్శకం",
+          "జ్వరం & ఇన్ఫెక్షన్ కేర్",
+          "పీడియాట్రిక్ సంప్రదింపు",
+        ],
+      },
+            hi: {
+        title: "बाल चिकित्सा",
+        description:
+          "नवजात शिशुओं, बच्चों और किशोरों के लिए विशेष और देखभालपूर्ण चिकित्सा सेवा।",
+        fullDescription:
+          "हमारा बाल चिकित्सा विभाग नवजात शिशुओं, बच्चों और किशोरों के लिए विशेष स्वास्थ्य सेवाएं प्रदान करता है। हम निवारक देखभाल, स्वस्थ विकास, समय पर उपचार और बच्चों एवं उनके परिवारों के लिए आरामदायक चिकित्सा अनुभव पर ध्यान केंद्रित करते हैं।",
+        services: [
+          "बच्चों का टीकाकरण",
+          "विकास और वृद्धि की निगरानी",
+          "बच्चों के पोषण संबंधी मार्गदर्शन",
+          "बुखार और संक्रमण का उपचार",
+          "बाल चिकित्सा परामर्श",
+        ],
+      },
+    },
   },
 
-   {
+  {
     id: 5,
-    title: "Nephrology & Dialysis",
-    description:
-      "Comprehensive kidney care, renal treatment, and dialysis support.",
-    fullDescription:
-      "Our Nephrology & Dialysis department provides comprehensive care for kidney-related conditions, chronic kidney disease, and kidney failure. The department focuses on renal health management, dialysis care, patient monitoring, and appropriate specialist consultation.",
-    services: [
-      "Hemodialysis",
-      "Chronic Kidney Disease Care",
-      "Kidney Failure Management",
-      "Dialysis Patient Monitoring",
-      "Fluid & Electrolyte Management",
-      "Anemia Management",
-      "Dialysis Access Care",
-      "Renal Diet & Nutrition Guidance",
-      "Nephrology Consultation",
-      "Post-Dialysis Care & Follow-up",
-    ],
     image: "/images/departments/dialysis.jpg",
+
+    content: {
+      en: {
+        title: "Nephrology & Dialysis",
+        description:
+          "Comprehensive kidney care, renal treatment, and dialysis support.",
+        fullDescription:
+          "Our Nephrology & Dialysis department provides comprehensive care for kidney-related conditions, chronic kidney disease, and kidney failure. The department focuses on renal health management, dialysis care, patient monitoring, and appropriate specialist consultation.",
+        services: [
+          "Hemodialysis",
+          "Chronic Kidney Disease Care",
+          "Kidney Failure Management",
+          "Dialysis Patient Monitoring",
+          "Fluid & Electrolyte Management",
+          "Anemia Management",
+          "Dialysis Access Care",
+          "Renal Diet & Nutrition Guidance",
+          "Nephrology Consultation",
+          "Post-Dialysis Care & Follow-up",
+        ],
+      },
+
+      ta: {
+        title: "சிறுநீரகவியல் & டயாலிசிஸ்",
+        description:
+          "சிறுநீரக பராமரிப்பு, சிறுநீரக சிகிச்சை மற்றும் டயாலிசிஸ் சேவைகளுக்கான முழுமையான மருத்துவ வசதி.",
+        fullDescription:
+          "எங்கள் சிறுநீரகவியல் மற்றும் டயாலிசிஸ் துறை சிறுநீரக நோய்கள், நீண்டகால சிறுநீரக நோய் மற்றும் சிறுநீரக செயலிழப்புக்கான விரிவான பராமரிப்பை வழங்குகிறது. சிறுநீரக ஆரோக்கிய மேலாண்மை, டயாலிசிஸ் பராமரிப்பு, நோயாளி கண்காணிப்பு மற்றும் நிபுணர் ஆலோசனையில் துறை கவனம் செலுத்துகிறது.",
+        services: [
+          "ஹீமோடயாலிசிஸ்",
+          "நீண்டகால சிறுநீரக நோய் பராமரிப்பு",
+          "சிறுநீரக செயலிழப்பு மேலாண்மை",
+          "டயாலிசிஸ் நோயாளி கண்காணிப்பு",
+          "திரவம் & எலக்ட்ரோலைட் மேலாண்மை",
+          "இரத்தசோகை மேலாண்மை",
+          "டயாலிசிஸ் அணுகல் பராமரிப்பு",
+          "சிறுநீரக உணவு & ஊட்டச்சத்து ஆலோசனை",
+          "சிறுநீரகவியல் ஆலோசனை",
+          "டயாலிசிஸ் பிந்தைய பராமரிப்பு",
+        ],
+      },
+
+      ml: {
+        title: "നെഫ്രോളജി & ഡയാലിസിസ്",
+        description:
+          "വൃക്ക പരിചരണം, വൃക്ക ചികിത്സ, ഡയാലിസിസ് സേവനങ്ങൾ എന്നിവയ്ക്കുള്ള സമഗ്ര മെഡിക്കൽ പരിചരണം.",
+        fullDescription:
+          "ഞങ്ങളുടെ നെഫ്രോളജി & ഡയാലിസിസ് വിഭാഗം വൃക്ക രോഗങ്ങൾ, ദീർഘകാല വൃക്കരോഗം, വൃക്ക പ്രവർത്തന തകരാർ എന്നിവയ്ക്ക് സമഗ്രമായ പരിചരണം നൽകുന്നു. വൃക്ക ആരോഗ്യ നിയന്ത്രണം, ഡയാലിസിസ് പരിചരണം, രോഗി നിരീക്ഷണം, വിദഗ്ധ കൺസൾട്ടേഷൻ എന്നിവയിൽ വിഭാഗം ശ്രദ്ധ കേന്ദ്രീകരിക്കുന്നു.",
+        services: [
+          "ഹീമോഡയാലിസിസ്",
+          "ക്രോണിക് കിഡ്നി ഡിസീസ് പരിചരണം",
+          "വൃക്ക പ്രവർത്തന തകരാർ നിയന്ത്രണം",
+          "ഡയാലിസിസ് രോഗി നിരീക്ഷണം",
+          "ദ്രാവകം & ഇലക്ട്രോലൈറ്റ് നിയന്ത്രണം",
+          "അനീമിയ നിയന്ത്രണം",
+          "ഡയാലിസിസ് ആക്സസ് പരിചരണം",
+          "വൃക്ക ഭക്ഷണ & പോഷകാഹാര മാർഗനിർദേശം",
+          "നെഫ്രോളജി കൺസൾട്ടേഷൻ",
+          "ഡയാലിസിസ് ശേഷമുള്ള പരിചരണം",
+        ],
+      },
+
+      te: {
+        title: "నెఫ్రాలజీ & డయాలసిస్",
+        description:
+          "మూత్రపిండాల సంరక్షణ, మూత్రపిండాల చికిత్స మరియు డయాలిసిస్ సేవలకు సమగ్ర వైద్య సంరక్షణ.",
+        fullDescription:
+          "మా నెఫ్రాలజీ & డయాలిసిస్ విభాగం మూత్రపిండాల వ్యాధులు, దీర్ఘకాలిక కిడ్నీ వ్యాధి మరియు కిడ్నీ వైఫల్యానికి సమగ్ర సంరక్షణ అందిస్తుంది. కిడ్నీ ఆరోగ్య నిర్వహణ, డయాలిసిస్ సంరక్షణ, రోగుల పర్యవేక్షణ మరియు నిపుణుల సంప్రదింపులపై విభాగం దృష్టి పెడుతుంది.",
+        services: [
+          "హీమోడయాలసిస్",
+          "దీర్ఘకాలిక కిడ్నీ వ్యాధి సంరక్షణ",
+          "కిడ్నీ వైఫల్య నిర్వహణ",
+          "డయాలిసిస్ రోగి పర్యవేక్షణ",
+          "ద్రవం & ఎలక్ట్రోలైట్ నిర్వహణ",
+          "రక్తహీనత నిర్వహణ",
+          "డయాలిసిస్ యాక్సెస్ కేర్",
+          "కిడ్నీ డైట్ & పోషకాహార మార్గదర్శకం",
+          "నెఫ్రాలజీ సంప్రదింపు",
+          "డయాలిసిస్ అనంతర సంరక్షణ",
+        ],
+      },
+      hi: {
+        title: "नेफ्रोलॉजी और डायलिसिस",
+        description:
+          "किडनी की देखभाल, किडनी संबंधी उपचार और डायलिसिस सेवाओं के लिए व्यापक चिकित्सा सुविधा।",
+        fullDescription:
+          "हमारा नेफ्रोलॉजी और डायलिसिस विभाग किडनी रोग, क्रॉनिक किडनी डिजीज और किडनी फेल्योर के लिए व्यापक देखभाल प्रदान करता है। विभाग किडनी स्वास्थ्य प्रबंधन, डायलिसिस देखभाल, मरीजों की निगरानी और विशेषज्ञ परामर्श पर ध्यान केंद्रित करता है।",
+        services: [
+          "हीमोडायलिसिस",
+          "क्रॉनिक किडनी डिजीज की देखभाल",
+          "किडनी फेल्योर प्रबंधन",
+          "डायलिसिस मरीजों की निगरानी",
+          "तरल पदार्थ और इलेक्ट्रोलाइट प्रबंधन",
+          "एनीमिया प्रबंधन",
+          "डायलिसिस एक्सेस देखभाल",
+          "किडनी डाइट और पोषण संबंधी मार्गदर्शन",
+          "नेफ्रोलॉजी परामर्श",
+          "डायलिसिस के बाद की देखभाल और फॉलो-अप", 
+        ],
+      },
+    },
   },
 
-   {
+  {
     id: 6,
-    title: "Neurology & Neurosurgery",
-    description:
-      "Specialized diagnosis and treatment for brain, nerve, spine, and neurological conditions.",
-    fullDescription:
-      "Our Neurology & Neurosurgery department provides comprehensive care for neurological and neurosurgical conditions affecting the brain, spine, and nervous system. Our specialists focus on accurate diagnosis, advanced treatment, and long-term neurological care.",
-    services: [
-      "Stroke Management",
-      "Epilepsy Care",
-      "Headache & Migraine Management",
-      "Spine & Nerve Disorders",
-      "Brain Tumor Care",
-      "Neurosurgical Consultation",
-      "Neurological Rehabilitation",
-    ],
     image: "/images/departments/neurology.jpg",
+
+    content: {
+      en: {
+        title: "Neurology & Neurosurgery",
+        description:
+          "Specialized diagnosis and treatment for brain, nerve, spine, and neurological conditions.",
+        fullDescription:
+          "Our Neurology & Neurosurgery department provides comprehensive care for neurological and neurosurgical conditions affecting the brain, spine, and nervous system.",
+        services: [
+          "Stroke Management",
+          "Epilepsy Care",
+          "Headache & Migraine Management",
+          "Spine & Nerve Disorders",
+          "Brain Tumor Care",
+          "Neurosurgical Consultation",
+          "Neurological Rehabilitation",
+        ],
+      },
+
+      ta: {
+        title: "நரம்பியல் & நரம்பியல் அறுவை சிகிச்சை",
+        description:
+          "மூளை, நரம்புகள், முதுகெலும்பு மற்றும் நரம்பியல் பிரச்சினைகளுக்கான சிறப்பு நோயறிதல் மற்றும் சிகிச்சை.",
+        fullDescription:
+          "எங்கள் நரம்பியல் மற்றும் நரம்பியல் அறுவை சிகிச்சை துறை மூளை, முதுகெலும்பு மற்றும் நரம்பு மண்டலத்தை பாதிக்கும் பல்வேறு நோய்களுக்கு விரிவான மருத்துவ சேவையை வழங்குகிறது.",
+        services: [
+          "பக்கவாத மேலாண்மை",
+          "வலிப்பு நோய் சிகிச்சை",
+          "தலைவலி & ஒற்றைத் தலைவலி மேலாண்மை",
+          "முதுகெலும்பு & நரம்பு கோளாறுகள்",
+          "மூளை கட்டி சிகிச்சை",
+          "நரம்பியல் அறுவை சிகிச்சை ஆலோசனை",
+          "நரம்பியல் மறுவாழ்வு",
+        ],
+      },
+
+      ml: {
+        title: "ന്യൂറോളജി & ന്യൂറോസർജറി",
+        description:
+          "മസ്തിഷ്കം, നാഡികൾ, നട്ടെല്ല്, നാഡീവ്യവസ്ഥ എന്നിവയുടെ രോഗങ്ങൾക്ക് പ്രത്യേക രോഗനിർണയവും ചികിത്സയും.",
+        fullDescription:
+          "ഞങ്ങളുടെ ന്യൂറോളജി & ന്യൂറോസർജറി വിഭാഗം മസ്തിഷ്കം, നട്ടെല്ല്, നാഡീവ്യവസ്ഥ എന്നിവയെ ബാധിക്കുന്ന വിവിധ രോഗങ്ങൾക്ക് സമഗ്രമായ പരിചരണം നൽകുന്നു.",
+        services: [
+          "സ്ട്രോക്ക് നിയന്ത്രണം",
+          "എപിലപ്സി പരിചരണം",
+          "തലവേദന & മൈഗ്രെയ്ൻ നിയന്ത്രണം",
+          "നട്ടെല്ല് & നാഡീ രോഗങ്ങൾ",
+          "മസ്തിഷ്ക ട്യൂമർ പരിചരണം",
+          "ന്യൂറോസർജിക്കൽ കൺസൾട്ടേഷൻ",
+          "ന്യൂറോളജിക്കൽ റീഹാബിലിറ്റേഷൻ",
+        ],
+      },
+
+      te: {
+        title: "న్యూరాలజీ & న్యూరోసర్జరీ",
+        description:
+          "మెదడు, నరాలు, వెన్నెముక మరియు నాడీ సంబంధిత సమస్యలకు ప్రత్యేక నిర్ధారణ మరియు చికిత్స.",
+        fullDescription:
+          "మా న్యూరాలజీ & న్యూరోసర్జరీ విభాగం మెదడు, వెన్నెముక మరియు నాడీ వ్యవస్థను ప్రభావితం చేసే సమస్యలకు సమగ్ర సంరక్షణ అందిస్తుంది.",
+        services: [
+          "స్ట్రోక్ నిర్వహణ",
+          "ఎపిలెప్సీ సంరక్షణ",
+          "తలనొప్పి & మైగ్రేన్ నిర్వహణ",
+          "వెన్నెముక & నరాల సమస్యలు",
+          "బ్రెయిన్ ట్యూమర్ కేర్",
+          "న్యూరోసర్జికల్ సంప్రదింపు",
+          "న్యూరోలాజికల్ రీహాబిలిటేషన్",
+        ],
+      },
+      hi: {
+        title: "न्यूरोलॉजी और न्यूरोसर्जरी",
+        description:
+          "मस्तिष्क, नसों, रीढ़ और न्यूरोलॉजिकल समस्याओं के लिए विशेष जांच और उपचार।",
+        fullDescription:
+          "हमारा न्यूरोलॉजी और न्यूरोसर्जरी विभाग मस्तिष्क, रीढ़ और तंत्रिका तंत्र को प्रभावित करने वाली विभिन्न न्यूरोलॉजिकल और न्यूरोसर्जिकल समस्याओं के लिए व्यापक चिकित्सा देखभाल प्रदान करता है।",
+        services: [
+          "स्ट्रोक प्रबंधन",
+          "मिर्गी की देखभाल",
+          "सिरदर्द और माइग्रेन प्रबंधन",
+          "रीढ़ और नसों से संबंधित समस्याएं",
+          "ब्रेन ट्यूमर की देखभाल",
+          "न्यूरोसर्जिकल परामर्श",
+          "न्यूरोलॉजिकल पुनर्वास",
+        ],
+      },
+    },
   },
-  
+
   {
     id: 7,
-    title: "Medical Gastroenterology & Hepatology",
-    description:
-      "Specialized medical care for digestive system and liver-related conditions.",
-    fullDescription:
-      "Our Medical Gastroenterology & Hepatology department provides evaluation and treatment for digestive, gastrointestinal, and liver-related conditions. Patients receive personalized diagnostic evaluation and medical management based on their clinical needs.",
-    services: [
-      "Gastrointestinal Consultation",
-      "Liver Disease Management",
-      "Hepatitis Care",
-      "Acid Reflux Management",
-      "Digestive Disorder Care",
-      "Endoscopy Consultation",
-      "Hepatology Care",
-    ],
     image: "/images/departments/gastro.jpg",
+
+    content: {
+      en: {
+        title: "Medical Gastroenterology & Hepatology",
+        description:
+          "Specialized medical care for digestive system and liver-related conditions.",
+        fullDescription:
+          "Our Medical Gastroenterology & Hepatology department provides evaluation and treatment for digestive, gastrointestinal, and liver-related conditions.",
+        services: [
+          "Gastrointestinal Consultation",
+          "Liver Disease Management",
+          "Hepatitis Care",
+          "Acid Reflux Management",
+          "Digestive Disorder Care",
+          "Endoscopy Consultation",
+          "Hepatology Care",
+        ],
+      },
+
+      ta: {
+        title: "மருத்துவ குடலியல் & கல்லீரலியல்",
+        description:
+          "செரிமான அமைப்பு மற்றும் கல்லீரல் தொடர்பான நோய்களுக்கான சிறப்பு மருத்துவ சிகிச்சை.",
+        fullDescription:
+          "எங்கள் மருத்துவ குடலியல் மற்றும் கல்லீரலியல் துறை செரிமான அமைப்பு, குடல் மற்றும் கல்லீரல் தொடர்பான நோய்களுக்கு பரிசோதனை மற்றும் சிகிச்சை வழங்குகிறது.",
+        services: [
+          "குடலியல் ஆலோசனை",
+          "கல்லீரல் நோய் மேலாண்மை",
+          "ஹெபடைட்டிஸ் சிகிச்சை",
+          "அமிலத்தன்மை / Acid Reflux மேலாண்மை",
+          "செரிமான கோளாறு சிகிச்சை",
+          "எண்டோஸ்கோபி ஆலோசனை",
+          "கல்லீரலியல் சிகிச்சை",
+        ],
+      },
+
+      ml: {
+        title: "മെഡിക്കൽ ഗാസ്ട്രോഎൻററോളജി & ഹെപറ്റോളജി",
+        description:
+          "ദഹനവ്യവസ്ഥയുടെയും കരളിന്റെയും രോഗങ്ങൾക്ക് പ്രത്യേക മെഡിക്കൽ പരിചരണം.",
+        fullDescription:
+          "ഞങ്ങളുടെ മെഡിക്കൽ ഗാസ്ട്രോഎൻററോളജി & ഹെപറ്റോളജി വിഭാഗം ദഹനവ്യവസ്ഥ, കുടൽ, കരൾ എന്നിവയുമായി ബന്ധപ്പെട്ട രോഗങ്ങൾക്ക് പരിശോധനയും ചികിത്സയും നൽകുന്നു.",
+        services: [
+          "ഗാസ്ട്രോഎൻററോളജി കൺസൾട്ടേഷൻ",
+          "കരൾ രോഗ നിയന്ത്രണം",
+          "ഹെപ്പറ്റൈറ്റിസ് പരിചരണം",
+          "ആസിഡ് റിഫ്ലക്സ് നിയന്ത്രണം",
+          "ദഹന സംബന്ധമായ രോഗ പരിചരണം",
+          "എൻഡോസ്കോപ്പി കൺസൾട്ടേഷൻ",
+          "ഹെപറ്റോളജി പരിചരണം",
+        ],
+      },
+
+      te: {
+        title: "మెడికల్ గ్యాస్ట్రోఎంటరాలజీ & హెపటాలజీ",
+        description:
+          "జీర్ణవ్యవస్థ మరియు కాలేయానికి సంబంధించిన సమస్యలకు ప్రత్యేక వైద్య సంరక్షణ.",
+        fullDescription:
+          "మా మెడికల్ గ్యాస్ట్రోఎంటరాలజీ & హెపటాలజీ విభాగం జీర్ణవ్యవస్థ, పేగులు మరియు కాలేయానికి సంబంధించిన సమస్యలకు పరీక్షలు మరియు చికిత్స అందిస్తుంది.",
+        services: [
+          "గ్యాస్ట్రోఎంటరాలజీ సంప్రదింపు",
+          "కాలేయ వ్యాధి నిర్వహణ",
+          "హెపటైటిస్ కేర్",
+          "యాసిడ్ రిఫ్లక్స్ నిర్వహణ",
+          "జీర్ణవ్యవస్థ వ్యాధి సంరక్షణ",
+          "ఎండోస్కోపీ సంప్రదింపు",
+          "హెపటాలజీ కేర్",
+        ],
+      },
+      hi: {
+        title: "मेडिकल गैस्ट्रोएंटरोलॉजी और हेपेटोलॉजी",
+        description:
+          "पाचन तंत्र और लिवर से संबंधित समस्याओं के लिए विशेष चिकित्सा देखभाल।",
+        fullDescription:
+          "हमारा मेडिकल गैस्ट्रोएंटरोलॉजी और हेपेटोलॉजी विभाग पाचन तंत्र, गैस्ट्रोइंटेस्टाइनल और लिवर से संबंधित समस्याओं की जांच और उपचार प्रदान करता है।",
+        services: [
+          "गैस्ट्रोएंटरोलॉजी परामर्श",
+          "लिवर रोग प्रबंधन",
+          "हेपेटाइटिस की देखभाल",
+          "एसिड रिफ्लक्स प्रबंधन",
+          "पाचन संबंधी समस्याओं की देखभाल",
+          "एंडोस्कोपी परामर्श",
+          "हेपेटोलॉजी देखभाल",
+        ],
+      },
+    },
   },
 
   {
     id: 8,
-    title: "Gynecology & Women's Health",
-    description:
-      "Comprehensive healthcare for women's reproductive, hormonal, and gynecological needs.",
-    fullDescription:
-      "Our Gynecology & Women's Health department provides comprehensive care for women across different stages of life. Services include preventive care, reproductive health, gynecological evaluation, pregnancy-related care, and management of women's health conditions.",
-    services: [
-      "Gynecological Consultation",
-      "Women's Health Checkups",
-      "Pregnancy Care",
-      "PCOS Management",
-      "Menstrual Health Care",
-      "Reproductive Health",
-      "Women's Preventive Care",
-    ],
     image: "/images/departments/gynecology.jpg",
+
+    content: {
+      en: {
+        title: "Gynecology & Women's Health",
+        description:
+          "Comprehensive healthcare for women's reproductive, hormonal, and gynecological needs.",
+        fullDescription:
+          "Our Gynecology & Women's Health department provides comprehensive care for women across different stages of life.",
+        services: [
+          "Gynecological Consultation",
+          "Women's Health Checkups",
+          "Pregnancy Care",
+          "PCOS Management",
+          "Menstrual Health Care",
+          "Reproductive Health",
+          "Women's Preventive Care",
+        ],
+      },
+
+      ta: {
+        title: "மகப்பேறு & பெண்கள் நலம்",
+        description:
+          "பெண்களின் இனப்பெருக்கம், ஹார்மோன் மற்றும் மகப்பேறு தொடர்பான தேவைகளுக்கான முழுமையான சுகாதார சேவை.",
+        fullDescription:
+          "எங்கள் மகப்பேறு மற்றும் பெண்கள் நலத் துறை பெண்களின் வாழ்க்கையின் பல்வேறு கட்டங்களில் விரிவான மருத்துவ பராமரிப்பை வழங்குகிறது.",
+        services: [
+          "மகப்பேறு ஆலோசனை",
+          "பெண்கள் உடல்நல பரிசோதனை",
+          "கர்ப்ப கால பராமரிப்பு",
+          "PCOS மேலாண்மை",
+          "மாதவிடாய் உடல்நல பராமரிப்பு",
+          "இனப்பெருக்க சுகாதாரம்",
+          "பெண்களுக்கான தடுப்பு பராமரிப்பு",
+        ],
+      },
+
+      ml: {
+        title: "ഗൈനക്കോളജി & സ്ത്രീകളുടെ ആരോഗ്യം",
+        description:
+          "സ്ത്രീകളുടെ പ്രത്യുത്പാദന, ഹോർമോൺ, ഗൈനക്കോളജി ആവശ്യങ്ങൾക്കുള്ള സമഗ്ര ആരോഗ്യപരിചരണം.",
+        fullDescription:
+          "ഞങ്ങളുടെ ഗൈനക്കോളജി & വനിതാ ആരോഗ്യ വിഭാഗം സ്ത്രീകളുടെ ജീവിതത്തിലെ വിവിധ ഘട്ടങ്ങളിൽ സമഗ്രമായ പരിചരണം നൽകുന്നു.",
+        services: [
+          "ഗൈനക്കോളജി കൺസൾട്ടേഷൻ",
+          "സ്ത്രീ ആരോഗ്യ പരിശോധന",
+          "ഗർഭകാല പരിചരണം",
+          "PCOS നിയന്ത്രണം",
+          "മാസിക ആരോഗ്യ പരിചരണം",
+          "പ്രത്യുത്പാദന ആരോഗ്യം",
+          "സ്ത്രീകളുടെ പ്രതിരോധ പരിചരണം",
+        ],
+      },
+
+      te: {
+        title: "గైనకాలజీ & మహిళల ఆరోగ్యం",
+        description:
+          "మహిళల పునరుత్పత్తి, హార్మోన్లు మరియు గైనకాలజీ అవసరాలకు సమగ్ర వైద్య సంరక్షణ.",
+        fullDescription:
+          "మా గైనకాలజీ & మహిళల ఆరోగ్య విభాగం మహిళల జీవితంలోని వివిధ దశల్లో సమగ్ర వైద్య సంరక్షణ అందిస్తుంది.",
+        services: [
+          "గైనకాలజీ సంప్రదింపు",
+          "మహిళల ఆరోగ్య పరీక్షలు",
+          "గర్భధారణ సంరక్షణ",
+          "PCOS నిర్వహణ",
+          "మాసిక ఆరోగ్య సంరక్షణ",
+          "పునరుత్పత్తి ఆరోగ్యం",
+          "మహిళల నివారణ సంరక్షణ",
+        ],
+      },
+      hi: {
+        title: "स्त्री रोग और महिला स्वास्थ्य",
+        description:
+          "महिलाओं की प्रजनन, हार्मोन और स्त्री रोग संबंधी आवश्यकताओं के लिए व्यापक स्वास्थ्य सेवा।",
+        fullDescription:
+          "हमारा स्त्री रोग और महिला स्वास्थ्य विभाग महिलाओं के जीवन के विभिन्न चरणों में व्यापक चिकित्सा देखभाल प्रदान करता है।",
+        services: [
+          "स्त्री रोग परामर्श",
+          "महिला स्वास्थ्य जांच",
+          "गर्भावस्था देखभाल",
+          "PCOS प्रबंधन",
+          "मासिक धर्म स्वास्थ्य देखभाल",
+          "प्रजनन स्वास्थ्य",
+          "महिलाओं के लिए निवारक स्वास्थ्य देखभाल",
+        ],
+      },
+    },
   },
 
   {
     id: 9,
-    title: "Radiology & Imaging",
-    description:
-      "Advanced diagnostic imaging services to support accurate medical diagnosis and treatment.",
-    fullDescription:
-      "Our Radiology & Imaging department provides advanced diagnostic imaging services to support accurate diagnosis and treatment planning. Imaging services are performed using appropriate diagnostic technologies under specialist supervision.",
-    services: [
-      "MRI Scan",
-      "CT Scan",
-      "Digital X-Ray",
-      "Ultrasound",
-      "Mammography",
-      "Echocardiography",
-      "PET-CT Imaging",
-    ],
     image: "/images/departments/radiology.jpg",
+
+    content: {
+      en: {
+        title: "Radiology & Imaging",
+        description:
+          "Advanced diagnostic imaging services to support accurate medical diagnosis and treatment.",
+        fullDescription:
+          "Our Radiology & Imaging department provides advanced diagnostic imaging services to support accurate diagnosis and treatment planning.",
+        services: [
+          "MRI Scan",
+          "CT Scan",
+          "Digital X-Ray",
+          "Ultrasound",
+          "Mammography",
+          "Echocardiography",
+          "PET-CT Imaging",
+        ],
+      },
+
+      ta: {
+        title: "கதிரியக்கவியல் & இமேஜிங்",
+        description:
+          "துல்லியமான நோயறிதல் மற்றும் சிகிச்சைக்கு உதவும் மேம்பட்ட மருத்துவ இமேஜிங் சேவைகள்.",
+        fullDescription:
+          "எங்கள் கதிரியக்கவியல் மற்றும் இமேஜிங் துறை துல்லியமான நோயறிதல் மற்றும் சிகிச்சை திட்டமிடலுக்கு உதவும் மேம்பட்ட மருத்துவ இமேஜிங் சேவைகளை வழங்குகிறது.",
+        services: [
+          "MRI ஸ்கேன்",
+          "CT ஸ்கேன்",
+          "டிஜிட்டல் X-Ray",
+          "அல்ட்ராசவுண்ட்",
+          "மாமோகிராபி",
+          "எக்கோகார்டியோகிராபி",
+          "PET-CT இமேஜிங்",
+        ],
+      },
+
+      ml: {
+        title: "റേഡിയോളജി & ഇമേജിംഗ്",
+        description:
+          "കൃത്യമായ രോഗനിർണയത്തിനും ചികിത്സയ്ക്കുമായി നൂതന ഡയഗ്നോസ്റ്റിക് ഇമേജിംഗ് സേവനങ്ങൾ.",
+        fullDescription:
+          "ഞങ്ങളുടെ റേഡിയോളജി & ഇമേജിംഗ് വിഭാഗം കൃത്യമായ രോഗനിർണയത്തിനും ചികിത്സാ ആസൂത്രണത്തിനും സഹായിക്കുന്ന നൂതന ഇമേജിംഗ് സേവനങ്ങൾ നൽകുന്നു.",
+        services: [
+          "MRI സ്കാൻ",
+          "CT സ്കാൻ",
+          "ഡിജിറ്റൽ X-Ray",
+          "അൾട്രാസൗണ്ട്",
+          "മാമോഗ്രാഫി",
+          "എക്കോകാർഡിയോഗ്രാഫി",
+          "PET-CT ഇമേജിംഗ്",
+        ],
+      },
+
+      te: {
+        title: "రేడియాలజీ & ఇమేజింగ్",
+        description:
+          "ఖచ్చితమైన నిర్ధారణ మరియు చికిత్సకు సహాయపడే అధునాతన డయాగ్నస్టిక్ ఇమేజింగ్ సేవలు.",
+        fullDescription:
+          "మా రేడియాలజీ & ఇమేజింగ్ విభాగం ఖచ్చితమైన నిర్ధారణ మరియు చికిత్స ప్రణాళికకు సహాయపడే అధునాతన ఇమేజింగ్ సేవలను అందిస్తుంది.",
+        services: [
+          "MRI స్కాన్",
+          "CT స్కాన్",
+          "డిజిటల్ X-Ray",
+          "అల్ట్రాసౌండ్",
+          "మామోగ్రఫీ",
+          "ఎకోకార్డియోగ్రఫీ",
+          "PET-CT ఇమేజింగ్",
+        ],
+      },
+      hi: {
+        title: "रेडियोलॉजी और इमेजिंग",
+        description:
+          "सटीक चिकित्सा निदान और उपचार का समर्थन करने के लिए उन्नत डायग्नोस्टिक इमेजिंग सेवाएं।",
+        fullDescription:
+          "हमारा रेडियोलॉजी और इमेजिंग विभाग सटीक निदान और उपचार योजना का समर्थन करने के लिए उन्नत डायग्नोस्टिक इमेजिंग सेवाएं प्रदान करता है।", 
+        services: [
+          "एमआरआई स्कैन",
+          "सीटी स्कैन",
+          "डिजिटल एक्स-रे",
+          "अल्ट्रासाउंड",
+          "मैमोग्राफी",
+          "इकोकार्डियोग्राफी",
+          "पीईटी-सीटी इमेजिंग",
+        ],
+      },
+    },
   },
-  
-  
+
   {
     id: 10,
-    title: "Laboratory & Pathology",
-    description:
-      "Reliable laboratory and pathology services supporting accurate diagnosis and treatment.",
-    fullDescription:
-      "Our Laboratory & Pathology department provides diagnostic testing and pathology services to support accurate diagnosis, treatment planning, and patient monitoring.",
-    services: [
-      "Blood Tests",
-      "Urine Tests",
-      "Biochemistry Testing",
-      "Hematology Testing",
-      "Microbiology Testing",
-      "Histopathology",
-      "Diagnostic Laboratory Services",
-    ],
     image: "/images/departments/pathology.jpg",
+
+    content: {
+      en: {
+        title: "Laboratory & Pathology",
+        description:
+          "Reliable laboratory and pathology services supporting accurate diagnosis and treatment.",
+        fullDescription:
+          "Our Laboratory & Pathology department provides diagnostic testing and pathology services to support accurate diagnosis, treatment planning, and patient monitoring.",
+        services: [
+          "Blood Tests",
+          "Urine Tests",
+          "Biochemistry Testing",
+          "Hematology Testing",
+          "Microbiology Testing",
+          "Histopathology",
+          "Diagnostic Laboratory Services",
+        ],
+      },
+
+      ta: {
+        title: "ஆய்வகம் & நோயியல்",
+        description:
+          "துல்லியமான நோயறிதல் மற்றும் சிகிச்சைக்கு உதவும் நம்பகமான ஆய்வக மற்றும் நோயியல் சேவைகள்.",
+        fullDescription:
+          "எங்கள் ஆய்வகம் மற்றும் நோயியல் துறை துல்லியமான நோயறிதல், சிகிச்சை திட்டமிடல் மற்றும் நோயாளி கண்காணிப்புக்கு தேவையான பரிசோதனை சேவைகளை வழங்குகிறது.",
+        services: [
+          "இரத்த பரிசோதனைகள்",
+          "சிறுநீர் பரிசோதனைகள்",
+          "உயிர்வேதியியல் பரிசோதனை",
+          "இரத்தவியல் பரிசோதனை",
+          "நுண்ணுயிரியல் பரிசோதனை",
+          "திசு நோயியல்",
+          "நோயறிதல் ஆய்வக சேவைகள்",
+        ],
+      },
+
+      ml: {
+        title: "ലബോറട്ടറി & പാത്തോളജി",
+        description:
+          "കൃത്യമായ രോഗനിർണയത്തിനും ചികിത്സയ്ക്കും സഹായിക്കുന്ന വിശ്വസനീയമായ ലബോറട്ടറി സേവനങ്ങൾ.",
+        fullDescription:
+          "ഞങ്ങളുടെ ലബോറട്ടറി & പാത്തോളജി വിഭാഗം കൃത്യമായ രോഗനിർണയം, ചികിത്സാ ആസൂത്രണം, രോഗി നിരീക്ഷണം എന്നിവയ്ക്കായി ഡയഗ്നോസ്റ്റിക് പരിശോധനകളും പാത്തോളജി സേവനങ്ങളും നൽകുന്നു.",
+        services: [
+          "രക്ത പരിശോധന",
+          "മൂത്ര പരിശോധന",
+          "ബയോകെമിസ്ട്രി പരിശോധന",
+          "ഹീമറ്റോളജി പരിശോധന",
+          "മൈക്രോബയോളജി പരിശോധന",
+          "ഹിസ്റ്റോപാത്തോളജി",
+          "ഡയഗ്നോസ്റ്റിക് ലബോറട്ടറി സേവനങ്ങൾ",
+        ],
+      },
+
+      te: {
+        title: "లాబొరేటరీ & పాథాలజీ",
+        description:
+          "ఖచ్చితమైన నిర్ధారణ మరియు చికిత్సకు సహాయపడే నమ్మకమైన ల్యాబొరేటరీ సేవలు.",
+        fullDescription:
+          "మా లాబొరేటరీ & పాథాలజీ విభాగం ఖచ్చితమైన నిర్ధారణ, చికిత్స ప్రణాళిక మరియు రోగి పర్యవేక్షణకు అవసరమైన డయాగ్నస్టిక్ పరీక్షలు మరియు పాథాలజీ సేవలను అందిస్తుంది.",
+        services: [
+          "రక్త పరీక్షలు",
+          "మూత్ర పరీక్షలు",
+          "బయోకెమిస్ట్రీ పరీక్షలు",
+          "హీమటాలజీ పరీక్షలు",
+          "మైక్రోబయాలజీ పరీక్షలు",
+          "హిస్టోపాథాలజీ",
+          "డయాగ్నస్టిక్ ల్యాబొరేటరీ సేవలు",
+        ],
+      },
+      hi: {
+        title: "प्रयोगशाला और पैथोलॉजी",
+        description:
+          "सटीक निदान और उपचार का समर्थन करने वाली विश्वसनीय प्रयोगशाला और पैथोलॉजी सेवाएं।",
+        fullDescription:
+          "हमारा प्रयोगशाला और पैथोलॉजी विभाग सटीक निदान, उपचार योजना और रोगी निगरानी का समर्थन करने के लिए डायग्नोस्टिक परीक्षण और पैथोलॉजी सेवाएं प्रदान करता है।", 
+        services: [
+          "रक्त परीक्षण",
+          "मूत्र परीक्षण",
+          "बायोकेमिस्ट्री परीक्षण",
+          "हिमेटोलॉजी परीक्षण",
+          "सूक्ष्मजीव विज्ञान परीक्षण",
+          "हिस्टोपैथोलॉजी",
+          "निदान प्रयोगशाला सेवाएं",
+        ],
+      },
+    },
   },
-  
+
   {
     id: 11,
-    title: "Emergency Care",
-    description:
-      "24 × 7 emergency medical support for urgent and critical situations.",
-    fullDescription:
-      "Our Emergency Care department provides round-the-clock medical support for urgent and critical situations. Our emergency team is prepared to provide rapid assessment, immediate stabilization, and appropriate medical care when patients need it most.",
-    services: [
-      "24 × 7 Emergency Care",
-      "Ambulance Support",
-      "Trauma Care",
-      "Critical Care Support",
-      "Emergency Procedures",
-    ],
     image: "/images/departments/emergency.jpg",
+
+    content: {
+      en: {
+        title: "Emergency Care",
+        description:
+          "24 × 7 emergency medical support for urgent and critical situations.",
+        fullDescription:
+          "Our Emergency Care department provides round-the-clock medical support for urgent and critical situations. Our emergency team is prepared to provide rapid assessment, immediate stabilization, and appropriate medical care when patients need it most.",
+        services: [
+          "24 × 7 Emergency Care",
+          "Ambulance Support",
+          "Trauma Care",
+          "Critical Care Support",
+          "Emergency Procedures",
+        ],
+      },
+
+      ta: {
+        title: "அவசர சிகிச்சை",
+        description:
+          "அவசர மற்றும் ஆபத்தான நிலைகளுக்கு 24 × 7 அவசர மருத்துவ ஆதரவு.",
+        fullDescription:
+          "எங்கள் அவசர சிகிச்சைத் துறை அவசர மற்றும் தீவிர நிலைகளுக்கு 24 மணி நேரமும் மருத்துவ ஆதரவை வழங்குகிறது. நோயாளிகளுக்கு விரைவான மதிப்பீடு, உடனடி நிலைப்படுத்தல் மற்றும் தேவையான மருத்துவ சிகிச்சையை வழங்க எங்கள் அவசர மருத்துவ குழு தயாராக உள்ளது.",
+        services: [
+          "24 × 7 அவசர சிகிச்சை",
+          "ஆம்புலன்ஸ் சேவை",
+          "காய சிகிச்சை",
+          "தீவிர சிகிச்சை ஆதரவு",
+          "அவசர மருத்துவ நடைமுறைகள்",
+        ],
+      },
+
+      ml: {
+        title: "എമർജൻസി കെയർ",
+        description:
+          "അടിയന്തരവും ഗുരുതരവുമായ സാഹചര്യങ്ങൾക്ക് 24 × 7 അടിയന്തര മെഡിക്കൽ പിന്തുണ.",
+        fullDescription:
+          "ഞങ്ങളുടെ എമർജൻസി കെയർ വിഭാഗം അടിയന്തരവും ഗുരുതരവുമായ സാഹചര്യങ്ങൾക്ക് 24 മണിക്കൂറും മെഡിക്കൽ പിന്തുണ നൽകുന്നു. വേഗത്തിലുള്ള വിലയിരുത്തൽ, ഉടൻ സ്ഥിരപ്പെടുത്തൽ, ആവശ്യമായ ചികിത്സ എന്നിവ നൽകാൻ ഞങ്ങളുടെ എമർജൻസി ടീം സജ്ജമാണ്.",
+        services: [
+          "24 × 7 എമർജൻസി കെയർ",
+          "ആംബുലൻസ് പിന്തുണ",
+          "ട്രോമ കെയർ",
+          "ക്രിട്ടിക്കൽ കെയർ പിന്തുണ",
+          "എമർജൻസി നടപടിക്രമങ്ങൾ",
+        ],
+      },
+
+      te: {
+        title: "ఎమర్జెన్సీ కేర్",
+        description:
+          "అత్యవసర మరియు క్లిష్ట పరిస్థితులకు 24 × 7 అత్యవసర వైద్య సహాయం.",
+        fullDescription:
+          "మా ఎమర్జెన్సీ కేర్ విభాగం అత్యవసర మరియు క్లిష్ట పరిస్థితులకు 24 గంటలూ వైద్య సహాయాన్ని అందిస్తుంది. వేగవంతమైన అంచనా, తక్షణ స్థిరీకరణ మరియు అవసరమైన వైద్య చికిత్స అందించడానికి మా ఎమర్జెన్సీ బృందం సిద్ధంగా ఉంటుంది.",
+        services: [
+          "24 × 7 ఎమర్జెన్సీ కేర్",
+          "అంబులెన్స్ సపోర్ట్",
+          "ట్రామా కేర్",
+          "క్రిటికల్ కేర్ సపోర్ట్",
+          "ఎమర్జెన్సీ విధానాలు",
+        ],
+      },
+      hi: {
+        title: "आपातकालीन देखभाल",
+        description:
+          "आपात और गंभीर परिस्थितियों के लिए 24 × 7 आपातकालीन चिकित्सा सहायता।",
+        fullDescription:
+          "हमारा आपातकालीन देखभाल विभाग आपात और गंभीर परिस्थितियों के लिए चौबीसों घंटे चिकित्सा सहायता प्रदान करता है। हमारी आपातकालीन टीम रोगियों को त्वरित मूल्यांकन, तत्काल स्थिरीकरण और उचित चिकित्सा देखभाल प्रदान करने के लिए तैयार है।",
+        services: [
+          "24 × 7 आपातकालीन देखभाल",
+          "एम्बुलेंस सहायता",
+          "आघात देखभाल",
+          "गंभीर देखभाल सहायता",
+          "आपातकालीन प्रक्रियाएं",
+        ],
+      },
+    },
   },
 ];
-
-

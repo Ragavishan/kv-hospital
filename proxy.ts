@@ -16,7 +16,7 @@ export function proxy(request: NextRequest) {
   // Protect all other admin pages
   if (pathname.startsWith("/admin")) {
     const session = request.cookies.get(
-      "kv_admin_session"
+      "iswarya hospital_admin_session"
     );
 
     if (session?.value !== "authenticated") {
