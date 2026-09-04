@@ -33,22 +33,18 @@ export default function FooterSection() {
             {/* Hospital Info */}
             <div className="lg:col-span-1">
 
-              <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-700 text-lg font-bold">
-                  ISWARYA HOSPITAL
-                </div>
+              {/* Hospital Name */}
+              <div>
+                <h2 className="text-2xl font-bold tracking-tight text-white">
+                  {hospitalInfo.name}
+                </h2>
 
-                <div>
-                  <h2 className="text-xl font-bold">
-                    {hospitalInfo.name}
-                  </h2>
-
-                  <p className="text-xs font-medium tracking-wider text-blue-400">
-                    {t.footer.trustedHealthcare}
-                  </p>
-                </div>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-blue-400">
+                  {t.footer.trustedHealthcare}
+                </p>
               </div>
 
+              {/* Description */}
               <p className="mt-6 max-w-sm leading-7 text-slate-400">
                 {t.footer.description}
               </p>
@@ -293,7 +289,8 @@ export default function FooterSection() {
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-sm sm:flex-row">
 
             <p className="text-center text-slate-500 sm:text-left">
-              © 2026 {hospitalInfo.name}. {t.footer.allRightsReserved}
+              © 2026 {hospitalInfo.name}.{" "}
+              {t.footer.allRightsReserved}
             </p>
 
             <div className="flex items-center gap-6 text-slate-500">

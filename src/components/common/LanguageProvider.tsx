@@ -3,7 +3,6 @@
 import {
   createContext,
   useContext,
-  useEffect,
   useState,
   type ReactNode,
 } from "react";
@@ -32,26 +31,26 @@ export default function LanguageProvider({
   children: ReactNode;
 }) {
   const [language, setLanguageState] =
-    useState<Language>("en");
+    useState<Language>(() => {
+      if (typeof window === "undefined") {
+        return "en";
+      }
 
-  // =====================================================
-  // LOAD SAVED LANGUAGE
-  // =====================================================
+      const savedLanguage =
+        localStorage.getItem("iswarya hospital-language");
 
-  useEffect(() => {
-    const savedLanguage =
-      localStorage.getItem("iswarya hospital-language");
+      if (
+        savedLanguage === "en" ||
+        savedLanguage === "ta" ||
+        savedLanguage === "ml" ||
+        savedLanguage === "te" ||
+        savedLanguage === "hi"
+      ) {
+        return savedLanguage;
+      }
 
-    if (
-      savedLanguage === "en" ||
-      savedLanguage === "ta" ||
-      savedLanguage === "ml" ||
-      savedLanguage === "te" ||
-      savedLanguage === "hi"
-    ) {
-      setLanguageState(savedLanguage);
-    }
-  }, []);
+      return "en";
+    });
 
   // =====================================================
   // CHANGE LANGUAGE

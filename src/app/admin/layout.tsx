@@ -87,8 +87,14 @@ export default function AdminLayout({
 
           <button
             type="button"
-            onClick={() => {
-              window.location.href = "/";
+            onClick={async () => {
+              try {
+                await fetch("/api/admin/logout", {
+                  method: "POST",
+                });
+              } finally {
+                window.location.href = "/admin/login";
+              }
             }}
             className="flex w-full items-center gap-3 rounded-xl px-4 py-3 font-semibold text-slate-600 transition hover:bg-red-50 hover:text-red-600"
           >

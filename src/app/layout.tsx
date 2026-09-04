@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     "Iswarya Hospital is a trusted multispeciality hospital in Palani offering 24/7 emergency care, experienced doctors, advanced treatments, and quality healthcare.",
 
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "/images/iswarya-hospital-logo.png",
+    shortcut: "/images/iswarya-hospital-logo.png",
+    apple: "/images/iswarya-hospital-logo.png",
   },
 };
 

@@ -20,6 +20,7 @@ export default function MainNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const { language, setLanguage } = useLanguage();
 
@@ -56,11 +57,11 @@ export default function MainNavbar() {
     ml: {
       home: "ഹോം",
       about: "ഞങ്ങളെക്കുറിച്ച്",
-      facilities:"സൗകര്യങ്ങൾ",
+      facilities: "സൗകര്യങ്ങൾ",
       departments: "വിഭാഗങ്ങൾ",
       doctors: "ഡോക്ടർമാർ",
       appointment: "അപ്പോയിന്റ്മെന്റ്",
-      awards:"അവാർഡുകൾ",
+      awards: "അവാർഡുകൾ",
       contact: "ബന്ധപ്പെടുക",
     },
 
@@ -79,11 +80,12 @@ export default function MainNavbar() {
       home: "होम",
       about: "हमारे बारे में",
       facilities: "सुविधाएँ",
-      doctors: "डॉक्टर",
       departments: "विभाग",
+      doctors: "डॉक्टर",
+      appointment: "अपॉइंटमेंट",
       awards: "पुरस्कार",
       contact: "संपर्क",
-    }
+    },
   };
 
   // =====================================================
@@ -106,7 +108,8 @@ export default function MainNavbar() {
     href: string,
     fallback: string
   ) => {
-    const key = href.replace("#", "") as keyof typeof navTranslations.en;
+    const key =
+      href.replace("#", "") as keyof typeof navTranslations.en;
 
     return (
       navTranslations[language as Language]?.[key] ||
@@ -115,62 +118,13 @@ export default function MainNavbar() {
   };
 
   // =====================================================
-  // LANGUAGE CHANGE
-  // =====================================================
-
-  const handleLanguageChange = (
-    selectedLanguage: Language
-  ) => {
-    setLanguage(selectedLanguage);
-    setLanguageOpen(false);
-    setIsOpen(false);
-  };
-
-  // =====================================================
-  // BOOK APPOINTMENT
-  // =====================================================
-
-  const handleBookAppointment = () => {
-    setIsOpen(false);
-
-    const appointmentForm =
-      document.getElementById("appointment-form") ||
-      document.getElementById("appointment");
-
-    appointmentForm?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
-  // =====================================================
-  // NAVIGATION
-  // =====================================================
-
-  const handleNavigation = (
-    event: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    event.preventDefault();
-
-    setIsOpen(false);
-
-    const section = document.querySelector(href);
-
-    if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-
-  // =====================================================
-  // ACTIVE SECTION
+  // SCROLL EFFECT
   // =====================================================
 
   useEffect(() => {
     const handleScroll = () => {
+      setIsScrolled(window.scrollY > 35);
+
       const scrollY = window.scrollY;
 
       const sections = navigation.map((item) =>
@@ -205,7 +159,8 @@ export default function MainNavbar() {
 
     window.addEventListener(
       "scroll",
-      handleScroll
+      handleScroll,
+      { passive: true }
     );
 
     return () => {
@@ -217,6 +172,100 @@ export default function MainNavbar() {
   }, []);
 
   // =====================================================
+  // MOBILE BODY SCROLL LOCK
+  // =====================================================
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  // =====================================================
+  // ESC KEY
+  // =====================================================
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setLanguageOpen(false);
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener(
+      "keydown",
+      handleEscape
+    );
+
+    return () => {
+      window.removeEventListener(
+        "keydown",
+        handleEscape
+      );
+    };
+  }, []);
+
+  // =====================================================
+  // LANGUAGE CHANGE
+  // =====================================================
+
+  const handleLanguageChange = (
+    selectedLanguage: Language
+  ) => {
+    setLanguage(selectedLanguage);
+    setLanguageOpen(false);
+    setIsOpen(false);
+  };
+
+  // =====================================================
+  // BOOK APPOINTMENT
+  // =====================================================
+
+  const handleBookAppointment = () => {
+    setIsOpen(false);
+    setLanguageOpen(false);
+
+    const appointmentForm =
+      document.getElementById("appointment-form") ||
+      document.getElementById("appointment");
+
+    appointmentForm?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  // =====================================================
+  // NAVIGATION
+  // =====================================================
+
+  const handleNavigation = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    event.preventDefault();
+
+    setIsOpen(false);
+    setLanguageOpen(false);
+
+    const section = document.querySelector(href);
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  // =====================================================
   // CURRENT LANGUAGE
   // =====================================================
 
@@ -224,38 +273,100 @@ export default function MainNavbar() {
     languageNames[language as Language] ||
     "English";
 
+  // =====================================================
+  // LANGUAGE OPTIONS
+  // =====================================================
+
+  const languages: {
+    code: Language;
+    label: string;
+  }[] = [
+    {
+      code: "en",
+      label: "English",
+    },
+    {
+      code: "ta",
+      label: "தமிழ்",
+    },
+    {
+      code: "ml",
+      label: "മലയാളം",
+    },
+    {
+      code: "te",
+      label: "తెలుగు",
+    },
+    {
+      code: "hi",
+      label: "हिन्दी",
+    },
+  ];
+
   return (
     <nav
-      className="
-        absolute
+      className={`
+        fixed
         left-0
         right-0
         top-0
-        z-50
+        z-[100]
         w-full
-        bg-transparent
-      "
+        transition-all
+        duration-500
+        ${
+          isScrolled
+            ? `
+              border-b
+              border-white/10
+              bg-slate-950/75
+              shadow-[0_8px_30px_rgba(0,0,0,0.18)]
+              backdrop-blur-2xl
+            `
+            : `
+              bg-transparent
+            `
+        }
+      `}
     >
+  <div
+    className="
+      pointer-events-none
+      absolute
+      inset-x-0
+      top-0
+      -z-10
+      h-32
+      bg-gradient-to-b
+      from-slate-950/25
+      to-transparent
+    "
+  />
       {/* =====================================================
           MAIN NAVBAR
       ===================================================== */}
 
       <div
-        className="
+        className={`
           mx-auto
           flex
-          min-h-[82px]
           w-full
           max-w-[1500px]
           items-center
           justify-between
           gap-5
           px-5
-          py-4
+          transition-all
+          duration-500
           sm:px-8
-          lg:px-12
-          xl:px-16
-        "
+          lg:px-10
+          xl:px-14
+          ${
+            isScrolled
+              ? "min-h-[70px] py-2.5"
+              : "min-h-[82px] py-4"
+          }
+        `}
       >
         {/* ===================================================
             LOGO
@@ -264,7 +375,10 @@ export default function MainNavbar() {
         <a
           href="#home"
           onClick={(event) =>
-            handleNavigation(event, "#home")
+            handleNavigation(
+              event,
+              "#home"
+            )
           }
           className="
             group
@@ -277,23 +391,35 @@ export default function MainNavbar() {
           {/* LOGO */}
 
           <div
-            className="
+            className={`
               relative
               flex
-              h-12
-              w-12
               shrink-0
               items-center
               justify-center
               bg-transparent
-            "
+              transition-all
+              duration-500
+              ${
+                isScrolled
+                  ? "h-10 w-10"
+                  : "h-12 w-12"
+              }
+            `}
           >
             <Image
               src="/images/iswarya-hospital-logo.png"
               alt="Iswarya Hospital"
               fill
               sizes="48px"
-              className="object-contain bg-transparent mix-blend-screen"
+              className="
+                object-contain
+                bg-transparent
+                mix-blend-screen
+                transition-transform
+                duration-300
+                group-hover:scale-105
+              "
               priority
             />
           </div>
@@ -302,29 +428,44 @@ export default function MainNavbar() {
 
           <div className="leading-none">
             <h1
-              className="
-                text-[19px]
+              className={`
                 font-extrabold
-                tracking-[-0.025em]
+                tracking-[-0.035em]
                 text-white
                 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]
-                sm:text-[20px]
-              "
+                transition-all
+                duration-500
+                ${
+                  isScrolled
+                    ? "text-[17px]"
+                    : "text-[19px] sm:text-[20px]"
+                }
+              `}
             >
               Iswarya Hospital
             </h1>
 
             <div className="mt-1.5 flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+              <span
+                className="
+                  h-1.5
+                  w-1.5
+                  shrink-0
+                  rounded-full
+                  bg-blue-400
+                  shadow-[0_0_8px_rgba(96,165,250,0.8)]
+                "
+              />
 
               <p
                 className="
-                  text-[9px]
+                  text-[8px]
                   font-bold
                   uppercase
                   tracking-[0.16em]
-                  text-white/85
+                  text-white/80
                   drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]
+                  sm:text-[9px]
                 "
               >
                 Multi-Speciality Care
@@ -341,9 +482,9 @@ export default function MainNavbar() {
           className="
             hidden
             items-center
-            gap-6
+            gap-1
             lg:flex
-            xl:gap-8
+            xl:gap-2
           "
         >
           {navigation.map((item) => {
@@ -365,14 +506,18 @@ export default function MainNavbar() {
                   group
                   relative
                   whitespace-nowrap
+                  rounded-lg
+                  px-2.5
                   py-3
                   text-[13px]
                   font-semibold
-                  text-white/90
+                  text-white/85
                   drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]
                   transition-all
                   duration-300
+                  hover:bg-white/[0.06]
                   hover:text-white
+                  xl:px-3
                 "
               >
                 {getNavLabel(
@@ -385,18 +530,19 @@ export default function MainNavbar() {
                 <span
                   className={`
                     absolute
-                    bottom-0
+                    bottom-1
                     left-1/2
                     h-[2px]
                     -translate-x-1/2
                     rounded-full
                     bg-white
+                    shadow-[0_0_8px_rgba(255,255,255,0.45)]
                     transition-all
                     duration-300
                     ${
                       isActive
-                        ? "w-full"
-                        : "w-0 group-hover:w-2/3"
+                        ? "w-[70%] opacity-100"
+                        : "w-0 opacity-0 group-hover:w-[55%] group-hover:opacity-100"
                     }
                   `}
                 />
@@ -409,15 +555,25 @@ export default function MainNavbar() {
             DESKTOP RIGHT SIDE
         =================================================== */}
 
-        <div className="hidden items-center gap-3 lg:flex">
-
+        <div
+          className="
+            hidden
+            items-center
+            gap-2.5
+            lg:flex
+          "
+        >
           {/* LANGUAGE DROPDOWN */}
 
           <div className="relative">
             <button
               type="button"
+              aria-label="Select language"
+              aria-expanded={languageOpen}
               onClick={() =>
-                setLanguageOpen(!languageOpen)
+                setLanguageOpen(
+                  !languageOpen
+                )
               }
               className="
                 flex
@@ -425,21 +581,25 @@ export default function MainNavbar() {
                 gap-2
                 rounded-xl
                 border
-                border-white/25
-                bg-white/10
+                border-white/20
+                bg-white/[0.08]
                 px-3.5
                 py-2.5
                 text-[12px]
                 font-bold
                 text-white
-                shadow-lg
-                backdrop-blur-md
+                shadow-[0_4px_18px_rgba(0,0,0,0.12)]
+                backdrop-blur-xl
                 transition-all
                 duration-300
-                hover:bg-white/20
+                hover:border-white/30
+                hover:bg-white/[0.14]
               "
             >
-              <Globe2 size={16} />
+              <Globe2
+                size={16}
+                strokeWidth={2}
+              />
 
               <span>
                 {currentLanguage}
@@ -447,15 +607,19 @@ export default function MainNavbar() {
 
               <ChevronDown
                 size={14}
-                className={`transition-transform ${
-                  languageOpen
-                    ? "rotate-180"
-                    : ""
-                }`}
+                className={`
+                  transition-transform
+                  duration-300
+                  ${
+                    languageOpen
+                      ? "rotate-180"
+                      : ""
+                  }
+                `}
               />
             </button>
 
-            {/* DROPDOWN */}
+            {/* LANGUAGE DROPDOWN */}
 
             {languageOpen && (
               <div
@@ -467,177 +631,68 @@ export default function MainNavbar() {
                   overflow-hidden
                   rounded-2xl
                   border
-                  border-white/20
+                  border-white/10
                   bg-slate-950/95
                   p-1.5
-                  shadow-2xl
-                  backdrop-blur-xl
+                  shadow-[0_20px_50px_rgba(0,0,0,0.35)]
+                  backdrop-blur-2xl
+                  animate-in
+                  fade-in
+                  slide-in-from-top-2
+                  duration-200
                 "
               >
-                {/* ENGLISH */}
+                {languages.map(
+                  ({
+                    code,
+                    label,
+                  }) => {
+                    const isSelected =
+                      language === code;
 
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleLanguageChange("en")
+                    return (
+                      <button
+                        key={code}
+                        type="button"
+                        onClick={() =>
+                          handleLanguageChange(
+                            code
+                          )
+                        }
+                        className={`
+                          flex
+                          w-full
+                          items-center
+                          justify-between
+                          rounded-xl
+                          px-3
+                          py-2.5
+                          text-left
+                          text-sm
+                          font-semibold
+                          transition-all
+                          duration-200
+                          ${
+                            isSelected
+                              ? "bg-blue-600/20 text-blue-300"
+                              : "text-white/85 hover:bg-white/10 hover:text-white"
+                          }
+                        `}
+                      >
+                        <span>
+                          {label}
+                        </span>
+
+                        {isSelected && (
+                          <Check
+                            size={16}
+                            className="text-blue-400"
+                          />
+                        )}
+                      </button>
+                    );
                   }
-                  className="
-                    flex
-                    w-full
-                    items-center
-                    justify-between
-                    rounded-xl
-                    px-3
-                    py-2.5
-                    text-left
-                    text-sm
-                    font-semibold
-                    text-white
-                    transition-all
-                    hover:bg-white/10
-                  "
-                >
-                  <span>English</span>
-
-                  {language === "en" && (
-                    <Check
-                      size={16}
-                      className="text-blue-400"
-                    />
-                  )}
-                </button>
-
-                {/* TAMIL */}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleLanguageChange("ta")
-                  }
-                  className="
-                    flex
-                    w-full
-                    items-center
-                    justify-between
-                    rounded-xl
-                    px-3
-                    py-2.5
-                    text-left
-                    text-sm
-                    font-semibold
-                    text-white
-                    transition-all
-                    hover:bg-white/10
-                  "
-                >
-                  <span>தமிழ்</span>
-
-                  {language === "ta" && (
-                    <Check
-                      size={16}
-                      className="text-blue-400"
-                    />
-                  )}
-                </button>
-
-                {/* MALAYALAM */}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleLanguageChange("ml")
-                  }
-                  className="
-                    flex
-                    w-full
-                    items-center
-                    justify-between
-                    rounded-xl
-                    px-3
-                    py-2.5
-                    text-left
-                    text-sm
-                    font-semibold
-                    text-white
-                    transition-all
-                    hover:bg-white/10
-                  "
-                >
-                  <span>മലയാളം</span>
-
-                  {language === "ml" && (
-                    <Check
-                      size={16}
-                      className="text-blue-400"
-                    />
-                  )}
-                </button>
-
-                {/* TELUGU */}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleLanguageChange("te")
-                  }
-                  className="
-                    flex
-                    w-full
-                    items-center
-                    justify-between
-                    rounded-xl
-                    px-3
-                    py-2.5
-                    text-left
-                    text-sm
-                    font-semibold
-                    text-white
-                    transition-all
-                    hover:bg-white/10
-                  "
-                >
-                  <span>తెలుగు</span>
-
-                  {language === "te" && (
-                    <Check
-                      size={16}
-                      className="text-blue-400"
-                    />
-                  )}
-                </button>
-
-                {/* HINDI */}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                  handleLanguageChange("hi")
-                }
-                className="
-                  flex
-                  w-full
-                  items-center
-                  justify-between
-                  rounded-xl
-                  px-3
-                  py-2.5
-                  text-left
-                  text-sm
-                  font-semibold
-                  text-white
-                  transition-all
-                  hover:bg-white/10
-                "
-              >
-                <span>हिन्दी</span>
-
-                {language === "hi" && (
-                  <Check
-                    size={16}
-                    className="text-blue-400"
-                  />
                 )}
-              </button>
               </div>
             )}
           </div>
@@ -646,7 +701,9 @@ export default function MainNavbar() {
 
           <button
             type="button"
-            onClick={handleBookAppointment}
+            onClick={
+              handleBookAppointment
+            }
             className="
               group
               inline-flex
@@ -654,19 +711,22 @@ export default function MainNavbar() {
               gap-2
               whitespace-nowrap
               rounded-xl
+              border
+              border-blue-400/20
               bg-blue-600
-              px-5
+              px-4.5
               py-3
               text-[13px]
               font-bold
               text-white
-              shadow-lg
-              shadow-blue-950/30
+              shadow-[0_8px_24px_rgba(37,99,235,0.25)]
               transition-all
               duration-300
               hover:-translate-y-0.5
+              hover:border-blue-300/30
               hover:bg-blue-500
-              hover:shadow-xl
+              hover:shadow-[0_12px_30px_rgba(37,99,235,0.35)]
+              active:translate-y-0
             "
           >
             <CalendarCheck2
@@ -710,22 +770,30 @@ export default function MainNavbar() {
           className="
             rounded-xl
             border
-            border-white/25
-            bg-black/10
+            border-white/20
+            bg-white/[0.08]
             p-2.5
             text-white
-            shadow-sm
-            backdrop-blur-sm
+            shadow-lg
+            backdrop-blur-xl
             transition-all
             duration-300
-            hover:bg-black/20
+            hover:border-white/30
+            hover:bg-white/[0.14]
+            active:scale-95
             lg:hidden
           "
         >
           {isOpen ? (
-            <X size={23} />
+            <X
+              size={23}
+              strokeWidth={2}
+            />
           ) : (
-            <Menu size={23} />
+            <Menu
+              size={23}
+              strokeWidth={2}
+            />
           )}
         </button>
       </div>
@@ -737,10 +805,13 @@ export default function MainNavbar() {
       {isOpen && (
         <div
           className="
+            max-h-[calc(100vh-70px)]
+            overflow-y-auto
             border-t
-            border-white/15
-            bg-slate-950/90
-            backdrop-blur-xl
+            border-white/10
+            bg-slate-950/95
+            shadow-[0_20px_40px_rgba(0,0,0,0.3)]
+            backdrop-blur-2xl
             lg:hidden
           "
         >
@@ -759,7 +830,10 @@ export default function MainNavbar() {
               {navigation.map((item) => {
                 const isActive =
                   activeSection ===
-                  item.href.replace("#", "");
+                  item.href.replace(
+                    "#",
+                    ""
+                  );
 
                 return (
                   <a
@@ -776,6 +850,7 @@ export default function MainNavbar() {
                       items-center
                       justify-between
                       rounded-xl
+                      border
                       px-4
                       py-3.5
                       text-sm
@@ -784,8 +859,8 @@ export default function MainNavbar() {
                       duration-200
                       ${
                         isActive
-                          ? "bg-white/15 text-white"
-                          : "text-white/80 hover:bg-white/10 hover:text-white"
+                          ? "border-blue-400/20 bg-blue-600/15 text-white"
+                          : "border-transparent text-white/75 hover:border-white/10 hover:bg-white/[0.06] hover:text-white"
                       }
                     `}
                   >
@@ -803,6 +878,7 @@ export default function MainNavbar() {
                           w-1.5
                           rounded-full
                           bg-blue-400
+                          shadow-[0_0_8px_rgba(96,165,250,0.8)]
                         "
                       />
                     )}
@@ -811,200 +887,95 @@ export default function MainNavbar() {
               })}
             </div>
 
-            {/* =================================================
-                MOBILE LANGUAGE
-            ================================================= */}
+            {/* MOBILE LANGUAGE */}
 
             <div
               className="
                 mt-5
                 border-t
-                border-white/15
+                border-white/10
                 pt-5
               "
             >
-              <p className="mb-2 px-1 text-xs font-semibold uppercase tracking-wider text-white/50">
-                Language
-              </p>
+              <div className="mb-3 flex items-center gap-2 px-1">
+                <Globe2
+                  size={14}
+                  className="text-blue-400"
+                />
+
+                <p
+                  className="
+                    text-xs
+                    font-bold
+                    uppercase
+                    tracking-[0.12em]
+                    text-white/50
+                  "
+                >
+                  Language
+                </p>
+              </div>
 
               <div className="grid grid-cols-2 gap-2">
+                {languages.map(
+                  ({
+                    code,
+                    label,
+                  }) => {
+                    const isSelected =
+                      language === code;
 
-                {/* ENGLISH */}
+                    return (
+                      <button
+                        key={code}
+                        type="button"
+                        onClick={() =>
+                          handleLanguageChange(
+                            code
+                          )
+                        }
+                        className={`
+                          flex
+                          items-center
+                          justify-center
+                          gap-2
+                          rounded-xl
+                          border
+                          px-4
+                          py-3
+                          text-sm
+                          font-bold
+                          transition-all
+                          duration-200
+                          ${
+                            isSelected
+                              ? "border-blue-400/30 bg-blue-600 text-white shadow-lg shadow-blue-950/20"
+                              : "border-white/10 bg-white/[0.04] text-white/75 hover:bg-white/[0.08] hover:text-white"
+                          }
+                        `}
+                      >
+                        {label}
 
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleLanguageChange("en")
+                        {isSelected && (
+                          <Check
+                            size={15}
+                          />
+                        )}
+                      </button>
+                    );
                   }
-                  className={`
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    rounded-xl
-                    border
-                    px-4
-                    py-3
-                    text-sm
-                    font-bold
-                    transition-all
-                    ${
-                      language === "en"
-                        ? "border-blue-400/50 bg-blue-600 text-white"
-                        : "border-white/15 bg-white/5 text-white/80 hover:bg-white/10"
-                    }
-                  `}
-                >
-                  English
-
-                  {language === "en" && (
-                    <Check size={15} />
-                  )}
-                </button>
-
-                {/* TAMIL */}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleLanguageChange("ta")
-                  }
-                  className={`
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    rounded-xl
-                    border
-                    px-4
-                    py-3
-                    text-sm
-                    font-bold
-                    transition-all
-                    ${
-                      language === "ta"
-                        ? "border-blue-400/50 bg-blue-600 text-white"
-                        : "border-white/15 bg-white/5 text-white/80 hover:bg-white/10"
-                    }
-                  `}
-                >
-                  தமிழ்
-
-                  {language === "ta" && (
-                    <Check size={15} />
-                  )}
-                </button>
-
-                {/* MALAYALAM */}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleLanguageChange("ml")
-                  }
-                  className={`
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    rounded-xl
-                    border
-                    px-4
-                    py-3
-                    text-sm
-                    font-bold
-                    transition-all
-                    ${
-                      language === "ml"
-                        ? "border-blue-400/50 bg-blue-600 text-white"
-                        : "border-white/15 bg-white/5 text-white/80 hover:bg-white/10"
-                    }
-                  `}
-                >
-                  മലയാളം
-
-                  {language === "ml" && (
-                    <Check size={15} />
-                  )}
-                </button>
-
-                {/* TELUGU */}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleLanguageChange("te")
-                  }
-                  className={`
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    rounded-xl
-                    border
-                    px-4
-                    py-3
-                    text-sm
-                    font-bold
-                    transition-all
-                    ${
-                      language === "te"
-                        ? "border-blue-400/50 bg-blue-600 text-white"
-                        : "border-white/15 bg-white/5 text-white/80 hover:bg-white/10"
-                    }
-                  `}
-                >
-                  తెలుగు
-
-                  {language === "te" && (
-                    <Check size={15} />
-                  )}
-                </button>
-
-                {/* HINDI */}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    handleLanguageChange("hi")
-                  }
-                  className={`
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    rounded-xl
-                    border
-                    px-4
-                    py-3
-                    text-sm
-                    font-bold
-                    transition-all
-                  ${
-                    language === "hi"
-                      ? "border-blue-400/50 bg-blue-600 text-white"
-                      : "border-white/15 bg-white/5 text-white/80 hover:bg-white/10"
-                  }
-                `}
-              >
-                हिन्दी
-
-                {language === "hi" && (
-                  <Check size={15} />
                 )}
-              </button>
-
+              </div>
             </div>
-          </div>
 
-            {/* =================================================
-                MOBILE APPOINTMENT
-            ================================================= */}
+            {/* MOBILE APPOINTMENT */}
 
             <div className="mt-5">
               <button
                 type="button"
-                onClick={handleBookAppointment}
+                onClick={
+                  handleBookAppointment
+                }
                 className="
                   group
                   flex
@@ -1013,16 +984,19 @@ export default function MainNavbar() {
                   justify-center
                   gap-2
                   rounded-xl
+                  border
+                  border-blue-400/20
                   bg-blue-600
                   px-6
                   py-3.5
                   text-sm
                   font-bold
                   text-white
-                  shadow-lg
+                  shadow-[0_10px_25px_rgba(37,99,235,0.25)]
                   transition-all
                   duration-300
                   hover:bg-blue-500
+                  active:scale-[0.99]
                 "
               >
                 <CalendarCheck2

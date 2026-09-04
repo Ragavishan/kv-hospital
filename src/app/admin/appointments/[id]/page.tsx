@@ -1,6 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { useParams, useRouter } from "next/navigation";
 import {
   ArrowLeft,
@@ -30,14 +34,11 @@ interface Appointment {
   createdAt?: string;
 }
 
-const statuses = [
-  "New",
-  "Confirmed",
-  "Completed",
-  "Cancelled",
-] as const;
-
-type AppointmentStatus = (typeof statuses)[number];
+type AppointmentStatus =
+  | "New"
+  | "Confirmed"
+  | "Completed"
+  | "Cancelled";
 
 export default function AppointmentDetailsPage() {
   const params = useParams();
@@ -53,7 +54,7 @@ export default function AppointmentDetailsPage() {
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState("");
 
-  const fetchAppointment = async () => {
+  const fetchAppointment = useCallback(async () => {
     try {
       setLoading(true);
       setError("");
@@ -81,13 +82,19 @@ export default function AppointmentDetailsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
-    if (id) {
-      fetchAppointment();
+    if (!id) {
+      return;
     }
-  }, [id]);
+
+    const timer = window.setTimeout(() => {
+      void fetchAppointment();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
+  }, [fetchAppointment, id]);
 
   const handleStatusChange = async (
     status: AppointmentStatus

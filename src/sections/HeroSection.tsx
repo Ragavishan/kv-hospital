@@ -53,7 +53,10 @@ export default function HeroSection() {
           priority
           unoptimized
           sizes="100vw"
-          className="object-cover object-center"
+          className="
+            object-cover
+            object-[58%_center]
+          "
         />
       </div>
 
@@ -165,6 +168,7 @@ export default function HeroSection() {
                 bg-slate-950/40
                 px-4
                 py-2
+                shadow-[0_8px_25px_rgba(0,0,0,0.12)]
                 backdrop-blur-md
               "
             >
@@ -197,8 +201,8 @@ export default function HeroSection() {
                 text-white
                 drop-shadow-[0_5px_25px_rgba(0,0,0,0.65)]
                 sm:text-6xl
-                lg:text-[64px]
-                xl:text-[72px]
+                lg:text-[58px]
+                xl:text-[66px]
               "
             >
               {t.hero.title1}
@@ -259,18 +263,22 @@ export default function HeroSection() {
                   justify-center
                   gap-2
                   rounded-xl
+                  border
+                  border-blue-400/20
                   bg-blue-600
                   px-6
                   py-3.5
                   text-sm
                   font-bold
                   text-white
-                  shadow-xl
-                  shadow-blue-950/40
+                  shadow-[0_10px_28px_rgba(37,99,235,0.28)]
                   transition-all
                   duration-300
                   hover:-translate-y-1
+                  hover:border-blue-300/30
                   hover:bg-blue-500
+                  hover:shadow-[0_14px_32px_rgba(37,99,235,0.38)]
+                  active:translate-y-0
                 "
               >
                 <CalendarCheck2 size={18} />
@@ -306,11 +314,14 @@ export default function HeroSection() {
                   text-sm
                   font-bold
                   text-white
+                  shadow-[0_8px_24px_rgba(0,0,0,0.12)]
                   backdrop-blur-md
                   transition-all
                   duration-300
                   hover:-translate-y-1
+                  hover:border-white/40
                   hover:bg-white/20
+                  active:translate-y-0
                 "
               >
                 <Phone size={18} />
@@ -331,12 +342,12 @@ export default function HeroSection() {
               top-1/2
               z-20
               hidden
-              w-[270px]
+              w-[260px]
               -translate-y-1/2
               lg:right-8
               lg:block
               xl:right-14
-              xl:w-[300px]
+              xl:w-[280px]
             "
           >
             <div
@@ -380,14 +391,12 @@ export default function HeroSection() {
                     {/* EMERGENCY LABEL */}
 
                     <div className="flex items-center gap-2">
-                      {/* BIGGER BLINKING DOT */}
-
                       <span
                         className="
                           relative
                           flex
-                          h-3.5
-                          w-3.5
+                          h-3
+                          w-3
                         "
                       >
                         <span
@@ -404,8 +413,8 @@ export default function HeroSection() {
                         <span
                           className="
                             relative
-                            h-3.5
-                            w-3.5
+                            h-3
+                            w-3
                             rounded-full
                             bg-red-500
                             shadow-[0_0_12px_rgba(239,68,68,0.9)]
@@ -429,7 +438,7 @@ export default function HeroSection() {
                     <h2
                       className="
                         mt-2.5
-                        text-[21px]
+                        text-[20px]
                         font-extrabold
                         leading-tight
                         text-white
@@ -505,6 +514,7 @@ export default function HeroSection() {
                     hover:from-red-600
                     hover:via-red-500
                     hover:to-rose-500
+                    active:translate-y-0
                   "
                 >
                   <Phone size={15} />
@@ -576,9 +586,9 @@ export default function HeroSection() {
               flex
               flex-wrap
               items-center
-              justify-between
-              gap-5
-              lg:gap-8
+              justify-start
+              gap-8
+              lg:gap-14
             "
           >
             <Feature text={t.hero.experiencedDoctors} />
@@ -622,8 +632,6 @@ export default function HeroSection() {
             >
               <div>
                 <div className="flex items-center gap-2">
-                  {/* MOBILE BIG BLINKING DOT */}
-
                   <span className="relative flex h-3 w-3">
                     <span
                       className="
@@ -643,6 +651,7 @@ export default function HeroSection() {
                         w-3
                         rounded-full
                         bg-red-500
+                        shadow-[0_0_10px_rgba(239,68,68,0.8)]
                       "
                     />
                   </span>
@@ -692,6 +701,13 @@ export default function HeroSection() {
                   text-white
                   shadow-lg
                   shadow-red-950/40
+                  transition-all
+                  duration-300
+                  hover:-translate-y-0.5
+                  hover:from-red-600
+                  hover:via-red-500
+                  hover:to-rose-500
+                  active:translate-y-0
                 "
               >
                 <Phone size={15} />
@@ -728,9 +744,12 @@ function Feature({ text }: { text: string }) {
           flex
           h-7
           w-7
+          shrink-0
           items-center
           justify-center
           rounded-full
+          border
+          border-blue-300/10
           bg-blue-500/20
         "
       >

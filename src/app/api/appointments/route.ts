@@ -2,8 +2,40 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Appointment from "@/models/Appointment";
 
-export async function GET() {
+const ADMIN_COOKIE_NAME = "iswarya_admin_session";
+
+function isAdminAuthenticated(request: Request) {
+  const cookieHeader = request.headers.get("cookie") || "";
+
+  return cookieHeader
+    .split(";")
+    .some((cookie) => {
+      const [name, ...valueParts] = cookie.trim().split("=");
+
+      return (
+        name === ADMIN_COOKIE_NAME &&
+        valueParts.join("=") === "authenticated"
+      );
+    });
+}
+
+/* =========================================================
+   GET APPOINTMENTS
+   Admin only
+========================================================= */
+
+export async function GET(request: Request) {
   try {
+    if (!isAdminAuthenticated(request)) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Unauthorized. Admin login required.",
+        },
+        { status: 401 }
+      );
+    }
+
     await connectDB();
 
     console.log("✅ MongoDB connected successfully!");
@@ -31,6 +63,11 @@ export async function GET() {
     );
   }
 }
+
+/* =========================================================
+   CREATE APPOINTMENT
+   Public
+========================================================= */
 
 export async function POST(request: Request) {
   try {

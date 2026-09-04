@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import {
   CalendarDays,
@@ -49,7 +49,7 @@ export default function AdminAppointmentsPage() {
   const [error, setError] = useState("");
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
-  const fetchAppointments = async () => {
+  const fetchAppointments = useCallback(async () => {
     try {
       setLoading(true);
       setError("");
@@ -76,11 +76,15 @@ export default function AdminAppointmentsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    fetchAppointments();
-  }, []);
+    const timer = window.setTimeout(() => {
+      void fetchAppointments();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
+  }, [fetchAppointments]);
 
   const handleDelete = async (id: string) => {
     const confirmed = window.confirm(

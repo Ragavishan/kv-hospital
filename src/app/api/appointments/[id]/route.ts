@@ -11,6 +11,14 @@ const allowedStatuses = [
 
 type AppointmentStatus = (typeof allowedStatuses)[number];
 
+function cleanString(value: unknown) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+/* =========================================================
+   GET SINGLE APPOINTMENT
+========================================================= */
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -49,6 +57,11 @@ export async function GET(
   }
 }
 
+/* =========================================================
+   PATCH APPOINTMENT
+   Status + Medical Record
+========================================================= */
+
 export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -58,32 +71,12 @@ export async function PATCH(
 
     const data = await request.json();
 
-    const status = data.status as AppointmentStatus;
-
-    if (!allowedStatuses.includes(status)) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Invalid appointment status.",
-        },
-        { status: 400 }
-      );
-    }
-
     await connectDB();
 
-    const appointment = await Appointment.findByIdAndUpdate(
-      id,
-      {
-        status,
-      },
-      {
-        new: true,
-        runValidators: true,
-      }
-    ).lean();
+    const existingAppointment =
+      await Appointment.findById(id);
 
-    if (!appointment) {
+    if (!existingAppointment) {
       return NextResponse.json(
         {
           success: false,
@@ -93,27 +86,112 @@ export async function PATCH(
       );
     }
 
+    /* =====================================================
+       STATUS UPDATE
+    ===================================================== */
+
+    if (data.status !== undefined) {
+      const status = data.status as AppointmentStatus;
+
+      if (!allowedStatuses.includes(status)) {
+        return NextResponse.json(
+          {
+            success: false,
+            message: "Invalid appointment status.",
+          },
+          { status: 400 }
+        );
+      }
+
+      existingAppointment.status = status;
+    }
+
+    /* =====================================================
+       MEDICAL RECORD UPDATE
+    ===================================================== */
+
+    if (
+      data.medicalRecord &&
+      typeof data.medicalRecord === "object"
+    ) {
+      const medicalRecord = data.medicalRecord;
+
+      existingAppointment.medicalRecord = {
+        reasonForVisit: cleanString(
+          medicalRecord.reasonForVisit
+        ),
+
+        diagnosis: cleanString(
+          medicalRecord.diagnosis
+        ),
+
+        treatment: cleanString(
+          medicalRecord.treatment
+        ),
+
+        medicines: cleanString(
+          medicalRecord.medicines
+        ),
+
+        tests: cleanString(
+          medicalRecord.tests
+        ),
+
+        finalResult: cleanString(
+          medicalRecord.finalResult
+        ),
+
+        doctorNotes: cleanString(
+          medicalRecord.doctorNotes
+        ),
+
+        followUpDate: cleanString(
+          medicalRecord.followUpDate
+        ),
+
+        followUpInstructions: cleanString(
+          medicalRecord.followUpInstructions
+        ),
+
+        updatedAt: new Date(),
+      };
+    }
+
+    await existingAppointment.save();
+
+    const updatedAppointment =
+      await Appointment.findById(id).lean();
+
     console.log(
-      `Appointment ${id} status updated to ${status}`
+      `Appointment ${id} updated successfully`
     );
 
     return NextResponse.json({
       success: true,
-      message: "Appointment status updated successfully.",
-      appointment,
+      message:
+        "Appointment updated successfully.",
+      appointment: updatedAppointment,
     });
   } catch (error) {
-    console.error("Update appointment status error:", error);
+    console.error(
+      "Update appointment error:",
+      error
+    );
 
     return NextResponse.json(
       {
         success: false,
-        message: "Unable to update appointment status.",
+        message:
+          "Unable to update appointment.",
       },
       { status: 500 }
     );
   }
 }
+
+/* =========================================================
+   DELETE APPOINTMENT
+========================================================= */
 
 export async function DELETE(
   request: Request,
@@ -124,7 +202,8 @@ export async function DELETE(
 
     await connectDB();
 
-    const appointment = await Appointment.findByIdAndDelete(id);
+    const appointment =
+      await Appointment.findByIdAndDelete(id);
 
     if (!appointment) {
       return NextResponse.json(
@@ -140,15 +219,20 @@ export async function DELETE(
 
     return NextResponse.json({
       success: true,
-      message: "Appointment deleted successfully.",
+      message:
+        "Appointment deleted successfully.",
     });
   } catch (error) {
-    console.error("Delete appointment error:", error);
+    console.error(
+      "Delete appointment error:",
+      error
+    );
 
     return NextResponse.json(
       {
         success: false,
-        message: "Unable to delete appointment.",
+        message:
+          "Unable to delete appointment.",
       },
       { status: 500 }
     );

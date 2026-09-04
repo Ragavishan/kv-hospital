@@ -3,9 +3,7 @@ import Image from "next/image";
 export default function Loader() {
   return (
     <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-slate-50">
-
       {/* Hospital Logo */}
-
       <div className="relative h-28 w-28">
         <Image
           src="/images/iswarya-hospital-logo.png"
@@ -18,7 +16,6 @@ export default function Loader() {
       </div>
 
       {/* Hospital Name */}
-
       <h2 className="mt-6 text-xl font-bold tracking-tight text-slate-900">
         Iswarya Hospital
       </h2>
@@ -28,7 +25,6 @@ export default function Loader() {
       </p>
 
       {/* Loading Dots */}
-
       <div className="mt-5 flex items-center gap-2">
         <span className="h-2 w-2 animate-bounce rounded-full bg-blue-700" />
 
@@ -42,7 +38,6 @@ export default function Loader() {
           style={{ animationDelay: "300ms" }}
         />
       </div>
-
     </div>
   );
 }
