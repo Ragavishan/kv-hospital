@@ -442,7 +442,7 @@ export default function MainNavbar() {
                 }
               `}
             >
-              Iswarya Hospital
+              ISWARYA HOSPITAL
             </h1>
 
             <div className="mt-1.5 flex items-center gap-1.5">

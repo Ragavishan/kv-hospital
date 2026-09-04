@@ -17,7 +17,7 @@ export default function Loader() {
 
       {/* Hospital Name */}
       <h2 className="mt-6 text-xl font-bold tracking-tight text-slate-900">
-        Iswarya Hospital
+        ISWARYA HOSPITAL
       </h2>
 
       <p className="mt-1.5 text-sm font-medium text-slate-500">
