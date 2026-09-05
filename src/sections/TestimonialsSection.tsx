@@ -18,7 +18,7 @@ export default function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="relative overflow-hidden bg-slate-50 py-24 sm:py-28"
+      className="relative overflow-hidden bg-slate-50 py-20 sm:py-24"
     >
       {/* Background Decorations */}
       <div className="pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-blue-100/60 blur-3xl" />
@@ -36,17 +36,37 @@ export default function TestimonialsSection() {
             />
           </div>
 
-          {/* Written Patient Testimonials Only */}
-          <div className="relative mt-14 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((testimonial) => (
-              <TestimonialCard
-                key={testimonial.id}
-                name={testimonial.name[currentLanguage]}
-                location={testimonial.location[currentLanguage]}
-                review={testimonial.review[currentLanguage]}
-                rating={testimonial.rating}
-              />
-            ))}
+          {/* Horizontal Patient Testimonials */}
+          <div className="relative mt-10">
+            <div
+              className="
+                flex gap-5
+                overflow-x-auto
+                pb-4
+                snap-x snap-mandatory
+                scrollbar-hide
+              "
+            >
+              {testimonials.map((testimonial) => (
+                <div
+                  key={testimonial.id}
+                  className="
+                    w-[270px]
+                    shrink-0
+                    snap-start
+                    sm:w-[290px]
+                    lg:w-[300px]
+                  "
+                >
+                  <TestimonialCard
+                    name={testimonial.name[currentLanguage]}
+                    location={testimonial.location[currentLanguage]}
+                    review={testimonial.review[currentLanguage]}
+                    rating={testimonial.rating}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </Container>
       </Section>

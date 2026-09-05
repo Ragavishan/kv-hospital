@@ -27,7 +27,7 @@ title: "Get In Touch",
 description:
 "We are always here to help you with your healthcare needs.",
 visitUs: "Visit Us",
-addressTitle: "Iswarya Fertility Centre",
+addressTitle: "Iswarya Hospital",
 address: [
   
 "72-B, Dindigul – Palani Main Road,",
@@ -254,10 +254,10 @@ return ( <section
           </p>
 
           <a
-            href="mailto:iswarya hospitalmultispecialityhospital@gmail.com"
+            href="mailto:kvmultispecialityhospital@gmail.com"
             className="mt-3 inline-flex items-center gap-2 break-all font-semibold text-blue-700 transition hover:text-blue-900"
           >
-            iswarya hospitalmultispecialityhospital@gmail.com
+            kvmultispecialityhospital@gmail.com
             <ArrowUpRight
               size={16}
               className="shrink-0"
