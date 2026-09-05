@@ -10,8 +10,10 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Iswarya Hospital | Best Multispeciality Hospital in Palani",
+
   description:
     "Iswarya Hospital is a trusted multispeciality hospital in Palani offering 24/7 emergency care, experienced doctors, advanced treatments, and quality healthcare.",
+
   icons: {
     icon: "/images/iswarya-hospital-logo.png",
     shortcut: "/images/iswarya-hospital-logo.png",
@@ -27,7 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} min-h-screen`}>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

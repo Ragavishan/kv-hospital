@@ -91,7 +91,7 @@ export const testimonials: Testimonial[] = [
     location: {
       en: "Dindigul",
       ta: "திண்டுக்கல்",
-      ml: "ദിണ്ടിഗൽ",
+      ml: "ദிண്ടിഗൽ",
       te: "దిండిగల్",
       hi: "डिंडीगुल",
     },

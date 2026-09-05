@@ -9,6 +9,7 @@ import GallerySection from "@/sections/GallerySection";
 import FacilitiesSection from "@/sections/FacilitiesSection";
 import AwardsSection from "@/sections/AwardsSection";
 import TestimonialsSection from "@/sections/TestimonialsSection";
+import FeedbackVideosSection from "@/sections/FeedbackVideosSection";
 import WhyChooseUs from "@/sections/WhyChooseUs";
 import AppointmentCTA from "@/sections/AppointmentCTA";
 import ContactSection from "@/sections/ContactSection";
@@ -58,6 +59,8 @@ export default function Home() {
         <AwardsSection />
 
         <TestimonialsSection />
+
+        <FeedbackVideosSection />
 
         <WhyChooseUs />
 

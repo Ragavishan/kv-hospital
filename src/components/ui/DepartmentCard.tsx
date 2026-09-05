@@ -32,7 +32,6 @@ const uiTranslations = {
   en: {
     department: "Medical Department",
     expertCare: "Expert Care",
-    patientFocused: "Patient-focused treatment",
     explore: "Explore",
     hospital: "Iswarya Hospital",
     comprehensive: "Comprehensive medical care",
@@ -47,9 +46,8 @@ const uiTranslations = {
   ta: {
     department: "மருத்துவத் துறை",
     expertCare: "சிறப்பு சிகிச்சை",
-    patientFocused: "நோயாளியை மையமாகக் கொண்ட சிகிச்சை",
     explore: "மேலும் பார்க்க",
-    hospital: "Iswarya Hospital",
+    hospital: "ஐஸ்வர்யா மருத்துவமனை",
     comprehensive: "முழுமையான மருத்துவ சேவை",
     about: "துறை பற்றிய தகவல்",
     services: "எங்கள் சேவைகள்",
@@ -62,9 +60,8 @@ const uiTranslations = {
   ml: {
     department: "മെഡിക്കൽ വിഭാഗം",
     expertCare: "വിദഗ്ധ പരിചരണം",
-    patientFocused: "രോഗിയെ കേന്ദ്രീകരിച്ചുള്ള ചികിത്സ",
     explore: "കൂടുതൽ കാണുക",
-    hospital: "Iswarya Hospital",
+    hospital: "ஐസ്വര്യാ മരുത്തുവമനൈ ",
     comprehensive: "സമഗ്രമായ മെഡിക്കൽ പരിചരണം",
     about: "വിഭാഗത്തെക്കുറിച്ച്",
     services: "ഞങ്ങളുടെ സേവനങ്ങൾ",
@@ -77,9 +74,8 @@ const uiTranslations = {
   te: {
     department: "వైద్య విభాగం",
     expertCare: "నిపుణుల చికిత్స",
-    patientFocused: "రోగి కేంద్రిత చికిత్స",
     explore: "మరింత చూడండి",
-    hospital: "Iswarya Hospital",
+    hospital: "ಐస్వర్యా హాస్పిటల్",
     comprehensive: "సమగ్ర వైద్య సేవలు",
     about: "విభాగం గురించి",
     services: "మా సేవలు",
@@ -92,9 +88,8 @@ const uiTranslations = {
   hi: {
     department: "चिकित्सा विभाग",
     expertCare: "विशेषज्ञ देखभाल",
-    patientFocused: "रोगी-केंद्रित उपचार",
     explore: "और देखें",
-    hospital: "Iswarya Hospital",
+    hospital: "ऐस्वर्या हॉस्पिटल",
     comprehensive: "व्यापक चिकित्सा देखभाल",
     about: "विभाग के बारे में",
     services: "हमारी सेवाएं",
@@ -102,6 +97,83 @@ const uiTranslations = {
     service: "सेवाएं",
     book: "अपॉइंटमेंट बुक करें",
     close: "बंद करें",
+  },
+} as const;
+
+const patientFocusedTranslations = {
+  en: {
+    "1": "Complete patient care",
+    "2": "Advanced cardiac care",
+    "3": "Bone & joint care",
+    "4": "Specialized surgical care",
+    "5": "Dedicated dialysis care",
+    "6": "Advanced neurological care",
+    "7": "Digestive health care",
+    "8": "Comprehensive women's care",
+    "9": "Expert pediatric care",
+    "10": "Advanced diagnostic care",
+    "11": "Complete diabetes care",
+    "12": "Comprehensive emergency care",
+  },
+
+  ta: {
+    "1": "நோய்கள் மற்றும் சிகிச்சைகள்",
+    "2": "இதயநோய் அறிகுறிகள் & காரணங்கள்",
+    "3": "எலும்பு மற்றும் எலும்பியல் பராமரிப்பு",
+    "4": "குழந்தையின் நோய் கண்டறிதல்",
+    "5": "சிறப்பு டயாலிசிஸ் சிகிச்சை",
+    "6": "மேம்பட்ட நரம்பியல் சிகிச்சை",
+    "7": "செரிமான நல சிகிச்சை",
+    "8": "முழுமையான பெண்கள் நல சிகிச்சை",
+    "9": "கதிரியக்க நோயறிதல் மற்றும் Imaging",
+    "10": "ஆய்வகம் மற்றும் மருத்துவ நோயறிதல்",
+    "11": "முழுமையான நீரிழிவியல் சிகிச்சை",
+    "12": "அவசரம் மற்றும் தீவிர சிகிச்சை",
+  },
+
+  ml: {
+    "1": "സമ്പൂർണ്ണ രോഗി പരിചരണം",
+    "2": "അത്യാധുനിക ഹൃദയ പരിചരണം",
+    "3": "എല്ല് & സന്ധി പരിചരണം",
+    "4": "പ്രത്യേക ശസ്ത്രക്രിയാ പരിചരണം",
+    "5": "പ്രത്യേക ഡയാലിസിസ് പരിചരണം",
+    "6": "അത്യാധുനിക ന്യൂറോളജി പരിചരണം",
+    "7": "ദഹന ആരോഗ്യ പരിചരണം",
+    "8": "സമ്പൂർണ്ണ വനിതാ ആരോഗ്യ പരിചരണം",
+    "9": "വിദഗ്ധ ശിശു പരിചരണം",
+    "10": "അത്യാധുനിക രോഗനിർണയ സേവനം",
+    "11": "സമ്പൂർണ്ണ അടിയന്തര പരിചരണം",
+    "12": "സമ്പൂർണ്ണ അവസര പരിചരണം",
+  },
+
+  te: {
+    "1": "సంపూర్ణ రోగి సంరక్షణ",
+    "2": "అధునాతన హృదయ సంరక్షణ",
+    "3": "ఎముకలు & కీళ్ల సంరక్షణ",
+    "4": "ప్రత్యేక శస్త్రచికిత్స సంరక్షణ",
+    "5": "ప్రత్యేక డయాలసిస్ సంరక్షణ",
+    "6": "అధునాతన న్యూరాలజీ సంరక్షణ",
+    "7": "జీర్ణ ఆరోగ్య సంరక్షణ",
+    "8": "సంపూర్ణ మహిళల ఆరోగ్య సంరక్షణ",
+    "9": "నిపుణుల పిల్లల సంరక్షణ",
+    "10": "అధునాతన నిర్ధారణ సేవలు",
+    "11": "సంపూర్ణ ప్రమేహ సంరక్షణ",
+    "12": "సంపూర్ణ అవసర సంరక్షణ",
+  },
+
+  hi: {
+    "1": "सम्पूर्ण रोगी देखभाल",
+    "2": "उन्नत हृदय देखभाल",
+    "3": "हड्डी और जोड़ देखभाल",
+    "4": "विशेष सर्जिकल देखभाल",
+    "5": "विशेष डायलिसिस देखभाल",
+    "6": "उन्नत न्यूरोलॉजी देखभाल",
+    "7": "पाचन स्वास्थ्य देखभाल",
+    "8": "सम्पूर्ण महिला स्वास्थ्य देखभाल",
+    "9": "विशेषज्ञ बाल चिकित्सा देखभाल",
+    "10": "उन्नत निदान सेवाएं",
+    "11": "सम्पूर्ण प्रमेह देखभाल",
+    "12": "सम्पूर्ण आपातकालीन देखभाल",
   },
 } as const;
 
@@ -123,6 +195,11 @@ export default function DepartmentCard({
   const ui = uiTranslations[currentLanguage];
 
   const videoSrc = departmentVideos[String(department.id)];
+
+  const patientFocused =
+  patientFocusedTranslations[currentLanguage][
+    String(department.id) as keyof typeof patientFocusedTranslations[typeof currentLanguage]
+  ];
 
   const handleBookAppointment = () => {
     setOpen(false);
@@ -249,7 +326,7 @@ export default function DepartmentCard({
               </p>
 
               <p className="mt-1 text-sm font-semibold text-slate-700">
-                {ui.patientFocused}
+                {patientFocused}
               </p>
             </div>
 
