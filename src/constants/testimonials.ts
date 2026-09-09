@@ -140,19 +140,19 @@ export const testimonials: Testimonial[] = [
     id: 5,
 
     name: {
-      en: "Eswar Sandy",
-      ta: "ஈஸ்வர் சாண்டி",
-      ml: "എസ്വര്‍ സാന്ദി",
-      te: "ఎస్వర్ సాండి",
-      hi: "एस्वर शांति",
+      en: "Murugan",
+      ta: "மூருகன்",
+      ml: "മൂരുഗൻ",
+      te: "మూరుగన్",
+      hi: "मूरुगन",
     },
 
     location: {
-      en: "Dharapuram",
-      ta: "தாராபுரம்",
-      ml: "ധാരാപുരം",
-      te: "ధారాపురం",
-      hi: "धारापुरम",
+      en: "Adivaram",
+      ta: "அடிவாரம்",
+      ml: "അടിവാരം",
+      te: "ఆదివారం",
+      hi: "आदिवरम",
     },
 
     review: {

@@ -102,9 +102,9 @@ const sectionText: Record<
   },
 
   ta: {
-    eyebrow: "எங்கள் புகைப்படத் தொகுப்பு",
+    eyebrow: "சிறப்புப் பார்வை",
     headingFirst: "எங்கள்",
-    headingHighlight: "புகைப்படத் தொகுப்பைப் பாருங்கள்",
+    headingHighlight: "புகைப்படத் தொகுப்பு",
     description:
       "எங்கள் மருத்துவமனை சூழல், பணியாளர்கள், நிகழ்வுகள் மற்றும் நினைவில் நிற்கும் தருணங்களின் ஒரு பார்வை.",
     hospital: "ஐஸ்வர்யா மருத்துவமனை",
@@ -449,7 +449,7 @@ export default function GallerySection() {
                 {text.eyebrow}
               </p>
 
-              <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl">
+              <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 md:text-3xl">
                 {text.headingFirst}{" "}
                 <span className="text-blue-600">
                   {text.headingHighlight}

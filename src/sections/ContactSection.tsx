@@ -44,7 +44,7 @@ emergencyDescription:
 "Our emergency department is available around the clock.",
 available247: "24 × 7 Available",
 findUs: "FIND US",
-visitHospital: "Visit Iswarya Fertility Centre",
+visitHospital: "Visit Iswarya Hospital - Palani",
 mapAddress:
 "72-B, Dindigul – Palani Main Road, Laxmipuram, Palani",
 getDirections: "Get Directions",
@@ -56,7 +56,7 @@ ta: {
   description:
     "உங்கள் மருத்துவ தேவைகளுக்கு உதவ நாங்கள் எப்போதும் தயாராக இருக்கிறோம்.",
   visitUs: "எங்களை சந்திக்கவும்",
-  addressTitle: "ஐஸ்வர்யா மருத்துவமனை",
+  addressTitle: "ஐஸ்வர்யா மருத்துவமனை - பழனி",
   address: [
     "72-B, திண்டுக்கல் – பழனி நெடுஞ்சாலை,",
     "லட்சுமிபுரம்,",
@@ -85,7 +85,7 @@ ml: {
   description:
     "നിങ്ങളുടെ ആരോഗ്യ ആവശ്യങ്ങളിൽ നിങ്ങളെ സഹായിക്കാൻ ഞങ്ങൾ എപ്പോഴും തയ്യാറാണ്.",
   visitUs: "ഞങ്ങളെ സന്ദർശിക്കുക",
-  addressTitle: "ഐശ്വര്യ മരുത്തുവമനൈ",
+  addressTitle: "ഐശ്വര്യ മരുത്തുവമനൈ - പഴനി",
   address: [
     "72-B, ദിണ്ടിഗൽ – പഴനി പ്രധാന റോഡ്,",
     "ലക്ഷ്മിപുരം,",
@@ -114,7 +114,7 @@ te: {
   description:
     "మీ ఆరోగ్య అవసరాలకు సహాయం చేయడానికి మేము ఎల్లప్పుడూ సిద్ధంగా ఉన్నాము.",
   visitUs: "మమ్మల్ని సందర్శించండి",
-  addressTitle: "ఐశ్వర్య మరుత్తువమనై",
+  addressTitle: "ఐశ్వర్య మరుత్తువమనై - పలని",
   address: [
     "72-B, దిండిగల్ – పలని ప్రధాన రహదారి,",
     "లక్ష్మీపురం,",
@@ -144,7 +144,7 @@ hi: {
   description:
     "आपकी स्वास्थ्य संबंधी आवश्यकताओं में सहायता करने के लिए हम हमेशा तैयार हैं।",
   visitUs: "हमसे मिलें",
-  addressTitle: "ऐश्वर्या मरुत्तुवमनै",
+  addressTitle: "ऐश्वर्या मरुत्तुवमनै - पलानी",
   address: [
     "72-B, डिंडीगुल – पलानी मुख्य मार्ग,",
     "लक्ष्मीपुरम,",
@@ -310,7 +310,7 @@ return ( <section
             </div>
 
             <a
-              href="https://maps.google.com/?q=ISWARYA HOSPITAL+Hospital,+Dindigul+Road,+Laxmipuram,+Palani,+Tamil+Nadu+624601"
+              href="https://maps.google.com/?q=KV+Hospital,+Dindigul+Road,+Laxmipuram,+Palani,+Tamil+Nadu+624601"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex w-fit items-center gap-2 rounded-xl bg-blue-700 px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-lg"

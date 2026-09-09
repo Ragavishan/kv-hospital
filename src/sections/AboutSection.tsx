@@ -14,20 +14,77 @@ import Container from "@/components/common/Container";
 import Section from "@/components/animations/Section";
 import { useLanguage } from "@/components/common/LanguageProvider";
 
+const aboutImages = [
+  "/images/about/about-1.jpg",
+  "/images/about/about-2.jpg",
+  "/images/about/about-3.jpg",
+  "/images/about/about-4.jpg",
+  "/images/about/about-5.jpg",
+  "/images/about/about-6.jpg",
+];
+
+function DiamondImage({
+  imageIndex,
+  altNumber,
+  priority = false,
+  imageSrc,
+}: {
+  imageIndex: number;
+  altNumber: number;
+  priority?: boolean;
+  imageSrc: string;
+}) {
+  return (
+    <div
+      className="
+        absolute
+        left-1/2
+        top-1/2
+        h-40
+        w-40
+        -translate-x-1/2
+        -translate-y-1/2
+        rotate-45
+        overflow-hidden
+        rounded-none
+        border-[6px]
+        border-white
+        bg-white
+        shadow-[0_16px_35px_rgba(15,23,42,0.14)]
+        transition-transform
+        duration-500
+        hover:scale-[1.025]
+
+        sm:h-[180px]
+        sm:w-[180px]
+
+        lg:h-[200px]
+        lg:w-[200px]
+      "
+    >
+      <div className="absolute inset-[-20%] -rotate-45">
+        <Image
+          key={`${imageIndex}-${altNumber}`}
+          src={imageSrc}
+          alt={`Image ${altNumber}`}
+          fill
+          priority={priority}
+          quality={75}
+          sizes="(max-width: 640px) 220px, (max-width: 1024px) 260px, 300px"
+          className="object-cover object-center"
+        />
+
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/15 via-transparent to-transparent" />
+      </div>
+    </div>
+  );
+}
+
 export default function AboutSection() {
   const [activeImage, setActiveImage] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
   const { t } = useLanguage();
-
-  const aboutImages = [
-    "/images/about/about-1.jpg",
-    "/images/about/about-2.jpg",
-    "/images/about/about-3.jpg",
-    "/images/about/about-4.jpg",
-    "/images/about/about-5.jpg",
-    "/images/about/about-6.jpg",
-  ];
 
   /* ============================================================
      AUTO IMAGE ROTATION
@@ -41,7 +98,7 @@ export default function AboutSection() {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [isPaused, aboutImages.length]);
+  }, [isPaused]);
 
   const handleLearnMore = () => {
     document.getElementById("contact")?.scrollIntoView({
@@ -52,65 +109,6 @@ export default function AboutSection() {
 
   const getImageIndex = (position: number) => {
     return (activeImage + position) % aboutImages.length;
-  };
-
-  /* ============================================================
-     DIAMOND IMAGE COMPONENT
-  ============================================================ */
-
-  const DiamondImage = ({
-    imageIndex,
-    altNumber,
-    priority = false,
-  }: {
-    imageIndex: number;
-    altNumber: number;
-    priority?: boolean;
-  }) => {
-    return (
-      <div
-        className="
-          absolute
-          left-1/2
-          top-1/2
-          h-40
-          w-40
-          -translate-x-1/2
-          -translate-y-1/2
-          rotate-45
-          overflow-hidden
-          rounded-none
-          border-[6px]
-          border-white
-          bg-white
-          shadow-[0_16px_35px_rgba(15,23,42,0.14)]
-          transition-transform
-          duration-500
-          hover:scale-[1.025]
-
-          sm:h-[180px]
-          sm:w-[180px]
-
-          lg:h-[200px]
-          lg:w-[200px]
-        "
-      >
-        {/* Rotate image back to normal */}
-        <div className="absolute inset-[-20%] -rotate-45">
-          <Image
-            key={`${imageIndex}-${altNumber}`}
-            src={aboutImages[imageIndex]}
-            alt={`${t.about.imageAlt} ${altNumber}`}
-            fill
-            priority={priority}
-            quality={75}
-            sizes="(max-width: 640px) 220px, (max-width: 1024px) 260px, 300px"
-            className="object-cover object-center"         />
-
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/15 via-transparent to-transparent" />
-        </div>
-      </div>
-    );
   };
 
   return (
@@ -209,6 +207,7 @@ export default function AboutSection() {
                     imageIndex={getImageIndex(0)}
                     altNumber={1}
                     priority
+                    imageSrc={aboutImages[getImageIndex(0)]}
                   />
                 </div>
 
@@ -236,6 +235,7 @@ export default function AboutSection() {
                   <DiamondImage
                     imageIndex={getImageIndex(1)}
                     altNumber={2}
+                    imageSrc={aboutImages[getImageIndex(1)]}
                   />
                 </div>
 
@@ -263,6 +263,7 @@ export default function AboutSection() {
                   <DiamondImage
                     imageIndex={getImageIndex(2)}
                     altNumber={3}
+                    imageSrc={aboutImages[getImageIndex(2)]}
                   />
                 </div>
 
@@ -290,6 +291,7 @@ export default function AboutSection() {
                   <DiamondImage
                     imageIndex={getImageIndex(3)}
                     altNumber={4}
+                    imageSrc={aboutImages[getImageIndex(3)]}
                   />
                 </div>
               </div>
