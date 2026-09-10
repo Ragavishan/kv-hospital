@@ -54,9 +54,11 @@ export default function HeroSection() {
           unoptimized
           sizes="100vw"
           className="
-            object-cover
-            object-[58%_center]
-          "
+          object-cover
+          object-[50%_38%]
+          sm:object-[58%_center]
+        "
+
         />
       </div>
 
@@ -127,10 +129,12 @@ export default function HeroSection() {
           w-full
           flex-col
           justify-between
-          px-5
-          pb-7
-          pt-24
-          sm:px-8
+          px-4
+          pb-5
+          pt-16
+          sm:px-8 
+          sm:pb-7
+          sm:pt-24
           lg:px-12
           lg:pb-8
           lg:pt-28
@@ -152,8 +156,11 @@ export default function HeroSection() {
               z-20
               w-full
               max-w-[600px]
+              min-w-0
+              sm:max-w-[600px]
             "
           >
+
             {/* TRUST BADGE */}
 
             <div
@@ -194,48 +201,63 @@ export default function HeroSection() {
 
             <h1
               className="
-                text-5xl
+                max-w-full
+                min-w-0
+                overflow-wrap-anywhere
+                break-words
+                text-[24px]
                 font-extrabold
-                leading-[0.98]
-                tracking-[-0.045em]
+                leading-[1.18]
+                tracking-[-0.015em]
                 text-white
                 drop-shadow-[0_5px_25px_rgba(0,0,0,0.65)]
                 sm:text-6xl
+                sm:leading-[1.02]
+                sm:tracking-[-0.035em]
                 lg:text-[58px]
                 xl:text-[66px]
               "
             >
-              {t.hero.title1}
-              <br />
-              {t.hero.title2}
+              <span className="block">
+                {t.hero.title1}
+              </span>
+
+              <span className="block">
+                {t.hero.title2}
+              </span>
 
               <span
                 className="
-                  mt-2
+                  mt-1
                   block
                   text-blue-300
+                  sm:mt-2
                 "
               >
-                {t.hero.title3}
-                <br />
-                {t.hero.title4}
+                <span className="block">
+                  {t.hero.title3}
+                </span>
+
+                <span className="block">
+                  {t.hero.title4}
+                </span>
               </span>
             </h1>
-
             {/* DESCRIPTION */}
 
             <p
               className="
-                mt-6
+                mt-4
                 max-w-[540px]
-                text-sm
+                text-[13px]
                 font-medium
-                leading-7
+                leading-5
                 text-white/90
                 drop-shadow-lg
+                sm:mt-6
                 sm:text-base
                 sm:leading-8
-              "
+              " 
             >
               {t.hero.description}
             </p>
@@ -244,10 +266,12 @@ export default function HeroSection() {
 
             <div
               className="
-                mt-7
+                mt-5
                 flex
+                w-full
                 flex-col
-                gap-3
+                gap-2.5
+                sm:mt-7
                 sm:flex-row
               "
             >
@@ -257,7 +281,6 @@ export default function HeroSection() {
                 type="button"
                 onClick={handleBookAppointment}
                 className="
-                  group
                   inline-flex
                   items-center
                   justify-center

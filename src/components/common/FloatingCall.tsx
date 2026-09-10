@@ -3,7 +3,7 @@ import { Phone } from "lucide-react";
 export default function FloatingCall() {
   return (
     <a
-      href="tel:+919876543210"
+      href="tel:+917502710333"
       aria-label="Call Iswarya Hospital"
       className="group fixed bottom-28 right-6 z-50 flex items-center"
     >

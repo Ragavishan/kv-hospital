@@ -151,7 +151,7 @@ const content: Record<
 
   ta: {
     badge: "ஏன் எங்களை தேர்வு செய்ய வேண்டும்",
-    title: "நோயாளிகள் ஏன் ஐஸ்வர்யா மருத்துவமனை-ஐ நம்புகிறார்கள்",
+    title: "நோயாளிகள் ஏன் ஐஸ்வர்யா மருத்துவமனையை நம்புகிறார்கள்",
     description:
       "அனுபவம் வாய்ந்த சிகிச்சை, நவீன வசதிகள் மற்றும் முதன்மை அணுகுமுறையுடன் கூடிய சிறந்த சுகாதார சேவையை வழங்குவதில் நாங்கள் அர்ப்பணிப்புடன் செயல்படுகிறோம்.",
     trustedTitle: "நம்பகமான பராமரிப்பு",
@@ -243,19 +243,19 @@ export default function WhyChooseUs() {
               HEADER
           ================================================= */}
 
-          <div className="relative mx-auto max-w-3xl text-center">
-
+          <div className="relative mx-auto max-w-5xl text-center">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-700 shadow-sm">
               <Sparkles size={14} />
               {t.badge}
             </div>
 
-            <SectionTitle
-              subtitle=""
-              title={t.title}
-              description={t.description}
-            />
+            <h2 className="mx-auto max-w-3xl text-2xl font-bold leading-tight tracking-tight text-slate-900 sm:text-3xl lg:text-[2.25rem]">
+              {t.title}
+            </h2>
 
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-500 sm:text-base">
+              {t.description}
+            </p>
           </div>
 
           {/* =================================================

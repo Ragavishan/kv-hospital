@@ -195,7 +195,7 @@ export const doctors: Doctor[] = [
     },
 
     specialization: {
-      en: "General Physician",
+      en: "General Medicine",
       ta: "பொது மருத்துவர்",
       ml: "ജനറൽ ഫിസിഷ്യൻ",
       te: "జనరల్ ఫిజిషియన్",

@@ -12,12 +12,12 @@ export default function SectionTitle({
   return (
     <div className="mx-auto mb-12 max-w-3xl text-center">
       {/* Subtitle */}
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-blue-700 sm:text-sm">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-blue-700 sm:text-sm">
         {subtitle}
       </p>
 
       {/* Main Title */}
-      <h2 className="text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-[2.65rem]">
+      <h2 className="text-2xl font-bold leading-tight tracking-tight text-slate-900 sm:text-3xl lg:text-[2.65rem]">
         {title}
       </h2>
 

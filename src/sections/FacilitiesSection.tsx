@@ -74,24 +74,22 @@ export default function FacilitiesSection() {
   return (
     <section
       id="facilities"
-      className="w-full bg-white py-16"
-      style={{
-        overflow: "hidden",
-      }}
+      className="w-full overflow-hidden bg-white py-14 sm:py-16"
     >
       {/* =========================================
           HEADING
       ========================================= */}
-      <div className="text-center mb-10 px-4">
-        <p className="text-sm font-semibold tracking-[3px] text-cyan-600 uppercase">
+
+      <div className="mb-8 px-4 text-center sm:mb-10">
+        <p className="text-xs font-semibold uppercase tracking-[2.5px] text-cyan-600 sm:text-sm sm:tracking-[3px]">
           {t.facilities.subtitle}
         </p>
 
-        <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-800">
+        <h2 className="mt-2 text-2xl font-bold text-gray-800 sm:text-3xl md:text-4xl">
           {t.facilities.title}
         </h2>
 
-        <p className="mt-3 max-w-2xl mx-auto text-gray-600">
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-gray-600 sm:text-base sm:leading-7">
           {t.facilities.description}
         </p>
       </div>
@@ -99,16 +97,12 @@ export default function FacilitiesSection() {
       {/* =========================================
           HORIZONTAL MARQUEE VIEWPORT
       ========================================= */}
-      <div
-        style={{
-          width: "100%",
-          overflow: "hidden",
-          position: "relative",
-        }}
-      >
+
+      <div className="relative w-full overflow-hidden">
         {/* =========================================
             HORIZONTAL RUNNING TRACK
         ========================================= */}
+
         <div
           className="facilities-marquee"
           style={{
@@ -125,6 +119,7 @@ export default function FacilitiesSection() {
           {/* =========================================
               FIRST SET
           ========================================= */}
+
           <div
             className="facilities-group"
             style={{
@@ -151,6 +146,7 @@ export default function FacilitiesSection() {
           {/* =========================================
               DUPLICATE SET
           ========================================= */}
+
           <div
             className="facilities-group"
             style={{
@@ -179,6 +175,7 @@ export default function FacilitiesSection() {
       {/* =========================================
           HORIZONTAL ANIMATION
       ========================================= */}
+
       <style jsx global>{`
         .facilities-marquee {
           display: flex !important;
@@ -216,7 +213,7 @@ export default function FacilitiesSection() {
 
         @media (max-width: 640px) {
           .facilities-marquee {
-            animation-duration: 18s !important;
+            animation-duration: 19s !important;
           }
         }
       `}</style>
@@ -237,46 +234,77 @@ function FacilityCard({
 }) {
   return (
     <div
-      className="facility-card group"
-      style={{
-        width: "350px",
-        minWidth: "350px",
-        maxWidth: "350px",
-        height: "390px",
+      className="
+        facility-card
+        group
+        relative
+        h-[340px]
+        w-[290px]
+        min-w-[290px]
+        flex-[0_0_290px]
+        overflow-hidden
+        rounded-2xl
+        bg-white
+        shadow-[0_8px_25px_rgba(0,0,0,0.12)]
 
-        /* FORCE HORIZONTAL CARD */
-        flex: "0 0 350px",
-        flexShrink: 0,
-
-        position: "relative",
-        overflow: "hidden",
-
-        borderRadius: "16px",
-
-        background: "white",
-
-        boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
-      }}
+        sm:h-[390px]
+        sm:w-[350px]
+        sm:min-w-[350px]
+        sm:flex-[0_0_350px]
+      "
     >
-      <div className="relative w-full h-full">
+      <div className="relative h-full w-full">
         <Image
           src={facility.image}
           alt={t.facilities[facility.titleKey]}
           fill
-          sizes="350px"
-          className="object-cover transition duration-700 group-hover:scale-110"
+          sizes="(max-width: 640px) 290px, 350px"
+          className="
+            object-cover
+            transition
+            duration-700
+            group-hover:scale-110
+          "
         />
 
         {/* DARK OVERLAY */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
 
         {/* CONTENT */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-          <h3 className="text-2xl font-bold">
+
+        <div
+          className="
+            absolute
+            bottom-0
+            left-0
+            right-0
+            p-4
+            text-white
+            sm:p-6
+          "
+        >
+          <h3
+            className="
+              text-xl
+              font-bold
+              leading-tight
+              sm:text-2xl
+            "
+          >
             {t.facilities[facility.titleKey]}
           </h3>
 
-          <p className="mt-2 text-sm leading-6 text-white/90">
+          <p
+            className="
+              mt-2
+              text-xs
+              leading-5
+              text-white/90
+              sm:text-sm
+              sm:leading-6
+            "
+          >
             {t.facilities[facility.descriptionKey]}
           </p>
         </div>

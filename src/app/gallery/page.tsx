@@ -26,7 +26,7 @@ export default function GalleryPage() {
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {galleryImages.map((item) => (
+          {galleryImages.map((item, index) => (
             <div
               key={item.id}
               className="group overflow-hidden rounded-3xl bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
@@ -36,12 +36,10 @@ export default function GalleryPage() {
                   src={item.image}
                   alt={item.title}
                   fill
+                  priority={index === 0}
+                  loading={index === 0 ? "eager" : "lazy"}
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="
-                    (max-width: 640px) 100vw,
-                    (max-width: 1024px) 50vw,
-                    33vw
-                  "
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
 
                 {/* Bottom Gradient */}

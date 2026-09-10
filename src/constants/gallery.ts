@@ -61,31 +61,31 @@ export const galleryImages: GalleryImage[] = [
   {
     id: 8,
     category: "moments",
-    title: "A New Beginning",
+    title: "A New Beginning - OMR, Chennai",
     image: "/images/gallery/moments/moments1.jpg",
   },
   {
     id: 9,
     category: "moments",
-    title: "100 Hearts, 100 Lives",
+    title: "100 Hearts, 100 Lives - OMR",
     image: "/images/gallery/moments/moments2.jpg",
   },
   {
     id: 10,
     category: "moments",
-    title: "Auspicious Beginning",
+    title: "Auspicious Beginning - OMR",
     image: "/images/gallery/moments/moments3.jpg",
   },
   {
     id: 11,
     category: "moments",
-    title: "Light of Healing",
+    title: "Light of Healing - OMR",
     image: "/images/gallery/moments/moments4.jpg",
   },
   {
     id: 12,
     category: "moments",
-    title: "A Special Moments",
+    title: "A Special Moments - OMR",
     image: "/images/gallery/moments/moments5.jpg",
   },
 ];

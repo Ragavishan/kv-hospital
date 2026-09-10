@@ -40,17 +40,17 @@ function DiamondImage({
         absolute
         left-1/2
         top-1/2
-        h-40
-        w-40
+        h-[115px]
+        w-[115px]
         -translate-x-1/2
         -translate-y-1/2
         rotate-45
         overflow-hidden
         rounded-none
-        border-[6px]
+        border-[5px]
         border-white
         bg-white
-        shadow-[0_16px_35px_rgba(15,23,42,0.14)]
+        shadow-[0_12px_28px_rgba(15,23,42,0.14)]
         transition-transform
         duration-500
         hover:scale-[1.025]
@@ -161,7 +161,7 @@ export default function AboutSection() {
                 IMAGE SIDE
             ====================================================== */}
 
-            <div className="relative flex min-h-[570px] items-center justify-center sm:min-h-[640px] lg:min-h-[690px]">
+            <div className="relative flex min-h-[390px] items-center justify-center sm:min-h-[640px] lg:min-h-[690px]">
               {/* ==================================================
                   COMPACT DIAMOND CLUSTER
               ================================================== */}
@@ -169,9 +169,8 @@ export default function AboutSection() {
               <div
                 className="
                   relative
-
-                  h-[500px]
-                  w-[500px]
+                  h-[330px]
+                  w-[330px]
 
                   sm:h-[560px]
                   sm:w-[560px]
@@ -179,8 +178,6 @@ export default function AboutSection() {
                   lg:h-[620px]
                   lg:w-[620px]
                 "
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
               >
                 {/* ==================================================
                     TOP DIAMOND
@@ -191,8 +188,8 @@ export default function AboutSection() {
                     absolute
                     left-[50%]
                     top-[24.5%]
-                    h-48
-                    w-48
+                    h-36
+                    w-36
                     -translate-x-1/2
                     -translate-y-1/2
 
@@ -218,10 +215,10 @@ export default function AboutSection() {
                 <div
                   className="
                     absolute
-                    left-[25%]
+                    left-[24%]
                     top-[50%]
-                    h-40
-                    w-40
+                    h-36
+                    w-36
                     -translate-x-1/2
                     -translate-y-1/2
 
@@ -246,10 +243,10 @@ export default function AboutSection() {
                 <div
                   className="
                     absolute
-                    left-[75%]
+                    left-[76%]
                     top-[50%]
-                    h-40
-                    w-40
+                    h-36
+                    w-36
                     -translate-x-1/2
                     -translate-y-1/2
 
@@ -275,9 +272,9 @@ export default function AboutSection() {
                   className="
                     absolute
                     left-[50%]
-                    top-[75.5%]
-                    h-40
-                    w-40
+                    top-[77%]
+                    h-36
+                    w-36
                     -translate-x-1/2
                     -translate-y-1/2
 
@@ -303,15 +300,15 @@ export default function AboutSection() {
               <div
                 className="
                   absolute
-                  right-0
-                  top-6
+                  right-2
+                  top-2
                   z-40
                   rounded-2xl
                   border
                   border-white
                   bg-white
-                  px-5
-                  py-4
+                  px-4
+                  py-3
                   shadow-[0_15px_40px_rgba(15,23,42,0.14)]
 
                   sm:right-2
@@ -426,11 +423,11 @@ export default function AboutSection() {
               {/* Heading */}
 
               <h3 className="mt-5 max-w-none text-xl font-extrabold leading-[1.3] tracking-[-0.02em] sm:text-2xl lg:text-[1.75rem]">
-                <span className="block whitespace-nowrap">
+                <span className="block">
                   {t.about.caringTitle}
                 </span>
 
-                <span className="block whitespace-nowrap text-blue-700">
+                <span className="block text-blue-700">
                   {t.about.caringHighlight}
                 </span>
               </h3>

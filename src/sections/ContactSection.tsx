@@ -310,18 +310,15 @@ return ( <section
             </div>
 
             <a
-              href="https://maps.google.com/?q=KV+Hospital,+Dindigul+Road,+Laxmipuram,+Palani,+Tamil+Nadu+624601"
+              href="https://www.google.com/maps/search/?api=1&query=Iswarya+Hospital+-+Palani,+72-B+Dindigul-Palani+Main+Road,+Laxmipuram,+Palani,+Tamil+Nadu+624601"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex w-fit items-center gap-2 rounded-xl bg-blue-700 px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-lg"
             >
               <MapPin size={18} />
-
               {contact.getDirections}
-
               <ArrowUpRight size={16} />
             </a>
-
           </div>
 
         </div>
