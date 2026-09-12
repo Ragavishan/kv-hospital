@@ -15,6 +15,8 @@ export default function FAQSection() {
         <Container>
           <SectionTitle
             subtitle={t.faqs.subtitle}
+   
+   
             title={t.faqs.title}
             description={t.faqs.description}
           />

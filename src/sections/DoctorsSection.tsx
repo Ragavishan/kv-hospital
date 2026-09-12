@@ -85,24 +85,16 @@ export default function DoctorsSection() {
 
     hi: {
       subtitle: "हमारे डॉक्टर",
-
       title: "हमारे अनुभवी डॉक्टरों से मिलें",
-
       description:
         "हमारे अनुभवी डॉक्टर विश्वसनीय, सहानुभूतिपूर्ण और गुणवत्तापूर्ण स्वास्थ्य सेवाएं प्रदान करने के लिए प्रतिबद्ध हैं।",
-
       intro:
         "विभिन्न चिकित्सा विशेषज्ञताओं में अनुभवी चिकित्सा पेशेवरों की हमारी टीम सटीक निदान, व्यक्तिगत उपचार और रोगी-केंद्रित देखभाल पर ध्यान केंद्रित करती है।",
-
       viewMoreDoctors: "और डॉक्टर देखें",
-
       trustedMedicalCare: "विश्वसनीय चिकित्सा सेवा",
-
       trustTitle: "अनुभवी डॉक्टर। बेहतर देखभाल।",
-
       trustDescription:
         "अनुभवी स्वास्थ्य विशेषज्ञों से सही चिकित्सा मार्गदर्शन प्राप्त करें।",
-
       bookAppointment: "अपॉइंटमेंट बुक करें",
     },
   } as const;
@@ -116,17 +108,13 @@ export default function DoctorsSection() {
   const viewMoreDoctors = () => {
     const slider = sliderRef.current;
 
-    if (!slider) {
-      return;
-    }
+    if (!slider) return;
 
     const card = slider.querySelector<HTMLElement>(
       "[data-doctor-card]"
     );
 
-    if (!card) {
-      return;
-    }
+    if (!card) return;
 
     const cardWidth = card.offsetWidth;
     const gap = 24;
@@ -138,9 +126,7 @@ export default function DoctorsSection() {
       0
     );
 
-    if (maxScroll === 0) {
-      return;
-    }
+    if (maxScroll === 0) return;
 
     if (slider.scrollLeft >= maxScroll - 5) {
       slider.scrollTo({
@@ -169,17 +155,16 @@ export default function DoctorsSection() {
   return (
     <section
       id="doctors"
-      className="relative overflow-hidden bg-white py-20 sm:py-24"
+      className="relative overflow-hidden bg-white py-14 sm:py-20 lg:py-24"
     >
       {/* Background Decorations */}
 
-      <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-blue-100/40 blur-[100px]" />
+      <div className="pointer-events-none absolute -left-40 top-20 h-72 w-72 rounded-full bg-blue-100/40 blur-[100px] sm:h-96 sm:w-96" />
 
-      <div className="pointer-events-none absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-cyan-100/30 blur-[100px]" />
+      <div className="pointer-events-none absolute -right-40 bottom-0 h-72 w-72 rounded-full bg-cyan-100/30 blur-[100px] sm:h-96 sm:w-96" />
 
       <Section>
         <Container>
-
           {/* Section Heading */}
 
           <SectionTitle
@@ -190,25 +175,24 @@ export default function DoctorsSection() {
 
           {/* Short Intro */}
 
-          <div className="mx-auto mt-6 max-w-2xl text-center">
-            <p className="text-sm leading-7 text-slate-500 sm:text-base">
+          <div className="mx-auto mt-4 max-w-2xl px-2 text-center sm:mt-6 sm:px-0">
+            <p className="text-xs leading-6 text-slate-500 sm:text-base sm:leading-7">
               {text.intro}
             </p>
           </div>
 
           {/* Doctor Carousel */}
 
-          <div className="relative mt-10">
-
+          <div className="relative mt-7 sm:mt-10">
             <div
               ref={sliderRef}
-              className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6 sm:pb-5"
             >
               {doctors.map((doctor) => (
                 <div
                   key={doctor.id}
                   data-doctor-card
-                  className="w-[88%] shrink-0 snap-start sm:w-[55%] lg:w-[calc((100%-48px)/3)]"
+                  className="w-[86%] shrink-0 snap-start sm:w-[55%] lg:w-[calc((100%-48px)/3)]"
                 >
                   <DoctorCard
                     name={doctor.name}
@@ -229,17 +213,17 @@ export default function DoctorsSection() {
 
             {/* View More Doctors */}
 
-            <div className="mt-7 flex justify-center">
+            <div className="mt-5 flex justify-center sm:mt-7">
               <button
                 type="button"
                 onClick={viewMoreDoctors}
-                className="group inline-flex items-center gap-2 rounded-xl bg-blue-700 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl hover:shadow-blue-700/25"
+                className="group inline-flex items-center gap-1.5 rounded-xl bg-blue-700 px-5 py-3 text-xs font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl hover:shadow-blue-700/25 sm:gap-2 sm:px-7 sm:py-3.5 sm:text-sm"
               >
                 {text.viewMoreDoctors}
 
                 <ArrowRight
-                  size={18}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-1 sm:h-[18px] sm:w-[18px]"
                 />
               </button>
             </div>
@@ -247,27 +231,29 @@ export default function DoctorsSection() {
 
           {/* Trust Strip */}
 
-          <div className="relative mt-12 overflow-hidden rounded-[1.75rem] border border-blue-100 bg-gradient-to-r from-blue-50 via-white to-cyan-50 px-6 py-7 shadow-[0_10px_35px_rgba(15,23,42,0.06)] sm:px-9">
+          <div className="relative mt-9 overflow-hidden rounded-2xl border border-blue-100 bg-gradient-to-r from-blue-50 via-white to-cyan-50 px-4 py-5 shadow-[0_10px_35px_rgba(15,23,42,0.06)] sm:mt-12 sm:rounded-[1.75rem] sm:px-9 sm:py-7">
+            {/* Decorative Circle */}
 
-            <div className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-blue-200/30 blur-3xl" />
+            <div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-blue-200/30 blur-3xl sm:-right-20 sm:-top-20 sm:h-48 sm:w-48" />
 
-            <div className="relative flex flex-col items-center justify-between gap-5 text-center md:flex-row md:text-left">
+            <div className="relative flex flex-col items-center justify-between gap-4 text-center md:flex-row md:gap-5 md:text-left">
+              {/* Trust Content */}
 
-              <div>
-
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-blue-700">
+              <div className="min-w-0">
+                <p className="text-[9px] font-bold uppercase tracking-[0.15em] text-blue-700 sm:text-[10px] sm:tracking-[0.18em]">
                   {text.trustedMedicalCare}
                 </p>
 
-                <h3 className="mt-1.5 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
+                <h3 className="mt-1.5 break-words text-lg font-extrabold leading-tight tracking-tight text-slate-900 sm:text-2xl">
                   {text.trustTitle}
                 </h3>
 
-                <p className="mt-1.5 text-sm text-slate-500">
+                <p className="mt-1.5 text-xs leading-5 text-slate-500 sm:text-sm sm:leading-6">
                   {text.trustDescription}
                 </p>
-
               </div>
+
+              {/* Appointment Button */}
 
               <button
                 type="button"
@@ -279,7 +265,7 @@ export default function DoctorsSection() {
                       block: "start",
                     })
                 }
-                className="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl"
+                className="group inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-blue-700 px-5 py-3 text-xs font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl sm:gap-2 sm:px-6 sm:py-3.5 sm:text-sm"
               >
                 {text.bookAppointment}
 
@@ -287,10 +273,8 @@ export default function DoctorsSection() {
                   →
                 </span>
               </button>
-
             </div>
           </div>
-
         </Container>
       </Section>
     </section>

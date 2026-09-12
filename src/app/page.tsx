@@ -56,7 +56,7 @@ export default function Home() {
 
         <GallerySection />
 
-        <AwardsSection />
+        <AwardsSection /> 
 
         <TestimonialsSection />
 

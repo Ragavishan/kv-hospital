@@ -32,7 +32,7 @@ const categoryLabels: Record<
 > = {
   en: {
     all: "All",
-    "hospital-life": "Medical Amenities ",
+    "hospital-life": "Medical Amenities",
     team: "Our Team",
     moments: "Special Moments",
   },
@@ -289,8 +289,7 @@ export default function GallerySection() {
     const interval = setInterval(() => {
       setActiveIndex(
         (prev) =>
-          (prev + 1) %
-          filteredImages.length
+          (prev + 1) % filteredImages.length
       );
     }, 4500);
 
@@ -411,8 +410,7 @@ export default function GallerySection() {
   const goNext = () => {
     setActiveIndex(
       (prev) =>
-        (prev + 1) %
-        filteredImages.length
+        (prev + 1) % filteredImages.length
     );
   };
 
@@ -432,11 +430,11 @@ export default function GallerySection() {
 
       <section
         id="gallery"
-        className="relative scroll-mt-24 overflow-hidden bg-white py-20 md:py-24"
+        className="relative scroll-mt-24 overflow-hidden bg-white py-14 sm:py-20 md:py-24"
       >
         {/* Background Glow */}
 
-        <div className="pointer-events-none absolute left-1/2 top-10 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-blue-50/60 blur-3xl" />
+        <div className="pointer-events-none absolute left-1/2 top-10 h-[360px] w-[520px] -translate-x-1/2 rounded-full bg-blue-50/60 blur-3xl sm:h-[500px] sm:w-[700px]" />
 
         <Section>
           <Container>
@@ -444,19 +442,19 @@ export default function GallerySection() {
                 HEADING
             ================================================== */}
 
-            <div className="relative z-10 mx-auto max-w-3xl text-center">
-              <p className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-blue-600">
+            <div className="relative z-10 mx-auto max-w-3xl px-2 text-center sm:px-0">
+              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600 sm:mb-3 sm:text-sm sm:tracking-[0.25em]">
                 {text.eyebrow}
               </p>
 
-              <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 md:text-3xl">
+              <h2 className="break-words text-2xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-3xl md:text-4xl">
                 {text.headingFirst}{" "}
                 <span className="text-blue-600">
                   {text.headingHighlight}
                 </span>
               </h2>
 
-              <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-500 md:text-lg">
+              <p className="mx-auto mt-3 max-w-2xl text-xs leading-6 text-slate-500 sm:mt-4 sm:text-base sm:leading-7 md:text-lg">
                 {text.description}
               </p>
             </div>
@@ -465,7 +463,7 @@ export default function GallerySection() {
                 CATEGORY BUTTONS
             ================================================== */}
 
-            <div className="relative z-10 mt-9 flex flex-wrap justify-center gap-2.5">
+            <div className="relative z-10 mt-6 flex flex-wrap justify-center gap-2 px-1 sm:mt-9 sm:gap-2.5 sm:px-0">
               {(
                 [
                   "all",
@@ -486,7 +484,6 @@ export default function GallerySection() {
                           category
                       ).length;
 
-                // Don't display empty categories
                 if (count === 0) return null;
 
                 return (
@@ -498,17 +495,19 @@ export default function GallerySection() {
                         category
                       )
                     }
-                    className={`rounded-full px-5 py-2.5 text-xs font-bold transition-all duration-300 md:px-6 ${
+                    className={`max-w-full rounded-full px-3.5 py-2 text-[10px] font-bold leading-4 transition-all duration-300 sm:px-5 sm:py-2.5 sm:text-xs md:px-6 ${
                       isActive
                         ? "bg-slate-900 text-white shadow-lg"
                         : "border border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
                     }`}
                   >
-                    {
-                      categoryLabels[
-                        currentLanguage
-                      ][category]
-                    }
+                    <span className="break-words">
+                      {
+                        categoryLabels[
+                          currentLanguage
+                        ][category]
+                      }
+                    </span>
                   </button>
                 );
               })}
@@ -518,7 +517,7 @@ export default function GallerySection() {
                 MAIN CAROUSEL
             ================================================== */}
 
-            <div className="relative z-10 mt-12">
+            <div className="relative z-10 mt-7 sm:mt-12">
               <div className="flex items-center justify-center gap-4 md:gap-6 lg:gap-8">
                 {/* LEFT PREVIEW */}
 
@@ -545,8 +544,8 @@ export default function GallerySection() {
 
                 {/* CENTER IMAGE */}
 
-                <div className="group relative w-full max-w-4xl overflow-hidden rounded-[1.5rem] border border-slate-200 bg-slate-100 shadow-2xl md:rounded-[1.75rem]">
-                  <div className="relative aspect-[16/8.2] min-h-[280px] w-full overflow-hidden md:min-h-[360px] lg:min-h-[440px]">
+                <div className="group relative w-full max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-xl sm:rounded-[1.75rem] sm:shadow-2xl">
+                  <div className="relative aspect-[16/9] min-h-[220px] w-full overflow-hidden sm:min-h-[300px] md:min-h-[360px] lg:min-h-[440px]">
                     <Image
                       key={currentImage.id}
                       src={currentImage.image}
@@ -559,7 +558,7 @@ export default function GallerySection() {
 
                     {/* Gradient */}
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/10 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent" />
 
                     {/* Fullscreen */}
 
@@ -569,19 +568,22 @@ export default function GallerySection() {
                         setLightboxOpen(true)
                       }
                       aria-label={text.viewImage}
-                      className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/90 text-slate-800 opacity-0 shadow-lg backdrop-blur transition-all duration-300 group-hover:opacity-100 hover:scale-105"
+                      className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/90 text-slate-800 shadow-lg backdrop-blur transition-all duration-300 sm:right-5 sm:top-5 sm:h-11 sm:w-11 sm:opacity-0 sm:group-hover:opacity-100 hover:scale-105"
                     >
-                      <Maximize2 size={18} />
+                      <Maximize2
+                        size={16}
+                        className="sm:h-[18px] sm:w-[18px]"
+                      />
                     </button>
 
                     {/* Caption */}
 
-                    <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                      <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-blue-200">
+                    <div className="absolute bottom-0 left-0 right-0 p-4 pb-8 sm:p-6 sm:pb-8 md:p-8">
+                      <p className="mb-1 text-[9px] font-bold uppercase tracking-[0.16em] text-blue-200 sm:mb-2 sm:text-xs sm:tracking-[0.2em]">
                         {text.hospital}
                       </p>
 
-                      <h3 className="text-xl font-extrabold text-white md:text-2xl">
+                      <h3 className="max-w-[90%] break-words text-base font-extrabold leading-tight text-white sm:text-xl md:text-2xl">
                         {currentTitle}
                       </h3>
                     </div>
@@ -589,7 +591,7 @@ export default function GallerySection() {
                     {/* DOTS */}
 
                     {filteredImages.length > 1 && (
-                      <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-2">
+                      <div className="absolute bottom-3 left-1/2 flex max-w-[70%] -translate-x-1/2 items-center gap-1.5 overflow-hidden sm:bottom-5 sm:gap-2">
                         {filteredImages.map(
                           (image, index) => (
                             <button
@@ -603,11 +605,11 @@ export default function GallerySection() {
                               aria-label={`${text.imageOf} ${
                                 index + 1
                               }`}
-                              className={`rounded-full transition-all duration-300 ${
+                              className={`shrink-0 rounded-full transition-all duration-300 ${
                                 index ===
                                 activeIndex
-                                  ? "h-2.5 w-7 bg-white shadow-lg"
-                                  : "h-2.5 w-2.5 bg-white/60 hover:bg-white"
+                                  ? "h-2 w-6 bg-white shadow-lg sm:h-2.5 sm:w-7"
+                                  : "h-2 w-2 bg-white/60 hover:bg-white sm:h-2.5 sm:w-2.5"
                               }`}
                             />
                           )
@@ -646,17 +648,17 @@ export default function GallerySection() {
               ================================================== */}
 
               {filteredImages.length > 1 && (
-                <div className="mt-5 flex items-center justify-center gap-3 md:hidden">
+                <div className="mt-4 flex items-center justify-center gap-3 md:hidden">
                   <button
                     type="button"
                     onClick={goPrevious}
                     aria-label={text.previous}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50"
                   >
-                    <ChevronLeft size={19} />
+                    <ChevronLeft size={18} />
                   </button>
 
-                  <span className="min-w-[55px] text-center text-xs font-bold text-slate-500">
+                  <span className="min-w-[50px] text-center text-[11px] font-bold text-slate-500">
                     {activeIndex + 1} /{" "}
                     {filteredImages.length}
                   </span>
@@ -665,9 +667,9 @@ export default function GallerySection() {
                     type="button"
                     onClick={goNext}
                     aria-label={text.next}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50"
                   >
-                    <ChevronRight size={19} />
+                    <ChevronRight size={18} />
                   </button>
                 </div>
               )}
@@ -677,13 +679,19 @@ export default function GallerySection() {
                 VIEW FULL GALLERY
             ================================================== */}
 
-            <div className="relative z-10 mt-10 text-center">
+            <div className="relative z-10 mt-7 px-2 text-center sm:mt-10 sm:px-0">
               <Link
                 href="/gallery"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-bold text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-blue-600 hover:text-white hover:shadow-lg"
+                className="inline-flex max-w-full items-center justify-center gap-1.5 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-xs font-bold leading-5 text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-blue-600 hover:text-white hover:shadow-lg sm:gap-2 sm:px-6 sm:py-3 sm:text-sm"
               >
-                {text.viewFullGallery}
-                <ChevronRight size={17} />
+                <span className="break-words">
+                  {text.viewFullGallery}
+                </span>
+
+                <ChevronRight
+                  size={16}
+                  className="shrink-0 sm:h-[17px] sm:w-[17px]"
+                />
               </Link>
             </div>
           </Container>
@@ -696,7 +704,7 @@ export default function GallerySection() {
 
       {lightboxOpen && (
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950/90 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950/90 p-3 backdrop-blur-md sm:p-4"
           onClick={() =>
             setLightboxOpen(false)
           }
@@ -715,9 +723,9 @@ export default function GallerySection() {
                 setLightboxOpen(false)
               }
               aria-label={text.close}
-              className="absolute -right-1 -top-14 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:bg-white/20"
+              className="absolute right-0 -top-12 flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:bg-white/20 sm:-right-1 sm:-top-14 sm:h-10 sm:w-10"
             >
-              <span className="text-2xl leading-none">
+              <span className="text-xl leading-none sm:text-2xl">
                 ×
               </span>
             </button>
@@ -729,16 +737,19 @@ export default function GallerySection() {
                 type="button"
                 onClick={goPrevious}
                 aria-label={text.previous}
-                className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur transition hover:bg-white/20 md:-left-16"
+                className="absolute left-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur transition hover:bg-white/20 sm:left-3 sm:h-11 sm:w-11 md:-left-16"
               >
-                <ChevronLeft size={22} />
+                <ChevronLeft
+                  size={19}
+                  className="sm:h-[22px] sm:w-[22px]"
+                />
               </button>
             )}
 
             {/* IMAGE */}
 
-            <div className="relative overflow-hidden rounded-3xl bg-black shadow-2xl">
-              <div className="relative aspect-[16/10] max-h-[80vh] w-full">
+            <div className="relative overflow-hidden rounded-2xl bg-black shadow-2xl sm:rounded-3xl">
+              <div className="relative aspect-[4/3] max-h-[72vh] w-full sm:aspect-[16/10] sm:max-h-[80vh]">
                 <Image
                   src={currentImage.image}
                   alt={currentTitle}
@@ -756,20 +767,23 @@ export default function GallerySection() {
                 type="button"
                 onClick={goNext}
                 aria-label={text.next}
-                className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur transition hover:bg-white/20 md:-right-16"
+                className="absolute right-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur transition hover:bg-white/20 sm:right-3 sm:h-11 sm:w-11 md:-right-16"
               >
-                <ChevronRight size={22} />
+                <ChevronRight
+                  size={19}
+                  className="sm:h-[22px] sm:w-[22px]"
+                />
               </button>
             )}
 
             {/* CAPTION */}
 
-            <div className="mt-4 text-center">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-300">
+            <div className="mt-3 px-8 text-center sm:mt-4 sm:px-0">
+              <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-blue-300 sm:text-xs sm:tracking-[0.2em]">
                 {text.hospital}
               </p>
 
-              <h3 className="mt-1 text-xl font-bold text-white">
+              <h3 className="mt-1 break-words text-base font-bold leading-tight text-white sm:text-xl">
                 {currentTitle}
               </h3>
             </div>

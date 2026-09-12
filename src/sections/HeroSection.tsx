@@ -39,6 +39,7 @@ export default function HeroSection() {
         min-h-screen
         overflow-hidden
         bg-slate-950
+        sm:max-lg:min-h-[100svh]
       "
     >
       {/* =====================================================
@@ -54,11 +55,11 @@ export default function HeroSection() {
           unoptimized
           sizes="100vw"
           className="
-          object-cover
-          object-[50%_38%]
-          sm:object-[58%_center]
-        "
-
+            object-cover
+            object-[50%_38%]
+            sm:object-[58%_center]
+            sm:max-lg:object-[55%_center]
+          "
         />
       </div>
 
@@ -68,7 +69,9 @@ export default function HeroSection() {
 
       <div className="absolute inset-0 -z-20 bg-slate-950/25" />
 
-      {/* LEFT DARK GRADIENT */}
+      {/* =====================================================
+          LEFT DARK GRADIENT
+      ===================================================== */}
 
       <div
         className="
@@ -84,7 +87,9 @@ export default function HeroSection() {
         "
       />
 
-      {/* RIGHT DARK GRADIENT */}
+      {/* =====================================================
+          RIGHT DARK GRADIENT
+      ===================================================== */}
 
       <div
         className="
@@ -100,7 +105,9 @@ export default function HeroSection() {
         "
       />
 
-      {/* BOTTOM DARK GRADIENT */}
+      {/* =====================================================
+          BOTTOM DARK GRADIENT
+      ===================================================== */}
 
       <div
         className="
@@ -132,12 +139,19 @@ export default function HeroSection() {
           px-4
           pb-5
           pt-16
-          sm:px-8 
+
+          sm:px-8
           sm:pb-7
           sm:pt-24
+
+          sm:max-lg:px-6
+          sm:max-lg:pb-5
+          sm:max-lg:pt-20
+
           lg:px-12
           lg:pb-8
           lg:pt-28
+
           xl:px-16
         "
       >
@@ -158,10 +172,12 @@ export default function HeroSection() {
               max-w-[600px]
               min-w-0
               sm:max-w-[600px]
+              sm:max-lg:max-w-[500px]
             "
           >
-
-            {/* TRUST BADGE */}
+            {/* =================================================
+                TRUST BADGE
+            ================================================= */}
 
             <div
               className="
@@ -177,6 +193,10 @@ export default function HeroSection() {
                 py-2
                 shadow-[0_8px_25px_rgba(0,0,0,0.12)]
                 backdrop-blur-md
+
+                sm:max-lg:mb-4
+                sm:max-lg:px-3.5
+                sm:max-lg:py-1.5
               "
             >
               <ShieldCheck
@@ -191,13 +211,17 @@ export default function HeroSection() {
                   uppercase
                   tracking-[0.18em]
                   text-blue-100
+
+                  sm:max-lg:text-[9px]
                 "
               >
                 {t.hero.badge}
               </span>
             </div>
 
-            {/* MAIN HEADING */}
+            {/* =================================================
+                MAIN HEADING
+            ================================================= */}
 
             <h1
               className="
@@ -211,9 +235,15 @@ export default function HeroSection() {
                 tracking-[-0.015em]
                 text-white
                 drop-shadow-[0_5px_25px_rgba(0,0,0,0.65)]
+
                 sm:text-6xl
                 sm:leading-[1.02]
                 sm:tracking-[-0.035em]
+
+                sm:max-lg:text-[44px]
+                sm:max-lg:leading-[1.05]
+                sm:max-lg:tracking-[-0.025em]
+
                 lg:text-[58px]
                 xl:text-[66px]
               "
@@ -231,7 +261,9 @@ export default function HeroSection() {
                   mt-1
                   block
                   text-blue-300
+
                   sm:mt-2
+                  sm:max-lg:mt-1
                 "
               >
                 <span className="block">
@@ -243,7 +275,10 @@ export default function HeroSection() {
                 </span>
               </span>
             </h1>
-            {/* DESCRIPTION */}
+
+            {/* =================================================
+                DESCRIPTION
+            ================================================= */}
 
             <p
               className="
@@ -254,15 +289,23 @@ export default function HeroSection() {
                 leading-5
                 text-white/90
                 drop-shadow-lg
+
                 sm:mt-6
                 sm:text-base
                 sm:leading-8
-              " 
+
+                sm:max-lg:mt-4
+                sm:max-lg:max-w-[490px]
+                sm:max-lg:text-[13px]
+                sm:max-lg:leading-6
+              "
             >
               {t.hero.description}
             </p>
 
-            {/* BUTTONS */}
+            {/* =================================================
+                BUTTONS
+            ================================================= */}
 
             <div
               className="
@@ -271,11 +314,17 @@ export default function HeroSection() {
                 w-full
                 flex-col
                 gap-2.5
+
                 sm:mt-7
                 sm:flex-row
+
+                sm:max-lg:mt-5
+                sm:max-lg:gap-2
               "
             >
-              {/* BOOK APPOINTMENT */}
+              {/* =================================================
+                  BOOK APPOINTMENT
+              ================================================= */}
 
               <button
                 type="button"
@@ -302,6 +351,10 @@ export default function HeroSection() {
                   hover:bg-blue-500
                   hover:shadow-[0_14px_32px_rgba(37,99,235,0.38)]
                   active:translate-y-0
+
+                  sm:max-lg:px-4
+                  sm:max-lg:py-3
+                  sm:max-lg:text-[12px]
                 "
               >
                 <CalendarCheck2 size={18} />
@@ -318,7 +371,9 @@ export default function HeroSection() {
                 />
               </button>
 
-              {/* CALL HOSPITAL */}
+              {/* =================================================
+                  CALL HOSPITAL
+              ================================================= */}
 
               <button
                 type="button"
@@ -345,6 +400,10 @@ export default function HeroSection() {
                   hover:border-white/40
                   hover:bg-white/20
                   active:translate-y-0
+
+                  sm:max-lg:px-4
+                  sm:max-lg:py-3
+                  sm:max-lg:text-[12px]
                 "
               >
                 <Phone size={18} />
@@ -356,6 +415,7 @@ export default function HeroSection() {
 
           {/* =================================================
               EMERGENCY CARD — RIGHT SIDE
+              DESKTOP ONLY — UNCHANGED
           ================================================= */}
 
           <div
@@ -602,6 +662,8 @@ export default function HeroSection() {
             relative
             z-30
             mt-8
+
+            sm:max-lg:mt-5
           "
         >
           <div
@@ -611,6 +673,9 @@ export default function HeroSection() {
               items-center
               justify-start
               gap-8
+
+              sm:max-lg:gap-4
+
               lg:gap-14
             "
           >
@@ -623,7 +688,7 @@ export default function HeroSection() {
         </div>
 
         {/* ===================================================
-            MOBILE EMERGENCY
+            MOBILE + TABLET EMERGENCY
         =================================================== */}
 
         <div
@@ -632,6 +697,8 @@ export default function HeroSection() {
             z-30
             mt-8
             lg:hidden
+
+            sm:max-lg:mt-5
           "
         >
           <div
@@ -643,6 +710,8 @@ export default function HeroSection() {
               p-3.5
               shadow-2xl
               backdrop-blur-xl
+
+              sm:max-lg:p-3
             "
           >
             <div
@@ -760,6 +829,9 @@ function Feature({ text }: { text: string }) {
         font-semibold
         text-white
         drop-shadow-lg
+
+        sm:max-lg:gap-2
+        sm:max-lg:text-[11px]
       "
     >
       <span
@@ -774,11 +846,19 @@ function Feature({ text }: { text: string }) {
           border
           border-blue-300/10
           bg-blue-500/20
+
+          sm:max-lg:h-6
+          sm:max-lg:w-6
         "
       >
         <CheckCircle2
           size={17}
-          className="text-blue-300"
+          className="
+            text-blue-300
+
+            sm:max-lg:h-4
+            sm:max-lg:w-4
+          "
         />
       </span>
 

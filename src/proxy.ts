@@ -1,30 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const ADMIN_COOKIE_NAME = "iswarya_admin_session";
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  console.log("🔥 PROXY RUNNING:", pathname);
-
-  // Admin login page is public
   if (pathname === "/admin/login") {
     return NextResponse.next();
   }
 
-  // Protect all admin pages
   if (pathname.startsWith("/admin")) {
-    const session = request.cookies.get(
-      "iswarya_admin_session"
-    );
+    const session = request.cookies.get(ADMIN_COOKIE_NAME)?.value;
 
-    console.log(
-      "🔐 ADMIN SESSION:",
-      session?.value ?? "NO SESSION"
-    );
-
-    // No valid session → redirect to login
-    if (session?.value !== "authenticated") {
+    if (session !== "authenticated") {
       const loginUrl = request.nextUrl.clone();
-
       loginUrl.pathname = "/admin/login";
       loginUrl.search = "";
 
@@ -36,7 +25,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/admin/:path*",
-  ],
+  matcher: ["/admin/:path*"],
 };

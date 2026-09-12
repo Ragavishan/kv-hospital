@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 
 import Container from "@/components/common/Container";
-import SectionTitle from "@/components/common/SectionTitle";
 import Section from "@/components/animations/Section";
 import { useLanguage } from "@/components/common/LanguageProvider";
 
@@ -223,7 +222,14 @@ export default function WhyChooseUs() {
   return (
     <section
       id="why-choose-us"
-      className="relative overflow-hidden bg-slate-50 py-24 sm:py-28"
+      className={`
+        relative
+        overflow-hidden
+        bg-slate-50
+        py-14
+        sm:py-20
+        lg:py-28
+      `}
       style={{ scrollMarginTop: "90px" }}
     >
       {/* =====================================================
@@ -244,16 +250,67 @@ export default function WhyChooseUs() {
           ================================================= */}
 
           <div className="relative mx-auto max-w-5xl text-center">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-700 shadow-sm">
-              <Sparkles size={14} />
+
+            <div
+              className={`
+                mb-4
+                inline-flex
+                items-center
+                gap-2
+                rounded-full
+                border
+                border-blue-100
+                bg-white
+                px-3
+                py-1.5
+                text-[9px]
+                font-bold
+                uppercase
+                tracking-[0.14em]
+                text-blue-700
+                shadow-sm
+                sm:mb-5
+                sm:px-4
+                sm:py-2
+                sm:text-xs
+                sm:tracking-[0.18em]
+              `}
+            >
+              <Sparkles size={13} className="sm:h-3.5 sm:w-3.5" />
               {t.badge}
             </div>
 
-            <h2 className="mx-auto max-w-3xl text-2xl font-bold leading-tight tracking-tight text-slate-900 sm:text-3xl lg:text-[2.25rem]">
+            <h2
+              className={`
+                mx-auto
+                max-w-3xl
+                text-xl
+                font-bold
+                leading-tight
+                tracking-tight
+                text-slate-900
+                sm:text-3xl
+                lg:text-[2.25rem]
+              `}
+            >
               {t.title}
             </h2>
 
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-500 sm:text-base">
+            <p
+              className={`
+                mx-auto
+                mt-3
+                max-w-2xl
+                px-2
+                text-xs
+                leading-6
+                text-slate-500
+                sm:mt-4
+                sm:px-0
+                sm:text-base
+                sm:leading-7
+              `}
+            >
               {t.description}
             </p>
           </div>
@@ -262,76 +319,134 @@ export default function WhyChooseUs() {
               TRUST STRIP
           ================================================= */}
 
-          <div className="relative mx-auto mt-12 max-w-4xl">
+          <div className="relative mx-auto mt-8 max-w-4xl sm:mt-12">
 
-            <div className="grid overflow-hidden rounded-3xl border border-white bg-white shadow-xl shadow-slate-200/50 sm:grid-cols-3">
+            <div
+              className={`
+                grid
+                overflow-hidden
+                rounded-2xl
+                border
+                border-white
+                bg-white
+                shadow-xl
+                shadow-slate-200/50
+                sm:grid-cols-3
+                sm:rounded-3xl
+              `}
+            >
 
               {/* Trusted Care */}
-              <div className="flex items-center justify-center gap-3 border-b border-slate-100 p-5 sm:border-b-0 sm:border-r">
-
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                  <ShieldCheck size={21} />
+              <div
+                className={`
+                  flex
+                  items-center
+                  justify-center
+                  gap-2.5
+                  border-b
+                  border-slate-100
+                  p-4
+                  sm:gap-3
+                  sm:border-b-0
+                  sm:border-r
+                  sm:p-5
+                `}
+              >
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 sm:h-10 sm:w-10">
+                  <ShieldCheck size={19} className="sm:h-[21px] sm:w-[21px]" />
                 </div>
 
-                <div>
-                  <p className="text-sm font-extrabold text-slate-900">
+                <div className="min-w-0 text-left">
+                  <p className="text-xs font-extrabold text-slate-900 sm:text-sm">
                     {t.trustedTitle}
                   </p>
 
-                  <p className="text-xs text-slate-500">
+                  <p className="mt-0.5 text-[10px] leading-4 text-slate-500 sm:text-xs">
                     {t.trustedDesc}
                   </p>
                 </div>
-
               </div>
 
               {/* Quality Healthcare */}
-              <div className="flex items-center justify-center gap-3 border-b border-slate-100 p-5 sm:border-b-0 sm:border-r">
-
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
-                  <Award size={21} />
+              <div
+                className={`
+                  flex
+                  items-center
+                  justify-center
+                  gap-2.5
+                  border-b
+                  border-slate-100
+                  p-4
+                  sm:gap-3
+                  sm:border-b-0
+                  sm:border-r
+                  sm:p-5
+                `}
+              >
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-purple-50 text-purple-600 sm:h-10 sm:w-10">
+                  <Award size={19} className="sm:h-[21px] sm:w-[21px]" />
                 </div>
 
-                <div>
-                  <p className="text-sm font-extrabold text-slate-900">
+                <div className="min-w-0 text-left">
+                  <p className="text-xs font-extrabold text-slate-900 sm:text-sm">
                     {t.qualityTitle}
                   </p>
 
-                  <p className="text-xs text-slate-500">
+                  <p className="mt-0.5 text-[10px] leading-4 text-slate-500 sm:text-xs">
                     {t.qualityDesc}
                   </p>
                 </div>
-
               </div>
 
               {/* Compassionate Care */}
-              <div className="flex items-center justify-center gap-3 p-5">
-
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                  <HeartHandshake size={21} />
+              <div
+                className={`
+                  flex
+                  items-center
+                  justify-center
+                  gap-2.5
+                  p-4
+                  sm:gap-3
+                  sm:p-5
+                `}
+              >
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 sm:h-10 sm:w-10">
+                  <HeartHandshake
+                    size={19}
+                    className="sm:h-[21px] sm:w-[21px]"
+                  />
                 </div>
 
-                <div>
-                  <p className="text-sm font-extrabold text-slate-900">
+                <div className="min-w-0 text-left">
+                  <p className="text-xs font-extrabold text-slate-900 sm:text-sm">
                     {t.compassionTitle}
                   </p>
 
-                  <p className="text-xs text-slate-500">
+                  <p className="mt-0.5 text-[10px] leading-4 text-slate-500 sm:text-xs">
                     {t.compassionDesc}
                   </p>
                 </div>
-
               </div>
 
             </div>
-
           </div>
 
           {/* =================================================
               FEATURE CARDS
           ================================================= */}
 
-          <div className="relative mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div
+            className={`
+              relative
+              mt-8
+              grid
+              gap-4
+              sm:mt-10
+              sm:grid-cols-2
+              sm:gap-6
+              lg:grid-cols-4
+            `}
+          >
 
             {features.map((feature) => {
               const Icon = feature.icon;
@@ -339,7 +454,25 @@ export default function WhyChooseUs() {
               return (
                 <div
                   key={feature.number}
-                  className="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-7 shadow-lg shadow-slate-200/40 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-slate-300/50"
+                  className={`
+                    group
+                    relative
+                    overflow-hidden
+                    rounded-2xl
+                    border
+                    border-slate-100
+                    bg-white
+                    p-5
+                    shadow-lg
+                    shadow-slate-200/40
+                    transition-all
+                    duration-500
+                    hover:-translate-y-3
+                    hover:shadow-2xl
+                    hover:shadow-slate-300/50
+                    sm:rounded-3xl
+                    sm:p-7
+                  `}
                   style={{
                     transformStyle: "preserve-3d",
                   }}
@@ -351,17 +484,49 @@ export default function WhyChooseUs() {
                   />
 
                   {/* Number */}
-                  <div className="absolute right-5 top-5 text-4xl font-black text-slate-100 transition-colors duration-500 group-hover:text-slate-200">
+                  <div
+                    className={`
+                      absolute
+                      right-4
+                      top-4
+                      text-3xl
+                      font-black
+                      text-slate-100
+                      transition-colors
+                      duration-500
+                      group-hover:text-slate-200
+                      sm:right-5
+                      sm:top-5
+                      sm:text-4xl
+                    `}
+                  >
                     {feature.number}
                   </div>
 
                   {/* Icon */}
                   <div
-                    className={`relative flex h-16 w-16 items-center justify-center rounded-2xl ${feature.soft} ${feature.iconColor} transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}
+                    className={`
+                      relative
+                      flex
+                      h-14
+                      w-14
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      ${feature.soft}
+                      ${feature.iconColor}
+                      transition-all
+                      duration-500
+                      group-hover:scale-110
+                      group-hover:rotate-3
+                      sm:h-16
+                      sm:w-16
+                    `}
                   >
                     <Icon
-                      size={30}
+                      size={27}
                       strokeWidth={1.8}
+                      className="sm:h-[30px] sm:w-[30px]"
                     />
 
                     {/* Icon Glow */}
@@ -371,13 +536,34 @@ export default function WhyChooseUs() {
                   </div>
 
                   {/* Content */}
-                  <div className="relative mt-7">
+                  <div className="relative mt-5 sm:mt-7">
 
-                    <h3 className="text-xl font-extrabold text-slate-900 transition-colors duration-300 group-hover:text-blue-700">
+                    <h3
+                      className={`
+                        text-lg
+                        font-extrabold
+                        leading-snug
+                        text-slate-900
+                        transition-colors
+                        duration-300
+                        group-hover:text-blue-700
+                        sm:text-xl
+                      `}
+                    >
                       {feature.title[currentLanguage]}
                     </h3>
 
-                    <p className="mt-3 text-sm leading-7 text-slate-500">
+                    <p
+                      className={`
+                        mt-2.5
+                        text-xs
+                        leading-6
+                        text-slate-500
+                        sm:mt-3
+                        sm:text-sm
+                        sm:leading-7
+                      `}
+                    >
                       {feature.description[currentLanguage]}
                     </p>
 
@@ -398,7 +584,27 @@ export default function WhyChooseUs() {
               BOTTOM MESSAGE
           ================================================= */}
 
-          <div className="relative mx-auto mt-12 max-w-4xl overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-blue-950 to-violet-950 p-7 text-center text-white shadow-2xl sm:p-9">
+          <div
+            className={`
+              relative
+              mx-auto
+              mt-8
+              max-w-4xl
+              overflow-hidden
+              rounded-2xl
+              bg-gradient-to-r
+              from-slate-900
+              via-blue-950
+              to-violet-950
+              p-5
+              text-center
+              text-white
+              shadow-2xl
+              sm:mt-12
+              sm:rounded-3xl
+              sm:p-9
+            `}
+          >
 
             {/* Glow */}
             <div className="pointer-events-none absolute -left-20 -top-20 h-48 w-48 rounded-full bg-cyan-400/20 blur-3xl" />
@@ -408,20 +614,48 @@ export default function WhyChooseUs() {
             <div className="relative">
 
               {/* Icon */}
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 backdrop-blur">
+              <div
+                className={`
+                  mx-auto
+                  flex
+                  h-10
+                  w-10
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-white/10
+                  backdrop-blur
+                  sm:h-12
+                  sm:w-12
+                  sm:rounded-2xl
+                `}
+              >
                 <HeartHandshake
-                  size={25}
-                  className="text-cyan-300"
+                  size={21}
+                  className="text-cyan-300 sm:h-[25px] sm:w-[25px]"
                 />
               </div>
 
               {/* Title */}
-              <h3 className="mt-5 text-xl font-extrabold sm:text-2xl">
+              <h3 className="mt-4 text-lg font-extrabold leading-tight sm:mt-5 sm:text-2xl">
                 {t.bottomTitle}
               </h3>
 
               {/* Description */}
-              <p className="mx-auto mt-2 max-w-2xl text-sm leading-7 text-blue-100">
+              <p
+                className={`
+                  mx-auto
+                  mt-2
+                  max-w-2xl
+                  px-1
+                  text-xs
+                  leading-6
+                  text-blue-100
+                  sm:px-0
+                  sm:text-sm
+                  sm:leading-7
+                `}
+              >
                 {t.bottomDescription}
               </p>
 
@@ -437,8 +671,7 @@ export default function WhyChooseUs() {
 
       <style jsx>{`
         @media (prefers-reduced-motion: no-preference) {
-          #why-choose-us
-            :global(.group) {
+          #why-choose-us :global(.group) {
             will-change: transform;
           }
         }

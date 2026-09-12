@@ -3,7 +3,7 @@ export const hospitalInfo = {
   location: "Palani",
 
   phone: "+91 7502710333",
-  email: "iswarya hospitalmultispecialityhospital@gmail.com",
+  email: "kvmultispecialityhospital@gmail.com",
   emergency: "24 × 7",
 
   founded: "2000",

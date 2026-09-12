@@ -64,7 +64,7 @@ export default function TopBar() {
           {/* EMAIL */}
 
           <a
-            href="mailto:iswarya hospitalmultispecialityhospital@gmail.com"
+            href="mailto:kvmultispecialityhospital@gmail.com"
             className="
               group
               hidden
@@ -88,8 +88,8 @@ export default function TopBar() {
             />
 
             <span>
-              iswarya hospitalmultispecialityhospital@gmail.com
-            </span>
+                  kvmultispecialityhospital@gmail.com
+                </span>
           </a>
         </div>
 

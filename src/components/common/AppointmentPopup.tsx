@@ -30,7 +30,7 @@ export default function AppointmentPopup() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 20000);
+    }, 10000);
 
     return () => clearTimeout(timer);
   }, []);

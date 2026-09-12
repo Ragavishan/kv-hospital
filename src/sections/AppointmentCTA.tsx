@@ -76,7 +76,7 @@ export default function AppointmentCTA() {
   return (
     <section
       id="appointment"
-      className="relative overflow-hidden bg-slate-50 py-24 sm:py-28"
+      className="relative overflow-hidden bg-slate-50 py-14 sm:py-28"
     >
       {/* Background Decorations */}
 
@@ -87,43 +87,43 @@ export default function AppointmentCTA() {
       <Container>
         <div
           id="appointment-form"
-          className="relative overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-slate-100"
+          className="relative overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-slate-100 sm:rounded-3xl"
         >
           <div className="grid lg:grid-cols-[0.8fr_1.2fr]">
 
             {/* ================= LEFT SIDE ================= */}
 
-            <div className="bg-gradient-to-br from-blue-700 to-blue-900 p-8 text-white sm:p-10 lg:p-12">
+            <div className="bg-gradient-to-br from-blue-700 to-blue-900 p-5 text-white sm:p-10 lg:p-12">
 
-              <span className="inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur">
+              <span className="inline-flex rounded-full bg-white/10 px-3 py-1.5 text-[11px] font-semibold backdrop-blur sm:px-4 sm:py-2 sm:text-sm">
                 {t.appointment.badge}
               </span>
 
-              <h2 className="mt-6 text-3xl font-extrabold leading-tight sm:text-4xl">
+              <h2 className="mt-4 text-2xl font-extrabold leading-tight sm:mt-6 sm:text-4xl">
                 {t.appointment.title}
               </h2>
 
-              <p className="mt-5 leading-7 text-blue-100">
+              <p className="mt-3 text-sm leading-6 text-blue-100 sm:mt-5 sm:leading-7">
                 {t.appointment.description}
               </p>
 
               {/* Appointment Information */}
 
-              <div className="mt-10 space-y-5">
+              <div className="mt-7 space-y-4 sm:mt-10 sm:space-y-5">
 
                 {/* Flexible Scheduling */}
 
-                <div className="flex items-center gap-4">
-                  <div className="rounded-xl bg-white/10 p-3">
-                    <CalendarDays size={21} />
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="rounded-lg bg-white/10 p-2.5 sm:rounded-xl sm:p-3">
+                    <CalendarDays size={19} className="sm:h-[21px] sm:w-[21px]" />
                   </div>
 
                   <div>
-                    <p className="font-bold">
+                    <p className="text-sm font-bold sm:text-base">
                       {t.appointment.flexibleScheduling}
                     </p>
 
-                    <p className="text-sm text-blue-100">
+                    <p className="text-xs leading-5 text-blue-100 sm:text-sm">
                       {t.appointment.chooseConvenientDate}
                     </p>
                   </div>
@@ -131,17 +131,17 @@ export default function AppointmentCTA() {
 
                 {/* Quick Assistance */}
 
-                <div className="flex items-center gap-4">
-                  <div className="rounded-xl bg-white/10 p-3">
-                    <Clock3 size={21} />
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="rounded-lg bg-white/10 p-2.5 sm:rounded-xl sm:p-3">
+                    <Clock3 size={19} className="sm:h-[21px] sm:w-[21px]" />
                   </div>
 
                   <div>
-                    <p className="font-bold">
+                    <p className="text-sm font-bold sm:text-base">
                       {t.appointment.quickAssistance}
                     </p>
 
-                    <p className="text-sm text-blue-100">
+                    <p className="text-xs leading-5 text-blue-100 sm:text-sm">
                       {t.appointment.teamWillContact}
                     </p>
                   </div>
@@ -149,17 +149,17 @@ export default function AppointmentCTA() {
 
                 {/* Need Help */}
 
-                <div className="flex items-center gap-4">
-                  <div className="rounded-xl bg-white/10 p-3">
-                    <Phone size={21} />
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="rounded-lg bg-white/10 p-2.5 sm:rounded-xl sm:p-3">
+                    <Phone size={19} className="sm:h-[21px] sm:w-[21px]" />
                   </div>
 
                   <div>
-                    <p className="font-bold">
+                    <p className="text-sm font-bold sm:text-base">
                       {t.appointment.needHelp}
                     </p>
 
-                    <p className="text-sm text-blue-100">
+                    <p className="text-xs leading-5 text-blue-100 sm:text-sm">
                       {t.appointment.contactHospitalTeam}
                     </p>
                   </div>
@@ -170,30 +170,30 @@ export default function AppointmentCTA() {
 
             {/* ================= RIGHT SIDE ================= */}
 
-            <div className="p-8 sm:p-10 lg:p-12">
+            <div className="p-5 sm:p-10 lg:p-12">
 
               {submitted ? (
 
                 /* ================= SUCCESS ================= */
 
-                <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
+                <div className="flex min-h-[380px] flex-col items-center justify-center text-center sm:min-h-[420px]">
 
-                  <div className="rounded-full bg-green-100 p-4 text-green-600">
-                    <CheckCircle2 size={42} />
+                  <div className="rounded-full bg-green-100 p-3.5 text-green-600 sm:p-4">
+                    <CheckCircle2 size={38} className="sm:h-[42px] sm:w-[42px]" />
                   </div>
 
-                  <h3 className="mt-6 text-2xl font-bold text-slate-900">
+                  <h3 className="mt-5 text-xl font-bold text-slate-900 sm:mt-6 sm:text-2xl">
                     {t.appointment.appointmentRequestSent}
                   </h3>
 
-                  <p className="mt-3 max-w-md leading-7 text-slate-600">
+                  <p className="mt-2 max-w-md text-sm leading-6 text-slate-600 sm:mt-3 sm:leading-7">
                     {t.appointment.thankYou}
                   </p>
 
                   <button
                     type="button"
                     onClick={() => setSubmitted(false)}
-                    className="mt-7 rounded-xl bg-blue-700 px-6 py-3 font-bold text-white transition hover:bg-blue-800"
+                    className="mt-6 rounded-xl bg-blue-700 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-blue-800 sm:mt-7 sm:px-6 sm:py-3 sm:text-base"
                   >
                     {t.appointment.bookAnotherAppointment}
                   </button>
@@ -209,23 +209,23 @@ export default function AppointmentCTA() {
                   {/* Form Heading */}
 
                   <div>
-                    <p className="text-sm font-bold uppercase tracking-wider text-blue-700">
+                    <p className="text-xs font-bold uppercase tracking-wider text-blue-700 sm:text-sm">
                       {t.appointment.appointmentRequest}
                     </p>
 
-                    <h3 className="mt-2 text-2xl font-extrabold text-slate-900">
+                    <h3 className="mt-1.5 text-xl font-extrabold text-slate-900 sm:mt-2 sm:text-2xl">
                       {t.appointment.formTitle}
                     </h3>
                   </div>
 
                   {/* Patient Name + Phone */}
 
-                  <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                  <div className="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5">
 
                     {/* Patient Name */}
 
                     <div>
-                      <label className="mb-2 block text-sm font-semibold text-slate-700">
+                      <label className="mb-1.5 block text-xs font-semibold text-slate-700 sm:mb-2 sm:text-sm">
                         {t.appointment.patientName}
                       </label>
 
@@ -234,14 +234,14 @@ export default function AppointmentCTA() {
                         name="name"
                         placeholder={t.appointment.patientNamePlaceholder}
                         required
-                        className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                        className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100 sm:rounded-xl sm:px-4 sm:py-3"
                       />
                     </div>
 
                     {/* Phone */}
 
                     <div>
-                      <label className="mb-2 block text-sm font-semibold text-slate-700">
+                      <label className="mb-1.5 block text-xs font-semibold text-slate-700 sm:mb-2 sm:text-sm">
                         {t.appointment.phoneNumber}
                       </label>
 
@@ -250,7 +250,7 @@ export default function AppointmentCTA() {
                         name="phone"
                         placeholder={t.appointment.phoneNumberPlaceholder}
                         required
-                        className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                        className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100 sm:rounded-xl sm:px-4 sm:py-3"
                       />
                     </div>
 
@@ -258,19 +258,19 @@ export default function AppointmentCTA() {
 
                   {/* Department + Doctor */}
 
-                  <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                  <div className="mt-4 grid gap-4 sm:mt-5 sm:grid-cols-2 sm:gap-5">
 
                     {/* Department */}
 
                     <div>
-                      <label className="mb-2 block text-sm font-semibold text-slate-700">
+                      <label className="mb-1.5 block text-xs font-semibold text-slate-700 sm:mb-2 sm:text-sm">
                         {t.appointment.department}
                       </label>
 
                       <select
                         name="department"
                         required
-                        className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-700 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                        className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100 sm:rounded-xl sm:px-4 sm:py-3"
                       >
                         <option value="">
                           {t.appointment.selectDepartment}
@@ -309,14 +309,14 @@ export default function AppointmentCTA() {
                     {/* Doctor */}
 
                     <div>
-                      <label className="mb-2 block text-sm font-semibold text-slate-700">
+                      <label className="mb-1.5 block text-xs font-semibold text-slate-700 sm:mb-2 sm:text-sm">
                         {t.appointment.preferredDoctor}
                       </label>
 
                       <select
                         name="doctor"
                         required
-                        className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-700 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                        className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100 sm:rounded-xl sm:px-4 sm:py-3"
                       >
                         <option value="">
                           {t.appointment.selectDoctor}
@@ -340,12 +340,12 @@ export default function AppointmentCTA() {
 
                   {/* Date + Time */}
 
-                  <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                  <div className="mt-4 grid gap-4 sm:mt-5 sm:grid-cols-2 sm:gap-5">
 
                     {/* Date */}
 
                     <div>
-                      <label className="mb-2 block text-sm font-semibold text-slate-700">
+                      <label className="mb-1.5 block text-xs font-semibold text-slate-700 sm:mb-2 sm:text-sm">
                         {t.appointment.preferredDate}
                       </label>
 
@@ -353,21 +353,21 @@ export default function AppointmentCTA() {
                         type="date"
                         name="date"
                         required
-                        className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                        className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100 sm:rounded-xl sm:px-4 sm:py-3"
                       />
                     </div>
 
                     {/* Time */}
 
                     <div>
-                      <label className="mb-2 block text-sm font-semibold text-slate-700">
+                      <label className="mb-1.5 block text-xs font-semibold text-slate-700 sm:mb-2 sm:text-sm">
                         {t.appointment.preferredTime}
                       </label>
 
                       <select
                         name="time"
                         required
-                        className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-700 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                        className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100 sm:rounded-xl sm:px-4 sm:py-3"
                       >
                         <option value="">
                           {t.appointment.selectTime}
@@ -391,25 +391,23 @@ export default function AppointmentCTA() {
 
                   {/* Message */}
 
-                  <div className="mt-5">
-                    <label className="mb-2 block text-sm font-semibold text-slate-700">
+                  <div className="mt-4 sm:mt-5">
+                    <label className="mb-1.5 block text-xs font-semibold text-slate-700 sm:mb-2 sm:text-sm">
                       {t.appointment.message}
                     </label>
 
                     <textarea
                       name="message"
-                      rows={4}
-                      placeholder={
-                        t.appointment.messagePlaceholder
-                      }
-                      className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                      rows={3}
+                      placeholder={t.appointment.messagePlaceholder}
+                      className="w-full resize-none rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100 sm:rounded-xl sm:px-4 sm:py-3"
                     />
                   </div>
 
                   {/* Error */}
 
                   {error && (
-                    <div className="mt-4 rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+                    <div className="mt-3 rounded-lg border border-red-100 bg-red-50 px-3.5 py-2.5 text-xs font-medium text-red-700 sm:mt-4 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm">
                       {error}
                     </div>
                   )}
@@ -419,16 +417,16 @@ export default function AppointmentCTA() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-6 py-3.5 font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60"
+                    className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-blue-700 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60 sm:mt-6 sm:rounded-xl sm:px-6 sm:py-3.5 sm:text-base"
                   >
-                    <Send size={18} />
+                    <Send size={17} className="sm:h-[18px] sm:w-[18px]" />
 
                     {loading
                       ? t.appointment.sendingRequest
                       : t.appointment.requestAppointment}
                   </button>
 
-                  <p className="mt-4 text-center text-xs text-slate-400">
+                  <p className="mt-3 text-center text-[10px] leading-4 text-slate-400 sm:mt-4 sm:text-xs">
                     {t.appointment.confirmationNote}
                   </p>
 

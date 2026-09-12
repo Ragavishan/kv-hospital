@@ -132,6 +132,7 @@ const content = {
     clickToWatch: "देखने के लिए क्लिक करें",
   },
 };
+
 export default function FeedbackVideosSection() {
   const { language } = useLanguage();
 
@@ -167,25 +168,29 @@ export default function FeedbackVideosSection() {
           relative
           overflow-hidden
           bg-white
-          py-20
-          sm:py-24
+          py-14
+          sm:py-20
           lg:py-28
         "
       >
-        {/* BACKGROUND DECORATION */}
+        {/* ==================================================
+            BACKGROUND DECORATION
+        ================================================== */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div
             className="
               absolute
               left-1/2
               top-1/2
-              h-[700px]
-              w-[700px]
+              h-[500px]
+              w-[500px]
               -translate-x-1/2
               -translate-y-1/2
               rounded-full
               bg-[#0b6b78]/[0.025]
               blur-3xl
+              sm:h-[700px]
+              sm:w-[700px]
             "
           />
 
@@ -219,35 +224,54 @@ export default function FeedbackVideosSection() {
         </div>
 
         <Container className="relative z-10">
-          {/* SECTION HEADER */}
-          <div className="mx-auto mb-12 max-w-3xl text-center lg:mb-4">
+          {/* ==================================================
+              SECTION HEADER
+          ================================================== */}
+          <div
+            className="
+              mx-auto
+              mb-8
+              max-w-3xl
+              text-center
+              sm:mb-12
+              lg:mb-4
+            "
+          >
             <div
               className="
-                mb-4
+                mb-3
                 inline-flex
+                max-w-full
                 items-center
-                gap-2
+                gap-1.5
                 rounded-full
                 border
                 border-[#0b6b78]/10
                 bg-[#0b6b78]/5
-                px-4
-                py-2
-                text-xs
+                px-3
+                py-1.5
+                text-[9px]
                 font-semibold
                 uppercase
-                tracking-[0.18em]
+                tracking-[0.14em]
                 text-[#0b6b78]
+                sm:mb-4
+                sm:gap-2
+                sm:px-4
+                sm:py-2
+                sm:text-xs
+                sm:tracking-[0.18em]
               "
             >
-              <Sparkles className="h-4 w-4" />
-              {currentContent.eyebrow}
+              <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span className="truncate">{currentContent.eyebrow}</span>
             </div>
 
             <h2
               className="
-                text-3xl
+                text-2xl
                 font-semibold
+                leading-tight
                 tracking-tight
                 text-slate-900
                 sm:text-4xl
@@ -263,12 +287,16 @@ export default function FeedbackVideosSection() {
             <p
               className="
                 mx-auto
-                mt-5
+                mt-3
                 max-w-2xl
-                text-sm
-                leading-7
+                px-2
+                text-xs
+                leading-6
                 text-slate-600
+                sm:mt-5
+                sm:px-0
                 sm:text-base
+                sm:leading-7
               "
             >
               {currentContent.description}
@@ -276,14 +304,13 @@ export default function FeedbackVideosSection() {
           </div>
 
           {/* ==================================================
-              DESKTOP SUN / ORBIT STRUCTURE
-              SAME STRUCTURE
+              DESKTOP + LARGE TABLET ORBIT
           ================================================== */}
           <div
             className="
               relative
               mx-auto
-              mt-16
+              mt-24
               hidden
               h-[820px]
               w-full
@@ -308,7 +335,7 @@ export default function FeedbackVideosSection() {
               "
             />
 
-            {/* INNER DASHED ORBIT */}
+            {/* INNER ORBIT */}
             <div
               className="
                 pointer-events-none
@@ -343,13 +370,9 @@ export default function FeedbackVideosSection() {
               "
             />
 
-            {/* ==================================================
-                CENTER CIRCLE
-                EMPTY
-            ================================================== */}
-            {/* CENTER CONTENT CIRCLE */}
+            {/* CENTER CONTENT */}
             <div
-            className="
+              className="
                 absolute
                 left-1/2
                 top-1/2
@@ -367,11 +390,11 @@ export default function FeedbackVideosSection() {
                 p-12
                 text-center
                 shadow-[0_25px_80px_rgba(11,107,120,0.15)]
-            "
+              "
             >
-            <div>
+              <div>
                 <div
-                className="
+                  className="
                     mx-auto
                     mb-5
                     flex
@@ -382,55 +405,28 @@ export default function FeedbackVideosSection() {
                     rounded-full
                     bg-[#0b6b78]/10
                     text-[#0b6b78]
-                "
+                  "
                 >
-                <Sparkles className="h-6 w-6" />
+                  <Sparkles className="h-6 w-6" />
                 </div>
 
-                <h3
-                className="
-                    text-3xl
-                    font-semibold
-                    leading-tight
-                    text-slate-900
-                "
-                >
-                {currentContent.centerTitle}
+                <h3 className="text-3xl font-semibold leading-tight text-slate-900">
+                  {currentContent.centerTitle}
                 </h3>
 
-                <div
-                className="
-                    mt-1
-                    text-3xl
-                    font-semibold
-                    leading-tight
-                    text-[#0b6b78]
-                "
-                >
-                {currentContent.centerHighlight}
+                <div className="mt-1 text-3xl font-semibold leading-tight text-[#0b6b78]">
+                  {currentContent.centerHighlight}
                 </div>
 
-                <p
-                className="
-                    mx-auto
-                    mt-5
-                    max-w-[260px]
-                    text-sm
-                    leading-7
-                    text-slate-600
-                "
-                >
-                {currentContent.centerText}
+                <p className="mx-auto mt-5 max-w-[260px] text-sm leading-7 text-slate-600">
+                  {currentContent.centerText}
                 </p>
-            </div>
+              </div>
             </div>
 
-            {/* ==================================================
-                AUTOMATIC 8 VIDEO ORBIT
-            ================================================== */}
+            {/* DESKTOP VIDEO ORBIT */}
             {feedbackVideos.slice(0, 8).map((item, index) => {
-              const total = Math.min(feedbackVideos.length, 8);
-
+              const total = 8;
               const angle = -90 + (360 / total) * index;
 
               return (
@@ -445,42 +441,204 @@ export default function FeedbackVideosSection() {
           </div>
 
           {/* ==================================================
-              MOBILE STRUCTURE
+              MOBILE CIRCLE / ORBIT STRUCTURE
           ================================================== */}
-          <div className="lg:hidden">
-            {/* Empty center circle */}
-            <div className="mx-auto mb-10 flex max-w-md justify-center">
-              <div
-                className="
-                  flex
-                  aspect-square
-                  w-full
-                  max-w-[360px]
-                  items-center
-                  justify-center
-                  rounded-full
-                  border-[8px]
-                  border-white
-                  bg-white
-                  p-10
-                  text-center
-                  shadow-[0_20px_60px_rgba(11,107,120,0.14)]
-                  ring-1
-                  ring-[#0b6b78]/10
-                "
-              />
+          <div
+            className="
+              relative
+              mx-auto
+              mt-8  
+              block
+              h-[500px]
+              w-full
+              max-w-[500px]
+              -translate-y-20
+              sm:mt-12
+              sm:h-[620px]
+              sm:max-w-[620px]
+              lg:hidden
+            "
+            style={{
+              "--video-orbit-radius": "1000px",
+            } as React.CSSProperties}
+          >
+            {/* MOBILE OUTER ORBIT */}
+            <div
+              className="
+                pointer-events-none
+                absolute
+                left-1/2
+                top-1/2
+                h-[390px]
+                w-[390px]
+                -translate-x-1/2
+                -translate-y-1/2
+                rounded-full
+                border
+                border-[#0b6b78]/10
+                sm:h-[500px]
+                sm:w-[500px]
+                sm:max-lg:h-[100px]
+                sm:max-lg:w-[100px]
+              "
+            />
+
+            {/* MOBILE INNER ORBIT */}
+            <div
+              className="
+                pointer-events-none
+                absolute
+                left-1/2
+                top-1/2
+                h-[315px]
+                w-[315px]
+                -translate-x-1/2
+                -translate-y-1/2
+                rounded-full
+                border
+                border-dashed
+                border-[#0b6b78]/15
+                sm:h-[410px]
+                sm:w-[410px]
+                sm:max-lg:h-[350px]
+                sm:max-lg:w-[350px]
+              "
+            />
+
+            {/* MOBILE CENTER GLOW */}
+            <div
+              className="
+                pointer-events-none
+                absolute
+                left-1/2
+                top-1/2
+                h-[250px]
+                w-[250px]
+                -translate-x-1/2
+                -translate-y-1/2
+                rounded-full
+                bg-[#0b6b78]/5
+                blur-2xl
+                sm:h-[330px]
+                sm:w-[330px]
+              "
+            />
+
+            {/* MOBILE CENTER CIRCLE */}
+            <div
+              className="
+                absolute
+                left-1/2
+                top-1/2
+                flex
+                h-[185px]
+                w-[185px]
+                -translate-x-1/2
+                -translate-y-1/2
+                items-center
+                justify-center
+                rounded-full
+                border-[7px]
+                border-white
+                bg-white
+                p-5
+                text-center
+                shadow-[0_20px_60px_rgba(11,107,120,0.15)]
+                ring-1
+                ring-[#0b6b78]/10
+                sm:h-[245px]
+                sm:w-[245px]
+                sm:border-[8px]
+                sm:p-7
+              "
+            >
+              <div>
+                <div
+                  className="
+                    mx-auto
+                    mb-2
+                    flex
+                    h-9
+                    w-9
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-[#0b6b78]/10
+                    text-[#0b6b78]
+                    sm:mb-3
+                    sm:h-11
+                    sm:w-11
+                  "
+                >
+                  <Sparkles className="h-4 w-4 sm:h-5 sm:w-5" />
+                </div>
+
+                <h3
+                  className="
+                    text-base
+                    font-semibold
+                    leading-tight
+                    text-slate-900
+                    sm:text-xl
+                  "
+                >
+                  {currentContent.centerTitle}
+                </h3>
+
+                <div
+                  className="
+                    mt-0.5
+                    text-base
+                    font-semibold
+                    leading-tight
+                    text-[#0b6b78]
+                    sm:text-xl
+                  "
+                >
+                  {currentContent.centerHighlight}
+                </div>
+
+                <p
+                  className="
+                    mx-auto
+                    mt-2
+                    max-w-[145px]
+                    text-[9px]
+                    leading-4
+                    text-slate-600
+                    sm:mt-3
+                    sm:max-w-[175px]
+                    sm:text-xs
+                    sm:leading-5
+                  "
+                >
+                  {currentContent.centerText}
+                </p>
+              </div>
             </div>
 
-            {/* Mobile videos */}
-            <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
-              {feedbackVideos.slice(0, 8).map((item) => (
-                <VideoOrbMobile
+            {/* MOBILE 8 VIDEO ORBIT */}
+            {feedbackVideos.slice(0, 8).map((item, index) => {
+              const total = 8;
+
+              /*
+                Smaller radius for mobile.
+                This keeps all circles inside the screen.
+              */
+              const radius = 148;
+
+              const angle = -90 + (360 / total) * index;
+
+              return (
+                <VideoOrbMobileOrbit
                   key={item.id}
                   item={item}
+                  angle={angle}
+                  radius={radius}
                   onOpen={() => setSelectedVideo(item.video)}
                 />
-              ))}
-            </div>
+              );
+            })}
           </div>
         </Container>
       </Section>
@@ -498,23 +656,25 @@ export default function FeedbackVideosSection() {
             items-center
             justify-center
             bg-black/85
-            p-4
+            p-3
             backdrop-blur-sm
+            sm:p-4
           "
           onClick={() => setSelectedVideo(null)}
         >
+          {/* CLOSE BUTTON */}
           <button
             type="button"
             aria-label="Close video"
             onClick={() => setSelectedVideo(null)}
             className="
               absolute
-              right-4
-              top-4
+              right-3
+              top-3
               z-20
               flex
-              h-11
-              w-11
+              h-10
+              w-10
               items-center
               justify-center
               rounded-full
@@ -523,11 +683,16 @@ export default function FeedbackVideosSection() {
               backdrop-blur-md
               transition
               hover:bg-white/20
+              sm:right-4
+              sm:top-4
+              sm:h-11
+              sm:w-11
             "
           >
-            <X className="h-6 w-6" />
+            <X className="h-5 w-5 sm:h-6 sm:w-6" />
           </button>
 
+          {/* VIDEO */}
           <div
             className="
               relative
@@ -547,11 +712,12 @@ export default function FeedbackVideosSection() {
               playsInline
               preload="auto"
               className="
-                max-h-[90vh]
+                max-h-[88vh]
                 w-full
-                rounded-2xl
+                rounded-xl
                 object-contain
                 shadow-2xl
+                sm:rounded-2xl
               "
             />
           </div>
@@ -574,7 +740,7 @@ function VideoOrb({
   angle: number;
   onOpen: () => void;
 }) {
-  const radius = 340;
+  const radius = 350;
 
   const x = Math.cos((angle * Math.PI) / 180) * radius;
   const y = Math.sin((angle * Math.PI) / 180) * radius;
@@ -611,10 +777,6 @@ function VideoOrb({
         marginTop: `${y}px`,
       }}
     >
-      {/* ==================================================
-          ACTUAL VIDEO PREVIEW
-          ALL 1-8 VIDEOS AUTO PLAY
-      ================================================== */}
       <video
         src={item.video}
         muted
@@ -632,7 +794,6 @@ function VideoOrb({
         "
       />
 
-      {/* Soft overlay */}
       <span
         className="
           absolute
@@ -645,7 +806,6 @@ function VideoOrb({
         "
       />
 
-      {/* Play button */}
       <span
         className="
           absolute
@@ -671,7 +831,6 @@ function VideoOrb({
         <Play className="ml-1 h-5 w-5 fill-current" />
       </span>
 
-      {/* Number */}
       <span
         className="
           absolute
@@ -691,7 +850,6 @@ function VideoOrb({
         {String(item.id).padStart(2, "0")}
       </span>
 
-      {/* Expand */}
       <span
         className="
           absolute
@@ -716,16 +874,23 @@ function VideoOrb({
 }
 
 /* ==================================================
-   MOBILE VIDEO ORB
+   MOBILE ORBIT VIDEO
 ================================================== */
 
-function VideoOrbMobile({
+function VideoOrbMobileOrbit({
   item,
+  angle,
+  radius,
   onOpen,
 }: {
   item: FeedbackVideo;
+  angle: number;
+  radius: number;
   onOpen: () => void;
 }) {
+  const x = Math.cos((angle * Math.PI) / 180) * radius;
+  const y = Math.sin((angle * Math.PI) / 180) * radius;
+
   return (
     <button
       type="button"
@@ -733,21 +898,37 @@ function VideoOrbMobile({
       aria-label={`Watch ${item.title}`}
       className="
         group
-        relative
-        aspect-square
-        w-full
+        absolute
+        left-1/2
+        top-1/2
+        h-[82px]
+        w-[82px]
+        -translate-x-1/2
+        -translate-y-1/2
         overflow-hidden
         rounded-full
-        border-4
+        border-[4px]
         border-white
         bg-white
-        shadow-[0_12px_35px_rgba(0,0,0,0.15)]
-        transition
+        shadow-[0_10px_30px_rgba(0,0,0,0.16)]
+        transition-all
         duration-300
-        hover:scale-105
+        active:scale-95
+        sm:h-[105px]
+        sm:w-[105px]
+        sm:border-[5px]
+
+        md:max-lg:h-[100px]
+        md:max-lg:w-[100px]
+        md:max-lg:border-[5px]
+
       "
+      style={{
+        marginLeft: `${x}px`,
+        marginTop: `${y}px`,
+      }}
     >
-      {/* ACTUAL VIDEO PREVIEW */}
+      {/* VIDEO PREVIEW */}
       <video
         src={item.video}
         muted
@@ -765,24 +946,25 @@ function VideoOrbMobile({
         "
       />
 
+      {/* OVERLAY */}
       <span
         className="
           absolute
           inset-0
           rounded-full
-          bg-black/10
+          bg-black/15
         "
       />
 
-      {/* Play */}
+      {/* PLAY */}
       <span
         className="
           absolute
           left-1/2
           top-1/2
           flex
-          h-11
-          w-11
+          h-7
+          w-7
           -translate-x-1/2
           -translate-y-1/2
           items-center
@@ -791,28 +973,69 @@ function VideoOrbMobile({
           bg-white/90
           text-[#0b6b78]
           shadow-lg
+          sm:h-9
+          sm:w-9
+
+          md:max-lg:h-8
+          md:max-lg:w-8
         "
       >
-        <Play className="ml-1 h-4 w-4 fill-current" />
+        <Play
+          className="
+            ml-0.5
+            h-3
+            w-3
+            fill-current
+            sm:h-4
+            sm:w-4
+          "
+        />
       </span>
 
-      {/* Number */}
+      {/* NUMBER */}
       <span
         className="
           absolute
-          bottom-3
+          bottom-1.5
           left-1/2
           -translate-x-1/2
           rounded-full
-          bg-black/55
-          px-2.5
-          py-1
-          text-[10px]
+          bg-black/60
+          px-1.5
+          py-0.5
+          text-[7px]
           font-semibold
           text-white
+          sm:bottom-2
+          sm:px-2
+          sm:text-[9px]
         "
       >
         {String(item.id).padStart(2, "0")}
+      </span>
+
+      {/* EXPAND */}
+      <span
+        className="
+          absolute
+          right-1.5
+          top-1.5
+          flex
+          h-5
+          w-5
+          items-center
+          justify-center
+          rounded-full
+          bg-white/85
+          text-[#0b6b78]
+          shadow-sm
+          sm:right-2
+          sm:top-2
+          sm:h-6
+          sm:w-6
+        "
+      >
+        <Maximize2 className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
       </span>
     </button>
   );

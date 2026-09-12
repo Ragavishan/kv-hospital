@@ -27,8 +27,7 @@ export default function DepartmentsSection() {
     departments.length / departmentsPerPage
   );
 
-  const startIndex =
-    currentPage * departmentsPerPage;
+  const startIndex = currentPage * departmentsPerPage;
 
   const visibleDepartments = departments.slice(
     startIndex,
@@ -177,19 +176,18 @@ export default function DepartmentsSection() {
   return (
     <section
       id="departments"
-      className="relative overflow-hidden bg-white py-24 sm:py-28"
+      className="relative overflow-hidden bg-white py-14 sm:py-20 lg:py-24"
     >
       {/* =====================================================
           BACKGROUND DECORATIONS
       ===================================================== */}
 
-      <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-blue-50 blur-3xl" />
+      <div className="pointer-events-none absolute -left-40 top-20 h-72 w-72 rounded-full bg-blue-50 blur-3xl sm:h-96 sm:w-96" />
 
-      <div className="pointer-events-none absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-cyan-50 blur-3xl" />
+      <div className="pointer-events-none absolute -right-40 bottom-0 h-72 w-72 rounded-full bg-cyan-50 blur-3xl sm:h-96 sm:w-96" />
 
       <Section>
         <Container>
-
           {/* =================================================
               SECTION TITLE
           ================================================= */}
@@ -206,8 +204,8 @@ export default function DepartmentsSection() {
               INTRO
           ================================================= */}
 
-          <div className="mx-auto mt-8 max-w-3xl text-center">
-            <p className="text-sm leading-7 text-slate-500 sm:text-base">
+          <div className="mx-auto mt-4 max-w-3xl px-2 text-center sm:mt-8 sm:px-0">
+            <p className="text-xs leading-6 text-slate-500 sm:text-base sm:leading-7">
               {content.intro}
             </p>
           </div>
@@ -216,10 +214,13 @@ export default function DepartmentsSection() {
               DEPARTMENT COUNT
           ================================================= */}
 
-          <div className="mx-auto mt-8 flex w-fit items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-5 py-2.5 text-sm font-semibold text-blue-700">
-            <Stethoscope size={18} />
+          <div className="mx-auto mt-6 flex w-fit max-w-[90%] items-center justify-center gap-1.5 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-700 sm:mt-8 sm:gap-2 sm:px-5 sm:py-2.5 sm:text-sm">
+            <Stethoscope
+              size={16}
+              className="shrink-0 sm:h-[18px] sm:w-[18px]"
+            />
 
-            <span>
+            <span className="break-words text-center">
               {departments.length}+ {content.departments}
             </span>
           </div>
@@ -230,8 +231,7 @@ export default function DepartmentsSection() {
 
           {!showAll && (
             <>
-              <div className="relative mt-14">
-
+              <div className="relative mt-8 sm:mt-14">
                 {/* LEFT BUTTON */}
 
                 <button
@@ -256,75 +256,65 @@ export default function DepartmentsSection() {
 
                 {/* 3 CARDS */}
 
-                <div className="overflow-hidden px-1">
-
+                <div className="overflow-hidden px-0.5 sm:px-1">
                   <div
                     key={currentPage}
-                    className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3"
+                    className="grid gap-5 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3"
                   >
-
-                    {visibleDepartments.map(
-                      (department) => (
-                        <div
-                          key={department.id}
-                          className="animate-[fadeIn_0.45s_ease-out]"
-                        >
-                          <DepartmentCard
-                            department={department}
-                          />
-                        </div>
-                      )
-                    )}
-
+                    {visibleDepartments.map((department) => (
+                      <div
+                        key={department.id}
+                        className="min-w-0 animate-[fadeIn_0.45s_ease-out]"
+                      >
+                        <DepartmentCard
+                          department={department}
+                        />
+                      </div>
+                    ))}
                   </div>
-
                 </div>
-
               </div>
 
               {/* =================================================
                   MOBILE NAVIGATION
               ================================================= */}
 
-              <div className="mt-7 flex items-center justify-center gap-3 lg:hidden">
-
+              <div className="mt-5 flex items-center justify-center gap-2.5 sm:mt-7 sm:gap-3 lg:hidden">
                 <button
                   type="button"
                   onClick={previousPage}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-blue-200 hover:bg-blue-700 hover:text-white"
+                  aria-label={content.previous}
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-blue-200 hover:bg-blue-700 hover:text-white sm:h-11 sm:w-11"
                 >
-                  <ArrowLeft size={19} />
+                  <ArrowLeft size={18} />
                 </button>
 
-                <div className="flex items-center gap-1.5 rounded-full bg-slate-100 px-4 py-2">
-
+                <div className="flex max-w-[60%] items-center gap-1.5 overflow-hidden rounded-full bg-slate-100 px-3.5 py-2 sm:px-4">
                   {Array.from({
                     length: totalPages,
                   }).map((_, index) => (
                     <button
                       key={index}
                       type="button"
-                      onClick={() =>
-                        setCurrentPage(index)
-                      }
-                      className={`h-2 rounded-full transition-all duration-300 ${
+                      aria-label={`Page ${index + 1}`}
+                      onClick={() => setCurrentPage(index)}
+                      className={`h-2 shrink-0 rounded-full transition-all duration-300 ${
                         currentPage === index
                           ? "w-6 bg-blue-700"
                           : "w-2 bg-slate-300"
                       }`}
                     />
                   ))}
-
                 </div>
 
                 <button
                   type="button"
                   onClick={nextPage}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-blue-200 hover:bg-blue-700 hover:text-white"
+                  aria-label={content.next}
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-blue-200 hover:bg-blue-700 hover:text-white sm:h-11 sm:w-11"
                 >
-                  <ArrowRight size={19} />
+                  <ArrowRight size={18} />
                 </button>
-
               </div>
             </>
           )}
@@ -334,68 +324,60 @@ export default function DepartmentsSection() {
           ================================================= */}
 
           {showAll && (
-            <div className="mt-14">
-
+            <div className="mt-8 sm:mt-14">
               {/* Scroll Container */}
 
               <div
                 className="
-                  max-h-[720px]
+                  max-h-[560px]
                   overflow-y-auto
                   overflow-x-hidden
-                  rounded-[2rem]
+                  rounded-2xl
                   border border-slate-100
                   bg-slate-50/50
-                  p-4
+                  p-3
                   shadow-inner
+                  sm:max-h-[720px]
+                  sm:rounded-[2rem]
                   sm:p-6
                 "
               >
-
                 {/* 3 COLUMN GRID */}
 
-                <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-
-                  {departments.map(
-                    (department, index) => (
-                      <div
-                        key={department.id}
-                        className="animate-[fadeIn_0.4s_ease-out]"
-                        style={{
-                          animationDelay: `${
-                            index * 50
-                          }ms`,
-                        }}
-                      >
-                        <DepartmentCard
-                          department={department}
-                        />
-                      </div>
-                    )
-                  )}
-
+                <div className="grid gap-5 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3">
+                  {departments.map((department, index) => (
+                    <div
+                      key={department.id}
+                      className="min-w-0 animate-[fadeIn_0.4s_ease-out]"
+                      style={{
+                        animationDelay: `${index * 50}ms`,
+                      }}
+                    >
+                      <DepartmentCard
+                        department={department}
+                      />
+                    </div>
+                  ))}
                 </div>
-
               </div>
 
               {/* Scroll Hint */}
 
-              <div className="mt-4 flex items-center justify-center gap-2 text-xs font-semibold text-slate-400">
-
+              <div className="mt-3 flex items-center justify-center gap-1.5 px-3 text-center text-[10px] font-semibold text-slate-400 sm:mt-4 sm:gap-2 sm:text-xs">
                 <ChevronDown
-                  size={15}
-                  className="animate-bounce"
+                  size={14}
+                  className="shrink-0 animate-bounce sm:h-[15px] sm:w-[15px]"
                 />
 
-                <span>{content.scroll}</span>
+                <span className="break-words">
+                  {content.scroll}
+                </span>
 
                 <ChevronDown
-                  size={15}
-                  className="animate-bounce"
+                  size={14}
+                  className="shrink-0 animate-bounce sm:h-[15px] sm:w-[15px]"
                 />
-
               </div>
-
             </div>
           )}
 
@@ -403,69 +385,61 @@ export default function DepartmentsSection() {
               VIEW MORE / SHOW LESS
           ================================================= */}
 
-          <div className="mt-8 flex justify-center">
-
+          <div className="mt-6 flex justify-center px-2 sm:mt-8 sm:px-0">
             <button
               type="button"
               onClick={() =>
                 setShowAll((prev) => !prev)
               }
-              className="group inline-flex items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-6 py-3.5 text-sm font-bold text-blue-700 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-blue-700 hover:text-white hover:shadow-lg hover:shadow-blue-700/20"
+              className="group inline-flex max-w-full items-center justify-center gap-1.5 rounded-xl border border-blue-200 bg-blue-50 px-5 py-3 text-center text-xs font-bold leading-5 text-blue-700 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-blue-700 hover:text-white hover:shadow-lg hover:shadow-blue-700/20 sm:gap-2 sm:px-6 sm:py-3.5 sm:text-sm"
             >
-
-              <span>
+              <span className="break-words">
                 {showAll
                   ? content.viewLess
                   : content.viewMore}
               </span>
 
               <ChevronDown
-                size={18}
-                className={`transition-transform duration-300 ${
+                size={17}
+                className={`shrink-0 transition-transform duration-300 sm:h-[18px] sm:w-[18px] ${
                   showAll
                     ? "rotate-180"
                     : "group-hover:translate-y-1"
                 }`}
               />
-
             </button>
-
           </div>
 
           {/* =================================================
               BOTTOM CTA
           ================================================= */}
 
-          <div className="relative mt-16 overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-700 via-blue-800 to-blue-950 px-7 py-9 text-white shadow-2xl sm:px-10 sm:py-10">
-
+          <div className="relative mt-10 overflow-hidden rounded-2xl bg-gradient-to-br from-blue-700 via-blue-800 to-blue-950 px-5 py-7 text-white shadow-2xl sm:mt-16 sm:rounded-[2rem] sm:px-10 sm:py-10">
             {/* Decorations */}
 
-            <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-white/10" />
+            <div className="pointer-events-none absolute -right-20 -top-24 h-52 w-52 rounded-full bg-white/10 sm:h-64 sm:w-64" />
 
-            <div className="pointer-events-none absolute -bottom-20 left-1/3 h-48 w-48 rounded-full bg-cyan-400/10 blur-2xl" />
+            <div className="pointer-events-none absolute -bottom-20 left-1/3 h-40 w-40 rounded-full bg-cyan-400/10 blur-2xl sm:h-48 sm:w-48" />
 
-            <div className="relative flex flex-col items-start justify-between gap-7 md:flex-row md:items-center">
+            <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-center md:gap-7">
+              {/* CTA CONTENT */}
 
-              {/* CTA */}
+              <div className="min-w-0 max-w-2xl">
+                <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-blue-200 sm:gap-2 sm:text-sm sm:tracking-wider">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-blue-200 sm:h-2 sm:w-2" />
 
-              <div className="max-w-2xl">
-
-                <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-blue-200">
-
-                  <span className="h-2 w-2 rounded-full bg-blue-200" />
-
-                  {content.need}
-
+                  <span className="break-words">
+                    {content.need}
+                  </span>
                 </div>
 
-                <h3 className="mt-3 text-2xl font-extrabold tracking-tight sm:text-3xl">
+                <h3 className="mt-2 break-words text-xl font-extrabold leading-tight tracking-tight sm:mt-3 sm:text-3xl">
                   {content.find}
                 </h3>
 
-                <p className="mt-3 text-sm leading-7 text-blue-100 sm:text-base">
+                <p className="mt-2 text-xs leading-6 text-blue-100 sm:mt-3 sm:text-base sm:leading-7">
                   {content.ctaDescription}
                 </p>
-
               </div>
 
               {/* BOOK */}
@@ -473,22 +447,17 @@ export default function DepartmentsSection() {
               <button
                 type="button"
                 onClick={handleBookAppointment}
-                className="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-bold text-blue-700 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-blue-50 hover:shadow-xl"
+                className="group inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-blue-700 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-blue-50 hover:shadow-xl sm:w-auto sm:px-6"
               >
-
                 {content.book}
 
                 <ArrowRight
                   size={18}
                   className="transition-transform duration-300 group-hover:translate-x-1"
                 />
-
               </button>
-
             </div>
-
           </div>
-
         </Container>
       </Section>
     </section>
