@@ -1,36 +1,25 @@
 import { NextResponse } from "next/server";
+
 import { connectDB } from "@/lib/mongodb";
 import Appointment from "@/models/Appointment";
-
-const ADMIN_COOKIE_NAME = "iswarya_admin_session";
-
-function isAdminAuthenticated(request: Request) {
-  const cookieHeader = request.headers.get("cookie") || "";
-
-  return cookieHeader
-    .split(";")
-    .some((cookie) => {
-      const [name, ...valueParts] = cookie.trim().split("=");
-
-      return (
-        name === ADMIN_COOKIE_NAME &&
-        valueParts.join("=") === "authenticated"
-      );
-    });
-}
+import { isAdminAuthenticated } from "@/lib/adminAuth";
 
 /* =========================================================
    GET APPOINTMENTS
    Admin only
 ========================================================= */
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
-    if (!isAdminAuthenticated(request)) {
+    const authenticated =
+      await isAdminAuthenticated();
+
+    if (!authenticated) {
       return NextResponse.json(
         {
           success: false,
-          message: "Unauthorized. Admin login required.",
+          message:
+            "Unauthorized. Admin login required.",
         },
         { status: 401 }
       );
@@ -38,7 +27,9 @@ export async function GET(request: Request) {
 
     await connectDB();
 
-    console.log("✅ MongoDB connected successfully!");
+    console.log(
+      "✅ MongoDB connected successfully!"
+    );
 
     const appointments = await Appointment.find({})
       .sort({ createdAt: -1 })
@@ -52,12 +43,16 @@ export async function GET(request: Request) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Fetch Appointments Error:", error);
+    console.error(
+      "Fetch Appointments Error:",
+      error
+    );
 
     return NextResponse.json(
       {
         success: false,
-        message: "Unable to fetch appointments.",
+        message:
+          "Unable to fetch appointments.",
       },
       { status: 500 }
     );
@@ -101,7 +96,9 @@ export async function POST(request: Request) {
 
     await connectDB();
 
-    console.log("✅ MongoDB connected successfully!");
+    console.log(
+      "✅ MongoDB connected successfully!"
+    );
 
     const appointment = await Appointment.create({
       name: data.name.trim(),
@@ -130,7 +127,10 @@ export async function POST(request: Request) {
       { status: 201 }
     );
   } catch (error) {
-    console.error("Appointment API Error:", error);
+    console.error(
+      "Appointment API Error:",
+      error
+    );
 
     return NextResponse.json(
       {
