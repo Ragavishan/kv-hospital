@@ -17,6 +17,7 @@
     "mongodb": "^7.5.0",
     "mongoose": "^9.9.3",
     "next": "16.2.12",
+    "next-auth": "^4.24.15",
     "react": "19.2.4",
     "react-countup": "^6.5.3",
     "react-dom": "19.2.4",
