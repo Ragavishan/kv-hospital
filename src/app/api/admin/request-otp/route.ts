@@ -48,8 +48,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           success: false,
-          message:
-            "Admin OTP is not configured.",
+          message: "Admin OTP is not configured.",
         },
         { status: 500 }
       );
@@ -69,11 +68,19 @@ export async function POST(request: Request) {
 
     await connectDB();
 
-    // Remove previous unused OTPs for this admin.
-    await AdminOTP.deleteMany({
-      email: adminEmail,
-      used: false,
-    });
+    // Invalidate all previous unused OTPs.
+    // We keep the records for history instead of deleting them.
+    await AdminOTP.updateMany(
+      {
+        email: adminEmail,
+        used: false,
+      },
+      {
+        $set: {
+          used: true,
+        },
+      }
+    );
 
     const otp = generateOTP();
     const otpHash = hashOTP(otp);
@@ -83,6 +90,7 @@ export async function POST(request: Request) {
         OTP_EXPIRY_MINUTES * 60 * 1000
     );
 
+    // Create the new active OTP.
     await AdminOTP.create({
       email: adminEmail,
       otpHash,
@@ -130,10 +138,18 @@ If you did not request this OTP, please ignore this email.`,
         error
       );
 
-      await AdminOTP.deleteMany({
-        email: adminEmail,
-        used: false,
-      });
+      // Invalidate the newly created OTP if email sending fails.
+      await AdminOTP.updateMany(
+        {
+          email: adminEmail,
+          used: false,
+        },
+        {
+          $set: {
+            used: true,
+          },
+        }
+      );
 
       return NextResponse.json(
         {

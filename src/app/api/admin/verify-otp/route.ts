@@ -84,11 +84,21 @@ export async function POST(request: Request) {
     }
 
     await connectDB();
-
+    console.log("VERIFY OTP START", {
+      email: adminEmail,
+      time: new Date().toISOString(),
+    });
     const otpRecord = await AdminOTP.findOne({
       email: adminEmail,
       used: false,
     }).sort({ createdAt: -1 });
+
+    console.log("OTP LOOKUP RESULT", {
+      found: !!otpRecord,
+      used: otpRecord?.used,
+      attempts: otpRecord?.attempts,
+      expiresAt: otpRecord?.expiresAt,
+    });
 
     if (!otpRecord) {
       return NextResponse.json(
