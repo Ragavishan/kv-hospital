@@ -46,7 +46,7 @@ available247: "24 × 7 Available",
 findUs: "FIND US",
 visitHospital: "Visit Iswarya Hospital - Palani",
 mapAddress:
-"Dindigul – Palani Main Road, Laxmipuram, Palani - 624601, Tamil Nadu,India.",
+"72-B, Dindigul – Palani Main Road, Laxmipuram, Palani - 624601, Tamil Nadu, India.",
 getDirections: "Get Directions",
 },
 

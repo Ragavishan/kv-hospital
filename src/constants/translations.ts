@@ -6,12 +6,12 @@ export const translations = {
   en: {
     hero: {
       badge: "Trusted Multi-Speciality Care",
-      title1: "Compassionate",
-      title2: "Care.",
-      title3: "Advanced",
-      title4: "Medicine.",
+      title1: "Iswarya Hospital",
+      title2: "in Palani.",
+      title3: "Compassionate",
+      title4: "Advanced Care.",
       description:
-        "At Iswarya Hospital, we combine experienced medical professionals, modern healthcare facilities, and compassionate treatment to deliver trusted care for you and your family.",
+          "Iswarya Hospital in Palani provides multispeciality healthcare, experienced doctors, modern medical facilities, 24 × 7 emergency care, and compassionate treatment for you and your family.",
       bookAppointment: "Book Appointment",
       callHospital: "Call Hospital",
       emergencyCare: "Emergency Care",
