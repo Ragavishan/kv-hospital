@@ -10,28 +10,25 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.iswaryahospitalpalani.com"),
+
   title: {
-    default: "Iswarya Hospital | Best Multispeciality Hospital in Palani",
+    default: "Iswarya Hospital | Multispeciality Hospital in Palani",
     template: "%s | Iswarya Hospital",
   },
 
   description:
-    "Iswarya Hospital is a trusted multispeciality hospital in Palani offering 24/7 emergency care, experienced doctors, advanced treatments, and quality healthcare.",
+    "Iswarya Hospital in Palani provides multispeciality healthcare, 24/7 emergency care, experienced doctors, and advanced medical treatments for patients in Palani and surrounding areas.",
 
   keywords: [
     "Iswarya Hospital",
     "Iswarya Hospital Palani",
     "hospital in Palani",
     "multispeciality hospital in Palani",
-    "best hospital in Palani",
-    "best multispeciality hospital in Palani",
-    "hospital near Palani",
     "emergency hospital in Palani",
-    "24/7 emergency hospital Palani",
-    "healthcare in Palani",
+    "24/7 emergency care Palani",
     "doctors in Palani",
-    "medical treatment in Palani",
-    "Tamil Nadu hospital",
+    "healthcare in Palani",
   ],
 
   authors: [
@@ -41,6 +38,7 @@ export const metadata: Metadata = {
   ],
 
   creator: "Iswarya Hospital",
+  publisher: "Iswarya Hospital",
 
   robots: {
     index: true,
@@ -54,6 +52,10 @@ export const metadata: Metadata = {
     },
   },
 
+  alternates: {
+    canonical: "/",
+  },
+
   icons: {
     icon: "/images/iswarya-hospital-logo.png",
     shortcut: "/images/iswarya-hospital-logo.png",
@@ -63,8 +65,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
+    url: "https://www.iswaryahospitalpalani.com",
     siteName: "Iswarya Hospital",
-    title: "Iswarya Hospital | Best Multispeciality Hospital in Palani",
+    title: "Iswarya Hospital | Multispeciality Hospital in Palani",
     description:
       "Iswarya Hospital in Palani provides multispeciality healthcare, 24/7 emergency care, experienced doctors, and advanced medical treatments.",
     images: [
@@ -72,19 +75,20 @@ export const metadata: Metadata = {
         url: "/images/hospital-hero.jpg",
         width: 1200,
         height: 630,
-        alt: "Iswarya Hospital Palani",
+        alt: "Iswarya Hospital in Palani",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Iswarya Hospital | Best Multispeciality Hospital in Palani",
+    title: "Iswarya Hospital | Multispeciality Hospital in Palani",
     description:
-      "Trusted multispeciality hospital in Palani offering 24/7 emergency care, experienced doctors, and quality healthcare.",
+      "Iswarya Hospital in Palani provides multispeciality healthcare, 24/7 emergency care, experienced doctors, and advanced medical treatments.",
     images: ["/images/hospital-hero.jpg"],
   },
 };
+
 
 export default function RootLayout({
   children,
