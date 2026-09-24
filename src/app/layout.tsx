@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.iswaryahospitalpalani.com"),
 
   title: {
-    default: "Iswarya Hospital | Multispeciality Hospital in Palani",
+    default: "Iswarya Hospital | Best Multispeciality Hospital in Palani",
     template: "%s | Iswarya Hospital",
   },
 
