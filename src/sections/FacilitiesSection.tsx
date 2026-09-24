@@ -39,12 +39,12 @@ const facilities: Facility[] = [
   {
     titleKey: "icu",
     descriptionKey: "icuDescription",
-    image: "/images/facilities/icu.jpg",
+    image:  "/images/facilities/icu-optimized.jpg",
   },
   {
     titleKey: "operationTheatre",
     descriptionKey: "operationTheatreDescription",
-    image: "/images/facilities/operation-theatre.jpg",
+    image: "/images/facilities/operation-theatre-optimized.jpg",
   },
   {
     titleKey: "pharmacy",

@@ -17,8 +17,8 @@ import { useLanguage } from "@/components/common/LanguageProvider";
 const aboutImages = [
   "/images/about/about-1.jpg",
   "/images/about/about-2.jpg",
-  "/images/about/about-3.jpg",
-  "/images/about/about-4.jpg",
+  "/images/about/about-3-optimized.jpg",
+  "/images/about/about-4-optimized.jpg",
   "/images/about/about-5.jpg",
   "/images/about/about-6.jpg",
 ];
@@ -70,7 +70,7 @@ function DiamondImage({
           fill
           priority={priority}
           quality={75}
-          sizes="(max-width: 640px) 220px, (max-width: 1024px) 260px, 300px"
+          sizes="(max-width: 640px) 180px, (max-width: 1024px) 220px, 260px"
           className="object-cover object-center"
         />
 

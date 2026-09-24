@@ -172,7 +172,7 @@ export const doctors: Doctor[] = [
       "Comprehensive Medical Care",
     ],
 
-    image: "/images/doctors/doctor1.jpg",
+    image: "/images/doctors/doctor1-optimized.jpg",
   },
 
   {
@@ -303,7 +303,7 @@ export const doctors: Doctor[] = [
       ],
     },
 
-    image: "/images/doctors/doctor2.jpg",
+    image: "/images/doctors/doctor2-optimized.jpg",
   },
 
   {
@@ -414,7 +414,7 @@ export const doctors: Doctor[] = [
       ],
     },
 
-    image: "/images/doctors/doctor3.jpg",
+    image: "/images/doctors/doctor3-optimized.jpg",
   },
 
   {
@@ -510,7 +510,7 @@ export const doctors: Doctor[] = [
       ],
     },
 
-    image: "/images/doctors/doctor4.jpg",
+    image: "/images/doctors/doctor4-optimized.jpg",
   },
 
   {
@@ -606,6 +606,6 @@ export const doctors: Doctor[] = [
       ],
     },
 
-    image: "/images/doctors/doctor5.jpg",
+    image: "/images/doctors/doctor5-optimized.jpg",
   },
 ];
