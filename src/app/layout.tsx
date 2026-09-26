@@ -82,7 +82,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Iswarya Hospital | Multispeciality Hospital in Palani",
+    title: "Iswarya Hospital | Best Multispeciality Hospital in Palani",
     description:
       "Iswarya Hospital in Palani provides multispeciality healthcare, 24/7 emergency care, experienced doctors, and advanced medical treatments.",
     images: ["/images/hospital-hero.jpg"],
