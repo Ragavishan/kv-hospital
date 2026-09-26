@@ -17,6 +17,10 @@ export const metadata: Metadata = {
     template: "%s | Iswarya Hospital",
   },
 
+  verification: {
+    google: "SQ8Nfm3K1-miSGMWyiZII5owe0KnCA5BbwIAP-J8_p4",
+  },
+
   description:
     "Iswarya Hospital in Palani provides multispeciality healthcare, 24/7 emergency care, experienced doctors, and advanced medical treatments for patients in Palani and surrounding areas.",
 
